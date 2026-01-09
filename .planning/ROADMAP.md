@@ -15,7 +15,7 @@ None
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
 - [x] **Phase 1: Foundation** - Astro project setup with static output pipeline
-- [ ] **Phase 2: Gallery** - Image optimization and portfolio presentation
+- [x] **Phase 2: Gallery** - Image optimization and portfolio presentation
 - [ ] **Phase 3: Pricing Integration** - Google Sheets data fetching for pricing
 - [ ] **Phase 4: Polish** - Final styling, performance, deployment docs
 
@@ -37,7 +37,7 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 02-01: Image gallery component and portfolio layout
+- [x] 02-01: Image gallery component and portfolio layout
 
 ### Phase 3: Pricing Integration
 **Goal**: Pricing section that pulls data from Google Sheets at build time
@@ -66,6 +66,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 1/1 | Complete | 2026-01-09 |
-| 2. Gallery | 0/1 | Not started | - |
+| 2. Gallery | 1/1 | Complete | 2026-01-09 |
 | 3. Pricing Integration | 0/1 | Not started | - |
 | 4. Polish | 0/1 | Not started | - |
