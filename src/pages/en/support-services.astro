@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={`${t('page.supportServices.title')} | ${t('ui.siteName')}`}
+  description={t('page.supportServices.description')}
+  lang={lang}
+>
+  <h1>{t('page.supportServices.title')}</h1>
+  <p>{t('page.supportServices.description')}</p>
+</BaseLayout>

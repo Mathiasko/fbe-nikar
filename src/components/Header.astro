@@ -1,0 +1,161 @@
+---
+import { getNavItems, getAlternateLanguagePath, type Lang } from '../i18n/utils';
+import { languages } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  currentPath: string;
+}
+
+const { lang, currentPath } = Astro.props;
+const navItems = getNavItems(lang);
+
+// Get paths for both languages
+const skPath = lang === 'sk' ? currentPath : getAlternateLanguagePath(currentPath, 'sk');
+const enPath = lang === 'en' ? currentPath : getAlternateLanguagePath(currentPath, 'en');
+---
+
+<header class="header">
+  <div class="header-container">
+    <a href={`/${lang}/`} class="logo">
+      <span class="logo-text">NIKAR</span>
+      <span class="logo-subtext">Training Center</span>
+    </a>
+
+    <nav class="nav">
+      <ul class="nav-list">
+        {navItems.map((item) => (
+          <li class="nav-item">
+            <a
+              href={item.href}
+              class:list={['nav-link', { active: currentPath === item.href || currentPath === item.href.slice(0, -1) }]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="language-toggle">
+      <a
+        href={skPath}
+        class:list={['lang-link', { active: lang === 'sk' }]}
+        aria-label={languages.sk}
+      >
+        SK
+      </a>
+      <span class="lang-separator">|</span>
+      <a
+        href={enPath}
+        class:list={['lang-link', { active: lang === 'en' }]}
+        aria-label={languages.en}
+      >
+        EN
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    background-color: var(--color-background);
+    border-bottom: 3px solid var(--color-primary);
+    padding: 1rem 0;
+  }
+
+  .header-container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-unit);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    line-height: 1.1;
+  }
+
+  .logo-text {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .logo-subtext {
+    font-size: 0.875rem;
+    color: var(--color-primary-dark);
+    letter-spacing: 0.05em;
+  }
+
+  .nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    justify-content: center;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .nav-link:hover {
+    background-color: var(--color-primary-light);
+    color: white;
+    text-decoration: none;
+  }
+
+  .nav-link.active {
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  .language-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .lang-link {
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .lang-link:hover {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .lang-link.active {
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  .lang-separator {
+    color: var(--color-border);
+  }
+</style>
