@@ -82,6 +82,9 @@ export const ui = {
     // Room details
     'room.details': 'Podrobnosti o miestnostiach',
     'room.floor': 'Poschodie',
+    'room.backToOverview': 'Spat na prehlad miestnosti',
+    'room.gallery': 'Galeria',
+    'room.features': 'Vybavenie',
 
     // Room feature labels
     'room.feature.label': 'Vlastnost',
@@ -210,6 +213,9 @@ export const ui = {
     // Room details
     'room.details': 'Room Details',
     'room.floor': 'Floor',
+    'room.backToOverview': 'Back to Room Overview',
+    'room.gallery': 'Gallery',
+    'room.features': 'Features',
 
     // Room feature labels
     'room.feature.label': 'Feature',
