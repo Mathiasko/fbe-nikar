@@ -4,6 +4,26 @@ import { useTranslations } from '../../i18n/utils';
 
 const lang = 'sk';
 const t = useTranslations(lang);
+
+// Equipment categories with items (split from comma-separated translations)
+const equipmentCategories = [
+  {
+    title: t('roomEquipment.presentation'),
+    items: t('roomEquipment.presentationItems').split(', ')
+  },
+  {
+    title: t('roomEquipment.audio'),
+    items: t('roomEquipment.audioItems').split(', ')
+  },
+  {
+    title: t('roomEquipment.connectivity'),
+    items: t('roomEquipment.connectivityItems').split(', ')
+  },
+  {
+    title: t('roomEquipment.furniture'),
+    items: t('roomEquipment.furnitureItems').split(', ')
+  }
+];
 ---
 
 <BaseLayout
@@ -11,6 +31,107 @@ const t = useTranslations(lang);
   description={t('page.roomEquipment.description')}
   lang={lang}
 >
-  <h1>{t('page.roomEquipment.title')}</h1>
-  <p>{t('page.roomEquipment.description')}</p>
+  <div class="room-equipment-page">
+    <h1>{t('page.roomEquipment.title')}</h1>
+    <p class="room-equipment-intro">{t('roomEquipment.intro')}</p>
+
+    <div class="equipment-grid">
+      {equipmentCategories.map((category) => (
+        <div class="equipment-card">
+          <h2 class="equipment-card__title">{category.title}</h2>
+          <ul class="equipment-card__list">
+            {category.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="equipment-additional">
+      <h2>{t('roomEquipment.additionalNote')}</h2>
+      <p>{t('roomEquipment.additionalText')}</p>
+    </div>
+  </div>
 </BaseLayout>
+
+<style>
+  .room-equipment-page {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .room-equipment-intro {
+    margin-bottom: 2rem;
+    color: var(--color-text-light);
+    font-size: 1.1rem;
+  }
+
+  .equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .equipment-card {
+    background: var(--color-background-alt);
+    border-radius: 4px;
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .equipment-card__title {
+    font-size: 1.25rem;
+    color: var(--color-primary-dark);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  .equipment-card__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .equipment-card__list li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .equipment-card__list li:last-child {
+    border-bottom: none;
+  }
+
+  .equipment-card__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: var(--color-primary);
+    border-radius: 50%;
+  }
+
+  .equipment-additional {
+    background: rgba(107, 123, 0, 0.1);
+    padding: 1.5rem;
+    border-radius: 4px;
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .equipment-additional h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .equipment-additional p {
+    margin-bottom: 0;
+    color: var(--color-text-light);
+  }
+</style>

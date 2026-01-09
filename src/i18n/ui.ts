@@ -61,7 +61,37 @@ export const ui = {
     'pricing.item': 'Položka',
     'pricing.price': 'Cena',
     'pricing.unit': 'Jednotka',
-    'pricing.intro': 'Ponúkame flexibilné cenové možnosti pre prenájom školiacich priestorov a doplnkové služby.'
+    'pricing.intro': 'Ponúkame flexibilné cenové možnosti pre prenájom školiacich priestorov a doplnkové služby.',
+
+    // Room Overview page
+    'roomOverview.intro': 'Ponúkame rôzne veľkosti miestností pre školenia, semináre a firemné stretnutia. Vyberte si priestor, ktorý najlepšie vyhovuje vašim potrebám.',
+    'roomOverview.room': 'Miestnosť',
+    'roomOverview.capacity': 'Kapacita',
+    'roomOverview.area': 'Plocha',
+    'roomOverview.features': 'Kľúčové vlastnosti',
+    'roomOverview.largeConference': 'Veľká konferenčná miestnosť',
+    'roomOverview.trainingA': 'Školiaca miestnosť A',
+    'roomOverview.trainingB': 'Školiaca miestnosť B',
+    'roomOverview.persons': 'osôb',
+    'roomOverview.sqm': 'm²',
+    'roomOverview.largeFeatures': 'Projektor, ozvučenie, klimatizácia',
+    'roomOverview.trainingAFeatures': 'Projektor, whiteboard, WiFi',
+    'roomOverview.trainingBFeatures': 'Interaktívna tabuľa, WiFi',
+    'roomOverview.cta': 'Pre aktuálne ceny navštívte náš',
+    'roomOverview.pricingLink': 'cenník',
+
+    // Room Equipment page
+    'roomEquipment.intro': 'Všetky naše miestnosti sú vybavené moderným zariadením pre profesionálne školenia a prezentácie.',
+    'roomEquipment.presentation': 'Prezentačná technika',
+    'roomEquipment.presentationItems': 'Projektor a plátno, Interaktívna tabuľa, Whiteboard a fixky, Flipchart',
+    'roomEquipment.audio': 'Audio systém',
+    'roomEquipment.audioItems': 'Mikrofóny (bezdrôtové/stolové), Reproduktory, Konferenčný systém',
+    'roomEquipment.connectivity': 'Pripojenie',
+    'roomEquipment.connectivityItems': 'Vysokorýchlostné WiFi, Sieťové pripojenie, Dostatočné elektrické zásuvky, HDMI/VGA vstupy',
+    'roomEquipment.furniture': 'Nábytok',
+    'roomEquipment.furnitureItems': 'Konferenčné stoly, Ergonomické stoličky, Mobilné stoly pre flexibilné usporiadanie',
+    'roomEquipment.additionalNote': 'Ďalšie vybavenie na požiadanie',
+    'roomEquipment.additionalText': 'Pre špeciálne požiadavky nás kontaktujte. Radi vám pripravíme miestnosť presne podľa vašich potrieb.'
   },
   en: {
     // Navigation
@@ -116,7 +146,37 @@ export const ui = {
     'pricing.item': 'Item',
     'pricing.price': 'Price',
     'pricing.unit': 'Unit',
-    'pricing.intro': 'We offer flexible pricing options for training room rentals and additional services.'
+    'pricing.intro': 'We offer flexible pricing options for training room rentals and additional services.',
+
+    // Room Overview page
+    'roomOverview.intro': 'We offer various room sizes for training sessions, seminars, and corporate meetings. Choose the space that best suits your needs.',
+    'roomOverview.room': 'Room',
+    'roomOverview.capacity': 'Capacity',
+    'roomOverview.area': 'Area',
+    'roomOverview.features': 'Key Features',
+    'roomOverview.largeConference': 'Large Conference Room',
+    'roomOverview.trainingA': 'Training Room A',
+    'roomOverview.trainingB': 'Training Room B',
+    'roomOverview.persons': 'persons',
+    'roomOverview.sqm': 'sqm',
+    'roomOverview.largeFeatures': 'Projector, sound system, air conditioning',
+    'roomOverview.trainingAFeatures': 'Projector, whiteboard, WiFi',
+    'roomOverview.trainingBFeatures': 'Interactive board, WiFi',
+    'roomOverview.cta': 'For current prices, visit our',
+    'roomOverview.pricingLink': 'pricing page',
+
+    // Room Equipment page
+    'roomEquipment.intro': 'All our rooms are equipped with modern equipment for professional training and presentations.',
+    'roomEquipment.presentation': 'Presentation Technology',
+    'roomEquipment.presentationItems': 'Projector and screen, Interactive whiteboard, Whiteboard and markers, Flipchart',
+    'roomEquipment.audio': 'Audio System',
+    'roomEquipment.audioItems': 'Microphones (wireless/desktop), Speakers, Conference system',
+    'roomEquipment.connectivity': 'Connectivity',
+    'roomEquipment.connectivityItems': 'High-speed WiFi, Network connection, Ample power outlets, HDMI/VGA inputs',
+    'roomEquipment.furniture': 'Furniture',
+    'roomEquipment.furnitureItems': 'Conference tables, Ergonomic chairs, Mobile tables for flexible arrangements',
+    'roomEquipment.additionalNote': 'Additional Equipment on Request',
+    'roomEquipment.additionalText': 'For special requirements, please contact us. We will be happy to prepare the room according to your specific needs.'
   }
 } as const;
 

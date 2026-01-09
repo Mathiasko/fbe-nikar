@@ -1,9 +1,24 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PricingTable from '../../components/PricingTable.astro';
 import { useTranslations } from '../../i18n/utils';
 
 const lang = 'en';
 const t = useTranslations(lang);
+
+// Room data for overview table
+const roomHeaders = [
+  t('roomOverview.room'),
+  t('roomOverview.capacity'),
+  t('roomOverview.area'),
+  t('roomOverview.features')
+];
+
+const roomRows = [
+  [t('roomOverview.largeConference'), `30 ${t('roomOverview.persons')}`, `80 ${t('roomOverview.sqm')}`, t('roomOverview.largeFeatures')],
+  [t('roomOverview.trainingA'), `15 ${t('roomOverview.persons')}`, `45 ${t('roomOverview.sqm')}`, t('roomOverview.trainingAFeatures')],
+  [t('roomOverview.trainingB'), `12 ${t('roomOverview.persons')}`, `35 ${t('roomOverview.sqm')}`, t('roomOverview.trainingBFeatures')]
+];
 ---
 
 <BaseLayout
@@ -11,6 +26,46 @@ const t = useTranslations(lang);
   description={t('page.roomOverview.description')}
   lang={lang}
 >
-  <h1>{t('page.roomOverview.title')}</h1>
-  <p>{t('page.roomOverview.description')}</p>
+  <div class="room-overview-page">
+    <h1>{t('page.roomOverview.title')}</h1>
+    <p class="room-overview-intro">{t('roomOverview.intro')}</p>
+
+    <PricingTable
+      title={t('page.roomOverview.title')}
+      headers={roomHeaders}
+      rows={roomRows}
+    />
+
+    <p class="room-overview-cta">
+      {t('roomOverview.cta')} <a href={`/${lang}/pricing/`}>{t('roomOverview.pricingLink')}</a>.
+    </p>
+  </div>
 </BaseLayout>
+
+<style>
+  .room-overview-page {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .room-overview-intro {
+    margin-bottom: 2rem;
+    color: var(--color-text-light);
+    font-size: 1.1rem;
+  }
+
+  .room-overview-cta {
+    margin-top: 2rem;
+    font-size: 1.1rem;
+  }
+
+  .room-overview-cta a {
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .room-overview-cta a:hover {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+  }
+</style>
