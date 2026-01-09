@@ -1,0 +1,186 @@
+---
+/**
+ * RoomComparisonTable Component
+ *
+ * Renders a feature comparison table for training rooms.
+ * Shows checkmarks for available features per room.
+ * Zero JavaScript - pure static HTML output.
+ */
+
+import type { Room } from '../data/rooms';
+import { featureKeys } from '../data/rooms';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  rooms: Room[];
+  lang: Lang;
+}
+
+const { rooms, lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Feature translation key mapping
+const featureTranslationKeys: Record<string, string> = {
+  projectionScreen: 'room.feature.projectionScreen',
+  dataProjector: 'room.feature.dataProjector',
+  smartBoard: 'room.feature.smartBoard',
+  flipchart: 'room.feature.flipchart',
+  internet: 'room.feature.internet',
+  extraTrainingSpace: 'room.feature.extraTrainingSpace',
+  terraceAccess: 'room.feature.terraceAccess',
+  barrierFree: 'room.feature.barrierFree',
+  airConditioning: 'room.feature.airConditioning',
+  audioSystem: 'room.feature.audioSystem'
+};
+---
+
+<div class="room-comparison-section">
+  <h2 class="room-comparison-section__title">{t('roomOverview.equipmentTable')}</h2>
+  <div class="room-comparison-wrapper">
+    <table class="room-comparison-table">
+      <thead>
+        <tr>
+          <th class="room-comparison-table__feature-header">{t('room.feature.label')}</th>
+          {rooms.map((room) => (
+            <th class={`room-header room-header--${room.id.split('-')[0]}`} style={`background-color: ${room.color};`}>
+              {room.name[lang]}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {/* Size row */}
+        <tr>
+          <td class="room-comparison-table__feature-name">{t('room.feature.size')}</td>
+          {rooms.map((room) => (
+            <td class="room-comparison-table__value">{room.size} m²</td>
+          ))}
+        </tr>
+        {/* Capacity row */}
+        <tr>
+          <td class="room-comparison-table__feature-name">{t('room.feature.capacity')}</td>
+          {rooms.map((room) => (
+            <td class="room-comparison-table__value">{room.capacity}</td>
+          ))}
+        </tr>
+        {/* Feature rows */}
+        {featureKeys.map((featureKey) => (
+          <tr>
+            <td class="room-comparison-table__feature-name">{t(featureTranslationKeys[featureKey])}</td>
+            {rooms.map((room) => (
+              <td class="room-comparison-table__checkmark">
+                {room.features[featureKey] ? <span class="room-checkmark">&#10003;</span> : <span class="room-empty">-</span>}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<style>
+  .room-comparison-section {
+    margin-bottom: 3rem;
+  }
+
+  .room-comparison-section__title {
+    font-size: 1.5rem;
+    color: var(--color-primary-dark);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  .room-comparison-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .room-comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--color-border);
+    background: var(--color-background);
+  }
+
+  .room-comparison-table th {
+    font-weight: 600;
+    text-align: center;
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .room-comparison-table__feature-header {
+    background: var(--color-background-alt);
+    color: var(--color-text);
+    text-align: left !important;
+  }
+
+  .room-header {
+    color: white;
+    min-width: 100px;
+  }
+
+  .room-comparison-table td {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    vertical-align: middle;
+  }
+
+  .room-comparison-table__feature-name {
+    font-weight: 500;
+    color: var(--color-text);
+    text-align: left;
+    background: var(--color-background);
+  }
+
+  .room-comparison-table__value {
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .room-comparison-table__checkmark {
+    text-align: center;
+  }
+
+  .room-comparison-table tbody tr:nth-child(even) {
+    background: var(--color-background-alt);
+  }
+
+  .room-comparison-table tbody tr:nth-child(even) .room-comparison-table__feature-name {
+    background: var(--color-background-alt);
+  }
+
+  .room-comparison-table tbody tr:hover {
+    background: rgba(107, 123, 0, 0.05);
+  }
+
+  .room-checkmark {
+    color: var(--color-primary);
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .room-empty {
+    color: var(--color-text-light);
+  }
+
+  /* Responsive: Horizontal scroll on mobile */
+  @media (max-width: 600px) {
+    .room-comparison-table {
+      font-size: 0.9rem;
+    }
+
+    .room-comparison-table th,
+    .room-comparison-table td {
+      padding: 0.625rem 0.5rem;
+      white-space: nowrap;
+    }
+
+    .room-header {
+      min-width: 80px;
+    }
+  }
+</style>
