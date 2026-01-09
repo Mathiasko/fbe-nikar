@@ -1,9 +1,33 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PricingTable from '../../components/PricingTable.astro';
 import { useTranslations } from '../../i18n/utils';
+import { fetchSheetAsCSV, parsePricingData } from '../../lib/sheets';
+import { samplePricingDataEN } from '../../data/sample-pricing';
 
 const lang = 'en';
 const t = useTranslations(lang);
+
+// Try to fetch from Google Sheet, fall back to sample data
+let pricingData = samplePricingDataEN;
+
+const sheetId = import.meta.env.PUBLIC_SHEETS_ID;
+const sheetGid = import.meta.env.PUBLIC_SHEETS_GID || '0';
+
+if (sheetId) {
+  const rawData = await fetchSheetAsCSV(sheetId, sheetGid);
+  if (rawData.length > 0) {
+    pricingData = parsePricingData(rawData);
+  }
+}
+
+// Prepare room data for table
+const roomHeaders = [t('pricing.room'), t('pricing.halfDay'), t('pricing.fullDay'), t('pricing.notes')];
+const roomRows = pricingData.rooms.map(room => [room.name, room.halfDay, room.fullDay, room.notes]);
+
+// Prepare catering data for table
+const cateringHeaders = [t('pricing.item'), t('pricing.price'), t('pricing.unit')];
+const cateringRows = pricingData.catering.map(item => [item.item, item.price, item.unit]);
 ---
 
 <BaseLayout
@@ -11,6 +35,33 @@ const t = useTranslations(lang);
   description={t('page.pricing.description')}
   lang={lang}
 >
-  <h1>{t('page.pricing.title')}</h1>
-  <p>{t('page.pricing.description')}</p>
+  <div class="pricing-page">
+    <h1>{t('page.pricing.title')}</h1>
+    <p class="pricing-intro">{t('pricing.intro')}</p>
+
+    <PricingTable
+      title={t('pricing.roomRentals')}
+      headers={roomHeaders}
+      rows={roomRows}
+    />
+
+    <PricingTable
+      title={t('pricing.catering')}
+      headers={cateringHeaders}
+      rows={cateringRows}
+    />
+  </div>
 </BaseLayout>
+
+<style>
+  .pricing-page {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .pricing-intro {
+    margin-bottom: 2rem;
+    color: var(--color-text-light);
+    font-size: 1.1rem;
+  }
+</style>

@@ -49,7 +49,19 @@ export const ui = {
     // Home page
     'home.tagline': 'Nikar Training Center vám ponúka prenájom profesionálnych školiacich priestorov.',
     'home.slogan': 'For Training Excellence',
-    'home.featuredGallery': 'Z našej galérie'
+    'home.featuredGallery': 'Z našej galérie',
+
+    // Pricing page
+    'pricing.roomRentals': 'Prenájom miestností',
+    'pricing.catering': 'Catering a občerstvenie',
+    'pricing.room': 'Miestnosť',
+    'pricing.halfDay': 'Poldeň',
+    'pricing.fullDay': 'Celý deň',
+    'pricing.notes': 'Poznámky',
+    'pricing.item': 'Položka',
+    'pricing.price': 'Cena',
+    'pricing.unit': 'Jednotka',
+    'pricing.intro': 'Ponúkame flexibilné cenové možnosti pre prenájom školiacich priestorov a doplnkové služby.'
   },
   en: {
     // Navigation
@@ -92,7 +104,19 @@ export const ui = {
     // Home page
     'home.tagline': 'Nikar Training Center offers professional training room rentals.',
     'home.slogan': 'For Training Excellence',
-    'home.featuredGallery': 'From Our Gallery'
+    'home.featuredGallery': 'From Our Gallery',
+
+    // Pricing page
+    'pricing.roomRentals': 'Room Rentals',
+    'pricing.catering': 'Catering & Refreshments',
+    'pricing.room': 'Room',
+    'pricing.halfDay': 'Half Day',
+    'pricing.fullDay': 'Full Day',
+    'pricing.notes': 'Notes',
+    'pricing.item': 'Item',
+    'pricing.price': 'Price',
+    'pricing.unit': 'Unit',
+    'pricing.intro': 'We offer flexible pricing options for training room rentals and additional services.'
   }
 } as const;
 

@@ -167,3 +167,74 @@ a:hover {
   color: white;
   text-align: center;
 }
+
+/* Pricing Tables */
+.pricing-section {
+  margin-bottom: 3rem;
+}
+
+.pricing-section__title {
+  font-size: 1.5rem;
+  color: var(--color-primary-dark);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.pricing-table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pricing-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--color-border);
+  background: var(--color-background);
+}
+
+.pricing-table th {
+  background: var(--color-primary);
+  color: white;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--color-primary-dark);
+}
+
+.pricing-table td {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  vertical-align: top;
+}
+
+.pricing-table tbody tr:nth-child(even) {
+  background: var(--color-background-alt);
+}
+
+.pricing-table tbody tr:hover {
+  background: rgba(107, 123, 0, 0.05);
+}
+
+.pricing-table__name {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.pricing-table--highlight {
+  background: rgba(107, 123, 0, 0.1) !important;
+  font-weight: 500;
+}
+
+/* Responsive: Horizontal scroll on mobile */
+@media (max-width: 600px) {
+  .pricing-table {
+    font-size: 0.9rem;
+  }
+
+  .pricing-table th,
+  .pricing-table td {
+    padding: 0.625rem 0.75rem;
+    white-space: nowrap;
+  }
+}

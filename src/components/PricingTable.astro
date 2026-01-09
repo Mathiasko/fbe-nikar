@@ -1,0 +1,41 @@
+---
+/**
+ * PricingTable Component
+ *
+ * Renders a semantic HTML pricing table with support for highlighting.
+ * Zero JavaScript - pure static HTML output.
+ */
+
+interface Props {
+  title: string;
+  headers: string[];
+  rows: string[][];
+  highlightRow?: number;
+}
+
+const { title, headers, rows, highlightRow } = Astro.props;
+---
+
+<div class="pricing-section">
+  <h2 class="pricing-section__title">{title}</h2>
+  <div class="pricing-table-wrapper">
+    <table class="pricing-table">
+      <thead>
+        <tr>
+          {headers.map((header) => (
+            <th>{header}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row, index) => (
+          <tr class={highlightRow === index ? 'pricing-table--highlight' : ''}>
+            {row.map((cell, cellIndex) => (
+              <td class={cellIndex === 0 ? 'pricing-table__name' : ''}>{cell}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
