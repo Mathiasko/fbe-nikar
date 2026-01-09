@@ -91,7 +91,32 @@ export const ui = {
     'roomEquipment.furniture': 'Nábytok',
     'roomEquipment.furnitureItems': 'Konferenčné stoly, Ergonomické stoličky, Mobilné stoly pre flexibilné usporiadanie',
     'roomEquipment.additionalNote': 'Ďalšie vybavenie na požiadanie',
-    'roomEquipment.additionalText': 'Pre špeciálne požiadavky nás kontaktujte. Radi vám pripravíme miestnosť presne podľa vašich potrieb.'
+    'roomEquipment.additionalText': 'Pre špeciálne požiadavky nás kontaktujte. Radi vám pripravíme miestnosť presne podľa vašich potrieb.',
+
+    // Support Services page
+    'supportServices.intro': 'Okrem prenájmu priestorov ponúkame komplexné podporné služby pre vaše školenia a podujatia.',
+    'supportServices.catering': 'Catering',
+    'supportServices.cateringDesc': 'Zabezpečíme kompletné stravovanie pre účastníkov vašich školení vrátane raňajok, obedov a večerí.',
+    'supportServices.coffeeBreaks': 'Prestávky na kávu',
+    'supportServices.coffeeBreaksDesc': 'Káva, čaj, minerálka a drobné občerstvenie počas celého dňa pre udržanie energie účastníkov.',
+    'supportServices.lunchOptions': 'Obedové menu',
+    'supportServices.lunchOptionsDesc': 'Výber z viacerých jedál vrátane vegetariánskych možností, podávané priamo v priestoroch centra.',
+    'supportServices.technicalSupport': 'Technická podpora',
+    'supportServices.technicalSupportDesc': 'Naši technici sú k dispozícii pre pomoc s prezentačnou technikou a riešenie prípadných problémov.',
+    'supportServices.pricingNote': 'Kompletný cenník služieb nájdete na stránke',
+    'supportServices.pricingLink': 'Cenník',
+
+    // Contact page
+    'contact.intro': 'Máte záujem o prenájom našich priestorov? Kontaktujte nás pre nezáväznú ponuku alebo rezerváciu.',
+    'contact.addressLabel': 'Adresa',
+    'contact.address': 'NIKAR Training Center, Vajnorská 100/B, 831 04 Bratislava',
+    'contact.phoneLabel': 'Telefón',
+    'contact.phone': '+421 2 1234 5678',
+    'contact.emailLabel': 'E-mail',
+    'contact.email': 'info@nikar.sk',
+    'contact.hoursLabel': 'Otváracie hodiny',
+    'contact.hours': 'Pondelok - Piatok: 8:00 - 17:00',
+    'contact.locationNote': 'Nachádzame sa v blízkosti Vajnorskej ulice s výbornou dostupnosťou MHD a parkovacími možnosťami.'
   },
   en: {
     // Navigation
@@ -176,7 +201,32 @@ export const ui = {
     'roomEquipment.furniture': 'Furniture',
     'roomEquipment.furnitureItems': 'Conference tables, Ergonomic chairs, Mobile tables for flexible arrangements',
     'roomEquipment.additionalNote': 'Additional Equipment on Request',
-    'roomEquipment.additionalText': 'For special requirements, please contact us. We will be happy to prepare the room according to your specific needs.'
+    'roomEquipment.additionalText': 'For special requirements, please contact us. We will be happy to prepare the room according to your specific needs.',
+
+    // Support Services page
+    'supportServices.intro': 'In addition to room rentals, we offer comprehensive support services for your training sessions and events.',
+    'supportServices.catering': 'Catering',
+    'supportServices.cateringDesc': 'We provide complete catering for training participants including breakfast, lunch, and dinner options.',
+    'supportServices.coffeeBreaks': 'Coffee Breaks',
+    'supportServices.coffeeBreaksDesc': 'Coffee, tea, water, and light refreshments throughout the day to keep participants energized.',
+    'supportServices.lunchOptions': 'Lunch Options',
+    'supportServices.lunchOptionsDesc': 'Selection of meals including vegetarian options, served directly at the center.',
+    'supportServices.technicalSupport': 'Technical Support',
+    'supportServices.technicalSupportDesc': 'Our technicians are available to assist with presentation equipment and troubleshoot any issues.',
+    'supportServices.pricingNote': 'Complete service pricing available on our',
+    'supportServices.pricingLink': 'Pricing page',
+
+    // Contact page
+    'contact.intro': 'Interested in renting our facilities? Contact us for a non-binding quote or reservation.',
+    'contact.addressLabel': 'Address',
+    'contact.address': 'NIKAR Training Center, Vajnorska 100/B, 831 04 Bratislava',
+    'contact.phoneLabel': 'Phone',
+    'contact.phone': '+421 2 1234 5678',
+    'contact.emailLabel': 'Email',
+    'contact.email': 'info@nikar.sk',
+    'contact.hoursLabel': 'Opening Hours',
+    'contact.hours': 'Monday - Friday: 8:00 AM - 5:00 PM',
+    'contact.locationNote': 'We are located near Vajnorska Street with excellent public transport access and parking facilities.'
   }
 } as const;
 
