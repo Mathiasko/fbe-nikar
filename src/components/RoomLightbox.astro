@@ -1,0 +1,211 @@
+---
+/**
+ * RoomLightbox Component
+ *
+ * CSS-only lightbox gallery for room images.
+ * Uses :target pseudo-selector for show/hide - zero JavaScript.
+ */
+
+interface Props {
+  images: string[];
+  roomName: string;
+  roomId: string;
+}
+
+const { images, roomName, roomId } = Astro.props;
+---
+
+<div class="room-lightbox">
+  {/* Thumbnail grid */}
+  <div class="room-lightbox__thumbnails">
+    {images.map((image, index) => (
+      <a href={`#lightbox-${roomId}-${index}`} class="room-lightbox__thumbnail-link">
+        <img
+          src={image}
+          alt={`${roomName} - foto ${index + 1}`}
+          class="room-lightbox__thumbnail"
+          loading="lazy"
+        />
+      </a>
+    ))}
+  </div>
+
+  {/* Lightbox overlays */}
+  {images.map((image, index) => (
+    <div id={`lightbox-${roomId}-${index}`} class="lightbox">
+      <a href="#" class="lightbox__close" aria-label="Zavriet">&times;</a>
+      <div class="lightbox__content">
+        <img src={image} alt={`${roomName} - foto ${index + 1}`} class="lightbox__image" />
+        {images.length > 1 && (
+          <>
+            <a
+              href={`#lightbox-${roomId}-${index === 0 ? images.length - 1 : index - 1}`}
+              class="lightbox__nav lightbox__prev"
+              aria-label="Predchadzajuca fotografia"
+            >
+              &#10094;
+            </a>
+            <a
+              href={`#lightbox-${roomId}-${index === images.length - 1 ? 0 : index + 1}`}
+              class="lightbox__nav lightbox__next"
+              aria-label="Nasledujuca fotografia"
+            >
+              &#10095;
+            </a>
+          </>
+        )}
+      </div>
+      <span class="lightbox__counter">{index + 1} / {images.length}</span>
+    </div>
+  ))}
+</div>
+
+<style>
+  .room-lightbox__thumbnails {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .room-lightbox__thumbnail-link {
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .room-lightbox__thumbnail-link:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .room-lightbox__thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Lightbox overlay */
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .lightbox:target {
+    display: flex;
+    opacity: 1;
+  }
+
+  .lightbox__close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    color: white;
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1;
+    text-decoration: none;
+    padding: 0.5rem;
+    z-index: 1001;
+    transition: color 0.2s ease;
+  }
+
+  .lightbox__close:hover {
+    color: var(--color-primary);
+  }
+
+  .lightbox__content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox__image {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  .lightbox__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 300;
+    text-decoration: none;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    transition: background 0.2s ease, color 0.2s ease;
+    z-index: 1001;
+  }
+
+  .lightbox__nav:hover {
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--color-primary);
+  }
+
+  .lightbox__prev {
+    left: 1rem;
+  }
+
+  .lightbox__next {
+    right: 1rem;
+  }
+
+  .lightbox__counter {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 0.9rem;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .room-lightbox__thumbnails {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .lightbox__close {
+      top: 0.5rem;
+      right: 0.75rem;
+      font-size: 2.5rem;
+    }
+
+    .lightbox__nav {
+      font-size: 2rem;
+      padding: 0.75rem;
+    }
+
+    .lightbox__prev {
+      left: 0.5rem;
+    }
+
+    .lightbox__next {
+      right: 0.5rem;
+    }
+  }
+</style>

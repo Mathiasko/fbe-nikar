@@ -27,6 +27,7 @@ export interface Room {
   size: number;
   capacity: string;
   features: RoomFeatures;
+  images: string[];
 }
 
 export const rooms: Room[] = [
@@ -48,7 +49,12 @@ export const rooms: Room[] = [
       barrierFree: true,
       airConditioning: true,
       audioSystem: true
-    }
+    },
+    images: [
+      '/images/rooms/brown-101-1.jpg',
+      '/images/rooms/brown-101-2.jpg',
+      '/images/rooms/brown-101-3.jpg'
+    ]
   },
   {
     id: 'green-102',
@@ -68,7 +74,12 @@ export const rooms: Room[] = [
       barrierFree: true,
       airConditioning: true,
       audioSystem: true
-    }
+    },
+    images: [
+      '/images/rooms/green-102-1.jpg',
+      '/images/rooms/green-102-2.jpg',
+      '/images/rooms/green-102-3.jpg'
+    ]
   },
   {
     id: 'yellow-201',
@@ -88,7 +99,12 @@ export const rooms: Room[] = [
       barrierFree: false,
       airConditioning: true,
       audioSystem: true
-    }
+    },
+    images: [
+      '/images/rooms/yellow-201-1.jpg',
+      '/images/rooms/yellow-201-2.jpg',
+      '/images/rooms/yellow-201-3.jpg'
+    ]
   },
   {
     id: 'blue-202',
@@ -108,7 +124,12 @@ export const rooms: Room[] = [
       barrierFree: false,
       airConditioning: true,
       audioSystem: true
-    }
+    },
+    images: [
+      '/images/rooms/blue-202-1.jpg',
+      '/images/rooms/blue-202-2.jpg',
+      '/images/rooms/blue-202-3.jpg'
+    ]
   }
 ];
 
