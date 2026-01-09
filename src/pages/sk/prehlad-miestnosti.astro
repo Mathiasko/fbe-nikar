@@ -1,24 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PricingTable from '../../components/PricingTable.astro';
+import RoomComparisonTable from '../../components/RoomComparisonTable.astro';
 import { useTranslations } from '../../i18n/utils';
+import { rooms } from '../../data/rooms';
 
 const lang = 'sk';
 const t = useTranslations(lang);
-
-// Room data for overview table
-const roomHeaders = [
-  t('roomOverview.room'),
-  t('roomOverview.capacity'),
-  t('roomOverview.area'),
-  t('roomOverview.features')
-];
-
-const roomRows = [
-  [t('roomOverview.largeConference'), `30 ${t('roomOverview.persons')}`, `80 ${t('roomOverview.sqm')}`, t('roomOverview.largeFeatures')],
-  [t('roomOverview.trainingA'), `15 ${t('roomOverview.persons')}`, `45 ${t('roomOverview.sqm')}`, t('roomOverview.trainingAFeatures')],
-  [t('roomOverview.trainingB'), `12 ${t('roomOverview.persons')}`, `35 ${t('roomOverview.sqm')}`, t('roomOverview.trainingBFeatures')]
-];
 ---
 
 <BaseLayout
@@ -30,11 +17,43 @@ const roomRows = [
     <h1>{t('page.roomOverview.title')}</h1>
     <p class="room-overview-intro">{t('roomOverview.intro')}</p>
 
-    <PricingTable
-      title={t('page.roomOverview.title')}
-      headers={roomHeaders}
-      rows={roomRows}
-    />
+    <RoomComparisonTable rooms={rooms} lang={lang} />
+
+    <section class="room-details">
+      <h2>{t('room.details')}</h2>
+      {rooms.map((room) => (
+        <article class="room-card" style={`border-top-color: ${room.color};`}>
+          <div class="room-card__header" style={`background-color: ${room.color};`}>
+            <h3 class="room-card__title">{room.name[lang]}</h3>
+          </div>
+          <div class="room-card__content">
+            <p class="room-card__specs">
+              <span class="room-card__spec">
+                <strong>{t('room.feature.size')}:</strong> {room.size} m²
+              </span>
+              <span class="room-card__spec">
+                <strong>{t('room.feature.capacity')}:</strong> {room.capacity}
+              </span>
+              <span class="room-card__spec">
+                <strong>{t('room.floor')}:</strong> {room.floor}
+              </span>
+            </p>
+            <ul class="room-card__features">
+              {room.features.dataProjector && <li>{t('room.feature.dataProjector')}</li>}
+              {room.features.projectionScreen && <li>{t('room.feature.projectionScreen')}</li>}
+              {room.features.smartBoard && <li>{t('room.feature.smartBoard')}</li>}
+              {room.features.flipchart && <li>{t('room.feature.flipchart')}</li>}
+              {room.features.internet && <li>{t('room.feature.internet')}</li>}
+              {room.features.extraTrainingSpace && <li>{t('room.feature.extraTrainingSpace')}</li>}
+              {room.features.terraceAccess && <li>{t('room.feature.terraceAccess')}</li>}
+              {room.features.barrierFree && <li>{t('room.feature.barrierFree')}</li>}
+              {room.features.airConditioning && <li>{t('room.feature.airConditioning')}</li>}
+              {room.features.audioSystem && <li>{t('room.feature.audioSystem')}</li>}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </section>
 
     <p class="room-overview-cta">
       {t('roomOverview.cta')} <a href={`/${lang}/cennik/`}>{t('roomOverview.pricingLink')}</a>.
@@ -67,5 +86,86 @@ const roomRows = [
   .room-overview-cta a:hover {
     color: var(--color-primary-dark);
     text-decoration: underline;
+  }
+
+  /* Room Details Section */
+  .room-details {
+    margin-top: 3rem;
+  }
+
+  .room-details h2 {
+    font-size: 1.5rem;
+    color: var(--color-primary-dark);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  .room-card {
+    background: var(--color-background);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    border-top: 4px solid;
+  }
+
+  .room-card__header {
+    padding: 1rem 1.25rem;
+  }
+
+  .room-card__title {
+    color: white;
+    margin: 0;
+    font-size: 1.25rem;
+  }
+
+  .room-card__content {
+    padding: 1.25rem;
+  }
+
+  .room-card__specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .room-card__spec {
+    color: var(--color-text);
+  }
+
+  .room-card__features {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .room-card__features li {
+    position: relative;
+    padding-left: 1.5rem;
+    color: var(--color-text);
+  }
+
+  .room-card__features li::before {
+    content: "\2713";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: bold;
+  }
+
+  @media (max-width: 600px) {
+    .room-card__specs {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .room-card__features {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
