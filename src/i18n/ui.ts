@@ -69,20 +69,34 @@ export const ui = {
 
     // Room Overview page
     'roomOverview.intro': 'Ponúkame rôzne veľkosti miestností pre školenia, semináre a firemné stretnutia. Vyberte si priestor, ktorý najlepšie vyhovuje vašim potrebám.',
-    'roomOverview.room': 'Miestnosť',
-    'roomOverview.capacity': 'Kapacita',
-    'roomOverview.area': 'Plocha',
-    'roomOverview.features': 'Kľúčové vlastnosti',
-    'roomOverview.largeConference': 'Veľká konferenčná miestnosť',
-    'roomOverview.trainingA': 'Školiaca miestnosť A',
-    'roomOverview.trainingB': 'Školiaca miestnosť B',
-    'roomOverview.persons': 'osôb',
-    'roomOverview.sqm': 'm²',
-    'roomOverview.largeFeatures': 'Projektor, ozvučenie, klimatizácia',
-    'roomOverview.trainingAFeatures': 'Projektor, whiteboard, WiFi',
-    'roomOverview.trainingBFeatures': 'Interaktívna tabuľa, WiFi',
+    'roomOverview.equipmentTable': 'Porovnanie vybavenia miestností',
     'roomOverview.cta': 'Pre aktuálne ceny navštívte náš',
     'roomOverview.pricingLink': 'cenník',
+
+    // Room names
+    'room.brown101': 'Hneda 101',
+    'room.green102': 'Zelena 102',
+    'room.yellow201': 'Zlta 201',
+    'room.blue202': 'Modra 202',
+
+    // Room details
+    'room.details': 'Podrobnosti o miestnostiach',
+    'room.floor': 'Poschodie',
+
+    // Room feature labels
+    'room.feature.label': 'Vlastnost',
+    'room.feature.size': 'Velkost',
+    'room.feature.capacity': 'Kapacita',
+    'room.feature.projectionScreen': 'Projekcne platno',
+    'room.feature.dataProjector': 'Dataprojektor',
+    'room.feature.smartBoard': 'Interaktivna tabula',
+    'room.feature.flipchart': 'Flipchart',
+    'room.feature.internet': 'Pristup na internet',
+    'room.feature.extraTrainingSpace': 'Moznost dalsieho skoliaceho priestoru',
+    'room.feature.terraceAccess': 'Priamy vstup na terasu',
+    'room.feature.barrierFree': 'Bezbarierovy pristup',
+    'room.feature.airConditioning': 'Klimatizacia',
+    'room.feature.audioSystem': 'Audio system',
 
     // Room Equipment page
     'roomEquipment.intro': 'Všetky naše miestnosti sú vybavené moderným zariadením pre profesionálne školenia a prezentácie.',
@@ -183,20 +197,34 @@ export const ui = {
 
     // Room Overview page
     'roomOverview.intro': 'We offer various room sizes for training sessions, seminars, and corporate meetings. Choose the space that best suits your needs.',
-    'roomOverview.room': 'Room',
-    'roomOverview.capacity': 'Capacity',
-    'roomOverview.area': 'Area',
-    'roomOverview.features': 'Key Features',
-    'roomOverview.largeConference': 'Large Conference Room',
-    'roomOverview.trainingA': 'Training Room A',
-    'roomOverview.trainingB': 'Training Room B',
-    'roomOverview.persons': 'persons',
-    'roomOverview.sqm': 'sqm',
-    'roomOverview.largeFeatures': 'Projector, sound system, air conditioning',
-    'roomOverview.trainingAFeatures': 'Projector, whiteboard, WiFi',
-    'roomOverview.trainingBFeatures': 'Interactive board, WiFi',
+    'roomOverview.equipmentTable': 'Room Equipment Comparison',
     'roomOverview.cta': 'For current prices, visit our',
     'roomOverview.pricingLink': 'pricing page',
+
+    // Room names
+    'room.brown101': 'Brown 101',
+    'room.green102': 'Green 102',
+    'room.yellow201': 'Yellow 201',
+    'room.blue202': 'Blue 202',
+
+    // Room details
+    'room.details': 'Room Details',
+    'room.floor': 'Floor',
+
+    // Room feature labels
+    'room.feature.label': 'Feature',
+    'room.feature.size': 'Size',
+    'room.feature.capacity': 'Capacity',
+    'room.feature.projectionScreen': 'Projection Screen',
+    'room.feature.dataProjector': 'Data Projector',
+    'room.feature.smartBoard': 'Smart Board',
+    'room.feature.flipchart': 'Flipchart',
+    'room.feature.internet': 'Internet Access',
+    'room.feature.extraTrainingSpace': 'Option for extra training space',
+    'room.feature.terraceAccess': 'Direct terrace access',
+    'room.feature.barrierFree': 'Barrier-free access',
+    'room.feature.airConditioning': 'Air Conditioning',
+    'room.feature.audioSystem': 'Audio System',
 
     // Room Equipment page
     'roomEquipment.intro': 'All our rooms are equipped with modern equipment for professional training and presentations.',
