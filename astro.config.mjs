@@ -5,5 +5,12 @@ export default defineConfig({
   build: {
     format: 'directory'
   },
-  site: 'https://nikartrainingcenter.sk'
+  site: 'https://nikartrainingcenter.sk',
+  i18n: {
+    defaultLocale: 'sk',
+    locales: ['sk', 'en'],
+    routing: {
+      prefixDefaultLocale: true
+    }
+  }
 });

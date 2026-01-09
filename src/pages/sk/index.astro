@@ -1,0 +1,18 @@
+---
+import { useTranslations } from '../../i18n/utils';
+
+const lang = 'sk';
+const t = useTranslations(lang);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{t('page.home.title')} | {t('ui.siteName')}</title>
+  </head>
+  <body>
+    <h1>{t('page.home.title')}</h1>
+    <p>{t('page.home.description')}</p>
+  </body>
+</html>
