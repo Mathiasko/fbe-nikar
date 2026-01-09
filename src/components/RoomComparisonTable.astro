@@ -42,11 +42,16 @@ const featureTranslationKeys: Record<string, string> = {
       <thead>
         <tr>
           <th class="room-comparison-table__feature-header">{t('room.feature.label')}</th>
-          {rooms.map((room) => (
-            <th class={`room-header room-header--${room.id.split('-')[0]}`} style={`background-color: ${room.color};`}>
-              {room.name[lang]}
-            </th>
-          ))}
+          {rooms.map((room) => {
+            const roomUrl = lang === 'sk' ? `/sk/miestnost/${room.id}/` : `/en/room/${room.id}/`;
+            return (
+              <th class={`room-header room-header--${room.id.split('-')[0]}`} style={`background-color: ${room.color};`}>
+                <a href={roomUrl} class="room-header__link">
+                  {room.name[lang]}
+                </a>
+              </th>
+            );
+          })}
         </tr>
       </thead>
       <tbody>
@@ -121,6 +126,16 @@ const featureTranslationKeys: Record<string, string> = {
   .room-header {
     color: white;
     min-width: 100px;
+  }
+
+  .room-header__link {
+    color: white;
+    text-decoration: none;
+    display: block;
+  }
+
+  .room-header__link:hover {
+    text-decoration: underline;
   }
 
   .room-comparison-table td {

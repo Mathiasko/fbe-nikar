@@ -24,7 +24,9 @@ const t = useTranslations(lang);
       {rooms.map((room) => (
         <article class="room-card" style={`border-top-color: ${room.color};`}>
           <div class="room-card__header" style={`background-color: ${room.color};`}>
-            <h3 class="room-card__title">{room.name[lang]}</h3>
+            <h3 class="room-card__title">
+              <a href={`/en/room/${room.id}/`}>{room.name[lang]}</a>
+            </h3>
           </div>
           <div class="room-card__content">
             <p class="room-card__specs">
@@ -118,6 +120,15 @@ const t = useTranslations(lang);
     color: white;
     margin: 0;
     font-size: 1.25rem;
+  }
+
+  .room-card__title a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .room-card__title a:hover {
+    text-decoration: underline;
   }
 
   .room-card__content {
