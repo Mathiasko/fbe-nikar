@@ -13,6 +13,7 @@ None
 - ✅ **v1.0 MVP** - Phases 1-4 (shipped 2026-01-09)
 - ✅ **v1.1 Album Galleries** - Phase 5 (shipped 2026-01-09)
 - ✅ **v1.2 Content Enhancement** - Phase 6 (shipped 2026-01-09)
+- ✅ **v1.3 Room Detail Pages** - Phase 7 (shipped 2026-01-10)
 
 ## Phases
 
@@ -102,10 +103,28 @@ Plans:
 
 </details>
 
+<details>
+<summary>✅ v1.3 Room Detail Pages (Phase 7) - SHIPPED 2026-01-10</summary>
+
+**Milestone Goal:** Add individual room detail pages with images and expanded information, linked from room overview.
+
+- [x] **Phase 7: Room Detail Pages** - Individual room pages with feature column and images
+
+### Phase 7: Room Detail Pages
+**Goal**: Create individual room detail pages linked from room names, showing room-specific feature column and images with lightbox/enlargement
+**Depends on**: Phase 6 (v1.2 complete)
+**Research**: Unlikely (internal patterns, Astro dynamic routes)
+**Plans**: 1 plan
+
+Plans:
+- [x] 07-01: Room images data, CSS-only lightbox, dynamic room pages, overview linking
+
+</details>
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
@@ -115,3 +134,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 4. Polish | v1.0 | 1/1 | Complete | 2026-01-09 |
 | 5. Album Pages | v1.1 | 1/1 | Complete | 2026-01-09 |
 | 6. Extend Room Overview | v1.2 | 1/1 | Complete | 2026-01-09 |
+| 7. Room Detail Pages | v1.3 | 1/1 | Complete | 2026-01-10 |
