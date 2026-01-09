@@ -1,6 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
 import { useTranslations } from '../../i18n/utils';
+
+// Import gallery images for hero and preview
+import heroImage from '../../assets/gallery/sample-1.jpg';
+import preview1 from '../../assets/gallery/sample-2.jpg';
+import preview2 from '../../assets/gallery/sample-3.jpg';
+import preview3 from '../../assets/gallery/sample-4.jpg';
 
 const lang = 'en';
 const t = useTranslations(lang);
@@ -11,6 +18,139 @@ const t = useTranslations(lang);
   description={t('page.home.description')}
   lang={lang}
 >
-  <h1>{t('page.home.title')}</h1>
-  <p>{t('page.home.description')}</p>
+  <section class="hero">
+    <div class="hero__image-wrapper">
+      <Image
+        src={heroImage}
+        alt={t('ui.siteName')}
+        class="hero__image"
+        widths={[640, 960, 1200]}
+        sizes="100vw"
+      />
+    </div>
+    <div class="hero__content">
+      <p class="hero__slogan">{t('home.slogan')}</p>
+    </div>
+  </section>
+
+  <section class="tagline">
+    <p>{t('home.tagline')}</p>
+  </section>
+
+  <section class="preview-gallery">
+    <h2>{t('home.featuredGallery')}</h2>
+    <div class="preview-gallery__grid">
+      <div class="preview-gallery__item">
+        <Image
+          src={preview1}
+          alt="Preview 1"
+          class="preview-gallery__image"
+          widths={[320, 480]}
+          sizes="(max-width: 640px) 100vw, 33vw"
+        />
+      </div>
+      <div class="preview-gallery__item">
+        <Image
+          src={preview2}
+          alt="Preview 2"
+          class="preview-gallery__image"
+          widths={[320, 480]}
+          sizes="(max-width: 640px) 100vw, 33vw"
+        />
+      </div>
+      <div class="preview-gallery__item">
+        <Image
+          src={preview3}
+          alt="Preview 3"
+          class="preview-gallery__image"
+          widths={[320, 480]}
+          sizes="(max-width: 640px) 100vw, 33vw"
+        />
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .hero {
+    margin: -1rem -1rem 2rem -1rem;
+    position: relative;
+  }
+
+  .hero__image-wrapper {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  }
+
+  .hero__slogan {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-style: italic;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .tagline {
+    text-align: center;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .tagline p {
+    font-size: 1.25rem;
+    color: var(--color-text);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .preview-gallery h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .preview-gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .preview-gallery__item {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .preview-gallery__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .preview-gallery__item:hover .preview-gallery__image {
+    transform: scale(1.05);
+  }
+
+  @media (min-width: 768px) {
+    .hero__slogan {
+      font-size: 2rem;
+    }
+  }
+</style>

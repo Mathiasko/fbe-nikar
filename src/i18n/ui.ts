@@ -38,7 +38,18 @@ export const ui = {
     'page.supportServices.description': 'Podporné služby pre vaše školenia a konferencie.',
     'page.pricing.description': 'Cenník prenájmu školiacich miestností.',
     'page.photoGallery.description': 'Fotogaléria našich priestorov.',
-    'page.contact.description': 'Kontaktujte nás pre rezerváciu alebo otázky.'
+    'page.contact.description': 'Kontaktujte nás pre rezerváciu alebo otázky.',
+
+    // Gallery categories
+    'gallery.category.premises': 'PRIESTORY',
+    'gallery.category.saleExhibition': 'PREDAJNÁ VÝSTAVA',
+    'gallery.category.exhibition': 'VÝSTAVA',
+    'gallery.category.opening': 'OTVORENIE',
+
+    // Home page
+    'home.tagline': 'Nikar Training Center vám ponúka prenájom profesionálnych školiacich priestorov.',
+    'home.slogan': 'For Training Excellence',
+    'home.featuredGallery': 'Z našej galérie'
   },
   en: {
     // Navigation
@@ -70,7 +81,18 @@ export const ui = {
     'page.supportServices.description': 'Support services for your training and conferences.',
     'page.pricing.description': 'Pricing for training room rentals.',
     'page.photoGallery.description': 'Photo gallery of our facilities.',
-    'page.contact.description': 'Contact us for reservations or inquiries.'
+    'page.contact.description': 'Contact us for reservations or inquiries.',
+
+    // Gallery categories
+    'gallery.category.premises': 'PREMISES',
+    'gallery.category.saleExhibition': 'SALE EXHIBITION',
+    'gallery.category.exhibition': 'EXHIBITION',
+    'gallery.category.opening': 'OPENING',
+
+    // Home page
+    'home.tagline': 'Nikar Training Center offers professional training room rentals.',
+    'home.slogan': 'For Training Excellence',
+    'home.featuredGallery': 'From Our Gallery'
   }
 } as const;
 

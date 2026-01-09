@@ -1,9 +1,33 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import GalleryCard from '../../components/GalleryCard.astro';
+import GalleryGrid from '../../components/GalleryGrid.astro';
 import { useTranslations } from '../../i18n/utils';
+
+// Import gallery images
+import sample1 from '../../assets/gallery/sample-1.jpg';
+import sample2 from '../../assets/gallery/sample-2.jpg';
+import sample3 from '../../assets/gallery/sample-3.jpg';
+import sample4 from '../../assets/gallery/sample-4.jpg';
+import sample5 from '../../assets/gallery/sample-5.jpg';
+import sample6 from '../../assets/gallery/sample-6.jpg';
+import sample7 from '../../assets/gallery/sample-7.jpg';
+import sample8 from '../../assets/gallery/sample-8.jpg';
 
 const lang = 'en';
 const t = useTranslations(lang);
+
+// Gallery items with sample data
+const galleryItems = [
+  { image: sample1, title: "NIKAR Training Center", subtitle: "", category: t('gallery.category.premises'), color: "#6B4423" },
+  { image: sample2, title: "Julo Nagy", subtitle: "Identikit II.", category: t('gallery.category.saleExhibition'), color: "#6B7B00" },
+  { image: sample3, title: "Peter Koloman", subtitle: "Abstractions", category: t('gallery.category.exhibition'), color: "#7B8B4B" },
+  { image: sample4, title: "Large Conference Room", subtitle: "", category: t('gallery.category.premises'), color: "#6B4423" },
+  { image: sample5, title: "Vernissage", subtitle: "Spring 2024", category: t('gallery.category.opening'), color: "#6B7B00" },
+  { image: sample6, title: "Anna Liskova", subtitle: "Landscapes", category: t('gallery.category.exhibition'), color: "#7B8B4B" },
+  { image: sample7, title: "Training Room A", subtitle: "", category: t('gallery.category.premises'), color: "#6B4423" },
+  { image: sample8, title: "Group Exhibition", subtitle: "Summer 2024", category: t('gallery.category.saleExhibition'), color: "#6B7B00" },
+];
 ---
 
 <BaseLayout
@@ -12,5 +36,25 @@ const t = useTranslations(lang);
   lang={lang}
 >
   <h1>{t('page.photoGallery.title')}</h1>
-  <p>{t('page.photoGallery.description')}</p>
+  <p class="page-intro">{t('page.photoGallery.description')}</p>
+
+  <GalleryGrid>
+    {galleryItems.map((item) => (
+      <GalleryCard
+        imageSrc={item.image}
+        title={item.title}
+        subtitle={item.subtitle}
+        category={item.category}
+        categoryColor={item.color}
+      />
+    ))}
+  </GalleryGrid>
 </BaseLayout>
+
+<style>
+  .page-intro {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+  }
+</style>
