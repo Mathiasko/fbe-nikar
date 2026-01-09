@@ -12,6 +12,7 @@ None
 
 - ✅ **v1.0 MVP** - Phases 1-4 (shipped 2026-01-09)
 - ✅ **v1.1 Album Galleries** - Phase 5 (shipped 2026-01-09)
+- 🚧 **v1.2 Content Enhancement** - Phase 6 (in progress)
 
 ## Phases
 
@@ -83,10 +84,25 @@ Plans:
 
 </details>
 
+### 🚧 v1.2 Content Enhancement (In Progress)
+
+**Milestone Goal:** Enhance page content with more detailed information and better presentation.
+
+- [ ] **Phase 6: Extend Room Overview** - Extend the content on /prehlad-miestnosti
+
+#### Phase 6: Extend Room Overview
+**Goal**: Extend the content on /prehlad-miestnosti with more detailed room information
+**Depends on**: Phase 5 (v1.1 complete)
+**Research**: Unlikely (content work)
+**Plans**: TBD
+
+Plans:
+- [ ] 06-01: TBD (run /gsd:plan-phase 6 to break down)
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
@@ -95,3 +111,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 3. Pricing Integration | v1.0 | 1/1 | Complete | 2026-01-09 |
 | 4. Polish | v1.0 | 1/1 | Complete | 2026-01-09 |
 | 5. Album Pages | v1.1 | 1/1 | Complete | 2026-01-09 |
+| 6. Extend Room Overview | v1.2 | 0/1 | Not started | - |

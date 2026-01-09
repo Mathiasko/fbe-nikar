@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-01-09)
 
 **Core value:** Professional impression — clean, polished design that builds trust and showcases work beautifully.
-**Current status:** Milestone v1.1 complete
+**Current focus:** Phase 6 — Extend Room Overview (v1.2)
 
 ## Current Position
 
-Phase: 5 of 5 (Album Pages) - COMPLETE
-Plan: 01 - COMPLETE
-Status: Milestone v1.1 shipped
-Last activity: 2026-01-09 — Album pages shipped
+Phase: 6 of 6 (Extend Room Overview)
+Plan: Not started
+Status: Ready to plan
+Last activity: 2026-01-09 — Phase 6 added
 
-Progress: ██████████ 100%
+Progress: █████████░ 83%
 
 ## Performance Metrics
 
@@ -58,6 +58,10 @@ Recent decisions affecting current work:
 - [Phase 5]: CSS columns for masonry layout (zero-JS)
 - [Phase 5]: Dense, immersive photo layout (0.5rem gaps)
 - [Phase 5]: Album images open full-size in new tab
+
+### Roadmap Evolution
+
+- Phase 6 added: Extend the content on /prehlad-miestnosti
 
 ### Deferred Issues
 
