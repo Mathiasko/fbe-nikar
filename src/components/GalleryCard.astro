@@ -1,0 +1,39 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  imageSrc: ImageMetadata;
+  title: string;
+  subtitle?: string;
+  category: string;
+  categoryColor?: string;
+}
+
+const {
+  imageSrc,
+  title,
+  subtitle = '',
+  category,
+  categoryColor = '#6B7B00'
+} = Astro.props;
+---
+
+<article class="gallery-card">
+  <div class="gallery-card__image-wrapper">
+    <Image
+      src={imageSrc}
+      alt={title}
+      class="gallery-card__image"
+      widths={[320, 480, 640]}
+      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+    />
+  </div>
+  <div class="gallery-card__content">
+    <h3 class="gallery-card__title">{title}</h3>
+    {subtitle && <p class="gallery-card__subtitle">{subtitle}</p>}
+  </div>
+  <span class="gallery-card__category" style={`background-color: ${categoryColor}`}>
+    {category}
+  </span>
+</article>
