@@ -11,7 +11,7 @@ None
 ## Milestones
 
 - ✅ **v1.0 MVP** - Phases 1-4 (shipped 2026-01-09)
-- 🚧 **v1.1 Album Galleries** - Phase 5 (in progress)
+- ✅ **v1.1 Album Galleries** - Phase 5 (shipped 2026-01-09)
 
 ## Phases
 
@@ -65,20 +65,23 @@ Plans:
 
 </details>
 
-### 🚧 v1.1 Album Galleries (In Progress)
+<details>
+<summary>✅ v1.1 Album Galleries (Phase 5) - SHIPPED 2026-01-09</summary>
 
 **Milestone Goal:** Add clickable album detail pages to the photo gallery, showing full image grids for each exhibition/event.
 
-- [ ] **Phase 5: Album Pages** - Album detail pages with image grids, linked from gallery index
+- [x] **Phase 5: Album Pages** - Album detail pages with masonry layout, linked from gallery index
 
-#### Phase 5: Album Pages
-**Goal**: Create album detail pages showing image grids, make gallery cards clickable links
+### Phase 5: Album Pages
+**Goal**: Create album detail pages showing masonry image grids, make gallery cards clickable links
 **Depends on**: Phase 4 (v1.0 complete)
 **Research**: Unlikely (internal patterns, Astro dynamic routes)
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 05-01: Album detail pages and gallery card linking
+- [x] 05-01: Album detail pages with masonry layout and gallery card linking
+
+</details>
 
 ## Progress
 
@@ -91,4 +94,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 2. Gallery | v1.0 | 1/1 | Complete | 2026-01-09 |
 | 3. Pricing Integration | v1.0 | 1/1 | Complete | 2026-01-09 |
 | 4. Polish | v1.0 | 1/1 | Complete | 2026-01-09 |
-| 5. Album Pages | v1.1 | 0/1 | Not started | - |
+| 5. Album Pages | v1.1 | 1/1 | Complete | 2026-01-09 |

@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-09)
 
 **Core value:** Professional impression — clean, polished design that builds trust and showcases work beautifully.
-**Current focus:** Phase 5 — Album Pages (v1.1)
+**Current status:** Milestone v1.1 complete
 
 ## Current Position
 
-Phase: 5 of 5 (Album Pages)
-Plan: Not started
-Status: Ready to plan
-Last activity: 2026-01-09 — Milestone v1.1 created
+Phase: 5 of 5 (Album Pages) - COMPLETE
+Plan: 01 - COMPLETE
+Status: Milestone v1.1 shipped
+Last activity: 2026-01-09 — Album pages shipped
 
-Progress: ████████░░ 80%
+Progress: ██████████ 100%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
-- Average duration: 8 min
-- Total execution time: 0.52 hours
+- Total plans completed: 5
+- Average duration: 7.2 min
+- Total execution time: ~0.6 hours
 
 **By Phase:**
 
@@ -31,9 +31,10 @@ Progress: ████████░░ 80%
 | 2. Gallery | 1 | 12 min | 12 min |
 | 3. Pricing Integration | 1 | 4 min | 4 min |
 | 4. Polish | 1 | 7 min | 7 min |
+| 5. Album Pages | 1 | 5 min | 5 min |
 
 **Recent Trend:**
-- Last 5 plans: 8 min, 12 min, 4 min, 7 min
+- Last 5 plans: 8 min, 12 min, 4 min, 7 min, 5 min
 - Trend: —
 
 ## Accumulated Context
@@ -54,6 +55,9 @@ Recent decisions affecting current work:
 - [Phase 3]: Simple CSV parsing with quoted field support
 - [Phase 4]: No contact forms - mailto/tel links only (per project scope)
 - [Phase 4]: Sample content ready for client replacement
+- [Phase 5]: CSS columns for masonry layout (zero-JS)
+- [Phase 5]: Dense, immersive photo layout (0.5rem gaps)
+- [Phase 5]: Album images open full-size in new tab
 
 ### Deferred Issues
 
@@ -65,6 +69,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-01-09 22:40
-Stopped at: MILESTONE COMPLETE
+Last session: 2026-01-09 23:03
+Stopped at: MILESTONE v1.1 COMPLETE
 Resume file: None
