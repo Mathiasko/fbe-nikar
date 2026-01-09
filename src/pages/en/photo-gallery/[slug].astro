@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import AlbumMasonry from '../../../components/AlbumMasonry.astro';
+import { getAllAlbums, getAlbumBySlug } from '../../../data/albums';
+import { useTranslations } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  const albums = getAllAlbums();
+  return albums.map((album) => ({
+    params: { slug: album.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const album = getAlbumBySlug(slug);
+
+if (!album) {
+  return Astro.redirect('/en/photo-gallery/');
+}
+
+const lang = 'en';
+const t = useTranslations(lang);
+
+const title = album.title.en;
+const subtitle = album.subtitle?.en;
+const description = album.description?.en || '';
+---
+
+<BaseLayout
+  title={`${title} | ${t('page.photoGallery.title')} | ${t('ui.siteName')}`}
+  description={description}
+  lang={lang}
+>
+  <div class="album-header">
+    <a href="/en/photo-gallery/" class="back-link">
+      &larr; {t('album.backToGallery')}
+    </a>
+    <h1>{title}</h1>
+    {subtitle && <p class="album-subtitle">{subtitle}</p>}
+    {description && <p class="album-description">{description}</p>}
+    <p class="album-count">{album.images.length} {t('album.photosCount')}</p>
+  </div>
+
+  <AlbumMasonry images={album.images} albumTitle={title} />
+</BaseLayout>
+
+<style>
+  .album-header {
+    margin-bottom: 2rem;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .back-link:hover {
+    color: var(--color-primary-dark);
+  }
+
+  .album-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-light);
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+  }
+
+  .album-description {
+    color: var(--color-text-light);
+    max-width: 60ch;
+  }
+
+  .album-count {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    margin-top: 0.5rem;
+  }
+</style>

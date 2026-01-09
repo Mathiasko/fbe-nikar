@@ -46,6 +46,10 @@ export const ui = {
     'gallery.category.exhibition': 'VÝSTAVA',
     'gallery.category.opening': 'OTVORENIE',
 
+    // Album pages
+    'album.backToGallery': 'Späť na galériu',
+    'album.photosCount': 'fotografií',
+
     // Home page
     'home.tagline': 'Nikar Training Center vám ponúka prenájom profesionálnych školiacich priestorov.',
     'home.slogan': 'For Training Excellence',
@@ -155,6 +159,10 @@ export const ui = {
     'gallery.category.saleExhibition': 'SALE EXHIBITION',
     'gallery.category.exhibition': 'EXHIBITION',
     'gallery.category.opening': 'OPENING',
+
+    // Album pages
+    'album.backToGallery': 'Back to Gallery',
+    'album.photosCount': 'photos',
 
     // Home page
     'home.tagline': 'Nikar Training Center offers professional training room rentals.',

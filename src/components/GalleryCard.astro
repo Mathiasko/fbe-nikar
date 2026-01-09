@@ -8,6 +8,7 @@ interface Props {
   subtitle?: string;
   category: string;
   categoryColor?: string;
+  href?: string;
 }
 
 const {
@@ -15,11 +16,14 @@ const {
   title,
   subtitle = '',
   category,
-  categoryColor = '#6B7B00'
+  categoryColor = '#6B7B00',
+  href
 } = Astro.props;
+
+const Tag = href ? 'a' : 'article';
 ---
 
-<article class="gallery-card">
+<Tag class:list={['gallery-card', { 'gallery-card--link': href }]} href={href}>
   <div class="gallery-card__image-wrapper">
     <Image
       src={imageSrc}
@@ -36,4 +40,4 @@ const {
   <span class="gallery-card__category" style={`background-color: ${categoryColor}`}>
     {category}
   </span>
-</article>
+</Tag>

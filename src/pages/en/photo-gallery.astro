@@ -3,31 +3,20 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import GalleryCard from '../../components/GalleryCard.astro';
 import GalleryGrid from '../../components/GalleryGrid.astro';
 import { useTranslations } from '../../i18n/utils';
-
-// Import gallery images
-import sample1 from '../../assets/gallery/sample-1.jpg';
-import sample2 from '../../assets/gallery/sample-2.jpg';
-import sample3 from '../../assets/gallery/sample-3.jpg';
-import sample4 from '../../assets/gallery/sample-4.jpg';
-import sample5 from '../../assets/gallery/sample-5.jpg';
-import sample6 from '../../assets/gallery/sample-6.jpg';
-import sample7 from '../../assets/gallery/sample-7.jpg';
-import sample8 from '../../assets/gallery/sample-8.jpg';
+import { getAllAlbums } from '../../data/albums';
 
 const lang = 'en';
 const t = useTranslations(lang);
 
-// Gallery items with sample data
-const galleryItems = [
-  { image: sample1, title: "NIKAR Training Center", subtitle: "", category: t('gallery.category.premises'), color: "#6B4423" },
-  { image: sample2, title: "Julo Nagy", subtitle: "Identikit II.", category: t('gallery.category.saleExhibition'), color: "#6B7B00" },
-  { image: sample3, title: "Peter Koloman", subtitle: "Abstractions", category: t('gallery.category.exhibition'), color: "#7B8B4B" },
-  { image: sample4, title: "Large Conference Room", subtitle: "", category: t('gallery.category.premises'), color: "#6B4423" },
-  { image: sample5, title: "Vernissage", subtitle: "Spring 2024", category: t('gallery.category.opening'), color: "#6B7B00" },
-  { image: sample6, title: "Anna Liskova", subtitle: "Landscapes", category: t('gallery.category.exhibition'), color: "#7B8B4B" },
-  { image: sample7, title: "Training Room A", subtitle: "", category: t('gallery.category.premises'), color: "#6B4423" },
-  { image: sample8, title: "Group Exhibition", subtitle: "Summer 2024", category: t('gallery.category.saleExhibition'), color: "#6B7B00" },
-];
+const albums = getAllAlbums();
+
+// Map category to translation key
+const categoryTranslations: Record<string, string> = {
+  premises: 'gallery.category.premises',
+  exhibition: 'gallery.category.exhibition',
+  saleExhibition: 'gallery.category.saleExhibition',
+  opening: 'gallery.category.opening',
+};
 ---
 
 <BaseLayout
@@ -39,13 +28,14 @@ const galleryItems = [
   <p class="page-intro">{t('page.photoGallery.description')}</p>
 
   <GalleryGrid>
-    {galleryItems.map((item) => (
+    {albums.map((album) => (
       <GalleryCard
-        imageSrc={item.image}
-        title={item.title}
-        subtitle={item.subtitle}
-        category={item.category}
-        categoryColor={item.color}
+        imageSrc={album.coverImage}
+        title={album.title.en}
+        subtitle={album.subtitle?.en}
+        category={t(categoryTranslations[album.category])}
+        categoryColor={album.categoryColor}
+        href={`/en/photo-gallery/${album.slug}/`}
       />
     ))}
   </GalleryGrid>

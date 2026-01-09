@@ -136,6 +136,17 @@ a:hover {
   transform: scale(1.05);
 }
 
+.gallery-card--link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.gallery-card--link:hover {
+  text-decoration: none;
+}
+
 .gallery-card__content {
   padding: 1rem;
   padding-bottom: 2.5rem;
