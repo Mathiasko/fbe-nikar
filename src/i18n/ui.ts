@@ -132,7 +132,7 @@ export const ui = {
     // Contact page
     'contact.intro': 'Máte záujem o prenájom našich priestorov? Kontaktujte nás pre nezáväznú ponuku alebo rezerváciu.',
     'contact.addressLabel': 'Adresa',
-    'contact.address': 'NIKAR Training Center, Vajnorská 100/B, 831 04 Bratislava',
+    'contact.address': 'NIKAR Training Center, \nVajnorská 100/B, \n831 04 Bratislava',
     'contact.phoneLabel': 'Telefón',
     'contact.phone': '+421 2 1234 5678',
     'contact.emailLabel': 'E-mail',
