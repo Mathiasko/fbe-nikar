@@ -2,32 +2,47 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PricingTable from '../../components/PricingTable.astro';
 import { useTranslations } from '../../i18n/utils';
-import { fetchSheetAsCSV, parsePricingData } from '../../lib/sheets';
+import { fetchSheetAsCSV, parsePricingData, parseCateringData } from '../../lib/sheets';
 import { samplePricingDataEN } from '../../data/sample-pricing';
 
 const lang = 'en';
 const t = useTranslations(lang);
 
-// Try to fetch from Google Sheet, fall back to sample data
+// Try to fetch from Google Sheets, fall back to sample data
 let pricingData = samplePricingDataEN;
 
 const sheetId = import.meta.env.PUBLIC_SHEETS_ID;
 const sheetGid = import.meta.env.PUBLIC_SHEETS_GID || '0';
+const cateringGid = import.meta.env.PUBLIC_SHEETS_GID_CATERING;
 
 if (sheetId) {
-  const rawData = await fetchSheetAsCSV(sheetId, sheetGid);
-  if (rawData.length > 0) {
-    pricingData = parsePricingData(rawData);
+  // Fetch rooms from first sheet
+  const roomsData = await fetchSheetAsCSV(sheetId, sheetGid);
+  if (roomsData.length > 0) {
+    pricingData = parsePricingData(roomsData);
+  }
+
+  // Fetch catering from second sheet
+  if (cateringGid) {
+    const cateringData = await fetchSheetAsCSV(sheetId, cateringGid);
+    if (cateringData.length > 0) {
+      pricingData.catering = parseCateringData(cateringData);
+    }
   }
 }
 
-// Prepare room data for table
-const roomHeaders = [t('pricing.room'), t('pricing.halfDay'), t('pricing.fullDay'), t('pricing.notes')];
-const roomRows = pricingData.rooms.map(room => [room.name, room.halfDay, room.fullDay, room.notes]);
+// Prepare room data for table (with optional links)
+const roomHeaders = ['Training Room', 'm²', '"U" Seating', 'Price per day (8:00-17:00)*'];
+const roomRows = pricingData.rooms.map(room => [
+  { text: room.name, link: room.link },
+  room.size,
+  room.capacity,
+  room.price
+]);
 
 // Prepare catering data for table
-const cateringHeaders = [t('pricing.item'), t('pricing.price'), t('pricing.unit')];
-const cateringRows = pricingData.catering.map(item => [item.item, item.price, item.unit]);
+const cateringHeaders = ['Item', 'Price'];
+const cateringRows = pricingData.catering.map(item => [item.item, item.price]);
 ---
 
 <BaseLayout
@@ -50,6 +65,13 @@ const cateringRows = pricingData.catering.map(item => [item.item, item.price, it
       headers={cateringHeaders}
       rows={cateringRows}
     />
+
+    <div class="pricing-disclaimer">
+      <p>All prices are listed without VAT.</p>
+      <p>* Price per day applies from 8:00 AM to 5:00 PM.<br />
+      Individual arrangements are possible for use outside these hours.</p>
+      <p class="pricing-year">Price list valid for 2026.</p>
+    </div>
   </div>
 </BaseLayout>
 
@@ -63,5 +85,27 @@ const cateringRows = pricingData.catering.map(item => [item.item, item.price, it
     margin-bottom: 2rem;
     color: var(--color-text-light);
     font-size: 1.1rem;
+  }
+
+  .pricing-disclaimer {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--color-background-alt);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+  }
+
+  .pricing-disclaimer p {
+    margin-bottom: 0.75rem;
+  }
+
+  .pricing-disclaimer p:last-child {
+    margin-bottom: 0;
+  }
+
+  .pricing-year {
+    font-weight: 600;
+    color: var(--color-text);
   }
 </style>

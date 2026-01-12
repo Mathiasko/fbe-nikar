@@ -2,10 +2,10 @@
 /**
  * Room Detail Page (English)
  *
- * Dynamic route for individual room pages showing features and image gallery.
+ * Two-column layout: feature table on left, images on right.
+ * Matches the original NIKAR site design.
  */
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import RoomLightbox from '../../../components/RoomLightbox.astro';
 import { rooms, featureKeys } from '../../../data/rooms';
 import { useTranslations } from '../../../i18n/utils';
 import type { GetStaticPaths } from 'astro';
@@ -40,8 +40,14 @@ const featureTranslationKeys: Record<string, string> = {
   audioSystem: 'room.feature.audioSystem'
 };
 
-// Get enabled features
-const enabledFeatures = featureKeys.filter((key) => room.features[key]);
+// Get room number from id (e.g., "brown-101" -> "101")
+const roomNumber = room.id.split('-')[1];
+
+// Get other rooms for navigation
+const otherRooms = rooms.filter((r) => r.id !== room.id);
+
+// Get room color name for header
+const colorKey = room.id.split('-')[0];
 ---
 
 <BaseLayout
@@ -54,43 +60,124 @@ const enabledFeatures = featureKeys.filter((key) => room.features[key]);
       &larr; {t('room.backToOverview')}
     </a>
 
-    <header class="room-detail-header" style={`border-left-color: ${room.color};`}>
-      <h1 style={`color: ${room.color};`}>{room.name[lang]}</h1>
-      <p class="room-specs">
-        <span>{t('room.feature.size')}: {room.size} m²</span>
-        <span class="room-specs__separator">|</span>
-        <span>{t('room.feature.capacity')}: {room.capacity}</span>
-        <span class="room-specs__separator">|</span>
-        <span>{t('room.floor')}: {room.floor}</span>
-      </p>
-    </header>
+    <div class="room-detail-layout">
+      {/* Left column: Feature table */}
+      <div class="room-features-column">
+        <table class="room-feature-table">
+          <thead>
+            <tr>
+              <th class="room-feature-table__header" colspan="2">
+                <span class="room-feature-table__title">{colorKey.charAt(0).toUpperCase() + colorKey.slice(1)} training room equipment</span>
+                <span class="room-feature-table__number" style={`color: ${room.color};`}>{roomNumber}</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>m²</td>
+              <td class="room-feature-table__value">{room.size}</td>
+            </tr>
+            <tr>
+              <td>Capacity 'U' seating</td>
+              <td class="room-feature-table__value">{room.capacity} seats</td>
+            </tr>
+            {featureKeys.map((featureKey) => (
+              <tr>
+                <td>{t(featureTranslationKeys[featureKey])}</td>
+                <td class="room-feature-table__value">
+                  {room.features[featureKey] ? <span class="checkmark">&#10004;</span> : ''}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
 
-    <section class="room-features">
-      <h2>{t('room.features')}</h2>
-      <ul class="feature-list">
-        {enabledFeatures.map((featureKey) => (
-          <li class="feature-list__item">
-            <span class="feature-checkmark">&#10003;</span>
-            {t(featureTranslationKeys[featureKey])}
-          </li>
-        ))}
-      </ul>
-    </section>
+        {/* Other rooms navigation */}
+        <div class="other-rooms">
+          <span class="other-rooms__label">{t('room.otherRooms')}:</span>
+          {otherRooms.map((otherRoom, index) => (
+            <>
+              <a
+                href={`/en/room/${otherRoom.id}/`}
+                class="other-rooms__link"
+                style={`color: ${otherRoom.color};`}
+              >
+                {otherRoom.name[lang].split(' ')[0]}
+              </a>
+              {index < otherRooms.length - 1 && <span class="other-rooms__separator"></span>}
+            </>
+          ))}
+        </div>
+      </div>
 
-    <section class="room-gallery">
-      <h2>{t('room.gallery')}</h2>
-      <RoomLightbox images={room.images} roomName={room.name[lang]} roomId={room.id} />
-    </section>
+      {/* Right column: Images */}
+      <div class="room-images-column">
+        {room.images.length > 0 && (
+          <>
+            {/* Hero image */}
+            <a href={`#lightbox-${room.id}-0`} class="room-hero-link">
+              <img
+                src={room.images[0]}
+                alt={`${room.name[lang]} - main photo`}
+                class="room-hero-image"
+                loading="eager"
+              />
+            </a>
 
-    <p class="room-detail-cta">
-      {t('roomOverview.cta')} <a href={`/${lang}/pricing/`}>{t('roomOverview.pricingLink')}</a>.
-    </p>
+            {/* Thumbnail row */}
+            {room.images.length > 1 && (
+              <div class="room-thumbnails">
+                {room.images.slice(1).map((image, index) => (
+                  <a href={`#lightbox-${room.id}-${index + 1}`} class="room-thumbnail-link">
+                    <img
+                      src={image}
+                      alt={`${room.name[lang]} - photo ${index + 2}`}
+                      class="room-thumbnail"
+                      loading="lazy"
+                    />
+                  </a>
+                ))}
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    </div>
+
+    {/* Lightbox overlays */}
+    {room.images.map((image, index) => (
+      <div id={`lightbox-${room.id}-${index}`} class="lightbox">
+        <a href="#" class="lightbox__close" aria-label="Close">&times;</a>
+        <div class="lightbox__content">
+          <img src={image} alt={`${room.name[lang]} - photo ${index + 1}`} class="lightbox__image" />
+          {room.images.length > 1 && (
+            <>
+              <a
+                href={`#lightbox-${room.id}-${index === 0 ? room.images.length - 1 : index - 1}`}
+                class="lightbox__nav lightbox__prev"
+                aria-label="Previous photo"
+              >
+                &#10094;
+              </a>
+              <a
+                href={`#lightbox-${room.id}-${index === room.images.length - 1 ? 0 : index + 1}`}
+                class="lightbox__nav lightbox__next"
+                aria-label="Next photo"
+              >
+                &#10095;
+              </a>
+            </>
+          )}
+        </div>
+        <span class="lightbox__counter">{index + 1} / {room.images.length}</span>
+      </div>
+    ))}
   </div>
 </BaseLayout>
 
 <style>
   .room-detail-page {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
   }
 
@@ -107,99 +194,263 @@ const enabledFeatures = featureKeys.filter((key) => room.features[key]);
     text-decoration: underline;
   }
 
-  .room-detail-header {
-    border-left: 6px solid;
-    padding-left: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .room-detail-header h1 {
-    margin-bottom: 0.5rem;
-    font-size: 2rem;
-  }
-
-  .room-specs {
-    color: var(--color-text-light);
-    font-size: 1.1rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .room-specs__separator {
-    color: var(--color-border);
-  }
-
-  .room-features {
-    margin-bottom: 2.5rem;
-  }
-
-  .room-features h2,
-  .room-gallery h2 {
-    font-size: 1.5rem;
-    color: var(--color-primary-dark);
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--color-primary);
-  }
-
-  .feature-list {
-    list-style: none;
+  /* Two-column layout */
+  .room-detail-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: 380px 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  /* Feature table column */
+  .room-features-column {
+    min-width: 0;
+  }
+
+  .room-feature-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+  }
+
+  .room-feature-table__header {
+    background: var(--color-background-alt);
+    padding: 1rem;
+    text-align: left;
+  }
+
+  .room-feature-table__title {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .room-feature-table__number {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-top: 0.25rem;
+  }
+
+  .room-feature-table td {
+    padding: 0.625rem 1rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.95rem;
+    vertical-align: middle;
+  }
+
+  .room-feature-table__value {
+    text-align: center;
+    width: 80px;
+  }
+
+  .checkmark {
+    color: #6B7B00;
+    font-size: 1.1rem;
+  }
+
+  /* Other rooms navigation */
+  .other-rooms {
+    margin-top: 2rem;
+    padding-top: 1rem;
+  }
+
+  .other-rooms__label {
+    font-weight: 600;
+    color: var(--color-primary-dark);
+    margin-right: 1rem;
+  }
+
+  .other-rooms__link {
+    font-weight: 600;
+    text-decoration: underline;
+    margin: 0 0.5rem;
+  }
+
+  .other-rooms__link:hover {
+    text-decoration: none;
+  }
+
+  .other-rooms__separator {
+    color: var(--color-text-light);
+  }
+
+  /* Images column */
+  .room-images-column {
+    min-width: 0;
+  }
+
+  .room-hero-link {
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .room-hero-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .room-hero-image:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .room-thumbnails {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 0.75rem;
   }
 
-  .feature-list__item {
+  .room-thumbnail-link {
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .room-thumbnail-link:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .room-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Lightbox overlay */
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .lightbox:target {
+    display: flex;
+  }
+
+  .lightbox__close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    color: white;
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1;
+    text-decoration: none;
+    padding: 0.5rem;
+    z-index: 1001;
+  }
+
+  .lightbox__close:hover {
+    color: var(--color-primary);
+  }
+
+  .lightbox__content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 85vh;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 0;
+    justify-content: center;
   }
 
-  .feature-checkmark {
+  .lightbox__image {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  .lightbox__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 300;
+    text-decoration: none;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    z-index: 1001;
+  }
+
+  .lightbox__nav:hover {
+    background: rgba(0, 0, 0, 0.6);
     color: var(--color-primary);
-    font-weight: bold;
-    font-size: 1.1rem;
   }
 
-  .room-gallery {
-    margin-bottom: 2rem;
+  .lightbox__prev {
+    left: 1rem;
   }
 
-  .room-detail-cta {
-    margin-top: 2rem;
-    font-size: 1.1rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--color-border);
+  .lightbox__next {
+    right: 1rem;
   }
 
-  .room-detail-cta a {
-    color: var(--color-primary);
-    font-weight: 500;
+  .lightbox__counter {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 0.9rem;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
   }
 
-  .room-detail-cta a:hover {
-    color: var(--color-primary-dark);
-    text-decoration: underline;
+  /* Responsive */
+  @media (max-width: 900px) {
+    .room-detail-layout {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .room-features-column {
+      order: 2;
+    }
+
+    .room-images-column {
+      order: 1;
+    }
   }
 
   @media (max-width: 600px) {
-    .room-detail-header h1 {
-      font-size: 1.5rem;
+    .room-thumbnails {
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    .room-specs {
-      flex-direction: column;
-      gap: 0.25rem;
+    .room-feature-table__number {
+      font-size: 2.5rem;
     }
 
-    .room-specs__separator {
-      display: none;
+    .lightbox__close {
+      top: 0.5rem;
+      right: 0.75rem;
+      font-size: 2.5rem;
     }
 
-    .feature-list {
-      grid-template-columns: 1fr;
+    .lightbox__nav {
+      font-size: 2rem;
+      padding: 0.75rem;
     }
   }
 </style>

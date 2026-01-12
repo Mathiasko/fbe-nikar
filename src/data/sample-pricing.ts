@@ -10,28 +10,32 @@ import type { PricingData } from '../lib/sheets';
 export const samplePricingData: PricingData = {
   rooms: [
     {
-      name: 'Veľká konferenčná miestnosť',
-      halfDay: '150 €',
-      fullDay: '250 €',
-      notes: 'Kapacita 50 osôb'
+      name: 'Hnedá 101',
+      link: '/sk/miestnost/brown-101/',
+      size: '1.n.p., 56m²',
+      capacity: '12-20 miest',
+      price: '290 EUR'
     },
     {
-      name: 'Malá školiaca miestnosť',
-      halfDay: '80 €',
-      fullDay: '140 €',
-      notes: 'Kapacita 20 osôb'
+      name: 'Zelená 102',
+      link: '/sk/miestnost/green-102/',
+      size: '1.n.p., 42m²',
+      capacity: '12 miest',
+      price: '270 EUR'
     },
     {
-      name: 'Zasadacia miestnosť',
-      halfDay: '60 €',
-      fullDay: '100 €',
-      notes: 'Kapacita 12 osôb'
+      name: 'Žltá 201',
+      link: '/sk/miestnost/yellow-201/',
+      size: '2.n.p., 56m²',
+      capacity: '12-20 miest',
+      price: '290 EUR'
     },
     {
-      name: 'VIP miestnosť',
-      halfDay: '120 €',
-      fullDay: '200 €',
-      notes: 'Kapacita 8 osôb, prémiové vybavenie'
+      name: 'Modrá 202',
+      link: '/sk/miestnost/blue-202/',
+      size: '2.n.p., 42m²',
+      capacity: '12 miest',
+      price: '270 EUR'
     }
   ],
   catering: [
@@ -62,28 +66,32 @@ export const samplePricingData: PricingData = {
 export const samplePricingDataEN: PricingData = {
   rooms: [
     {
-      name: 'Large Conference Room',
-      halfDay: '150 €',
-      fullDay: '250 €',
-      notes: 'Capacity 50 people'
+      name: 'Brown 101',
+      link: '/en/room/brown-101/',
+      size: '1st floor, 56m²',
+      capacity: '12-20 seats',
+      price: '290 EUR'
     },
     {
-      name: 'Small Training Room',
-      halfDay: '80 €',
-      fullDay: '140 €',
-      notes: 'Capacity 20 people'
+      name: 'Green 102',
+      link: '/en/room/green-102/',
+      size: '1st floor, 42m²',
+      capacity: '12 seats',
+      price: '270 EUR'
     },
     {
-      name: 'Meeting Room',
-      halfDay: '60 €',
-      fullDay: '100 €',
-      notes: 'Capacity 12 people'
+      name: 'Yellow 201',
+      link: '/en/room/yellow-201/',
+      size: '2nd floor, 56m²',
+      capacity: '12-20 seats',
+      price: '290 EUR'
     },
     {
-      name: 'VIP Room',
-      halfDay: '120 €',
-      fullDay: '200 €',
-      notes: 'Capacity 8 people, premium equipment'
+      name: 'Blue 202',
+      link: '/en/room/blue-202/',
+      size: '2nd floor, 42m²',
+      capacity: '12 seats',
+      price: '270 EUR'
     }
   ],
   catering: [

@@ -7,9 +7,22 @@
 
 export interface RoomPricing {
   name: string;
-  halfDay: string;
-  fullDay: string;
-  notes: string;
+  link?: string;
+  size: string;
+  capacity: string;
+  price: string;
+}
+
+/**
+ * Extracts name and optional link from a cell value.
+ * Format: "Room Name [https://example.com]" or just "Room Name"
+ */
+function extractNameAndLink(value: string): { name: string; link?: string } {
+  const linkMatch = value.match(/^(.+?)\s*\[([^\]]+)\]\s*$/);
+  if (linkMatch) {
+    return { name: linkMatch[1].trim(), link: linkMatch[2].trim() };
+  }
+  return { name: value.trim() };
 }
 
 export interface CateringItem {
@@ -116,29 +129,31 @@ export function parsePricingData(data: string[][]): PricingData {
 
     const firstCell = row[0]?.toLowerCase().trim() || '';
 
-    // Detect section headers
-    if (firstCell.includes('room') || firstCell.includes('miestnost') || firstCell.includes('prenájom')) {
+    // Detect section headers (be specific to avoid matching data rows like "Coaching Room")
+    if (firstCell.includes('rooms') || firstCell.includes('miestnosti') || firstCell.includes('prenájom') || firstCell.includes('školiaca')) {
       currentSection = 'rooms';
       continue;
     }
 
-    if (firstCell.includes('catering') || firstCell.includes('občerstvenie') || firstCell.includes('jedlo')) {
+    if (firstCell.includes('catering') || firstCell.includes('občerstvenie') || firstCell.includes('jedlo') || firstCell.includes('doplnk')) {
       currentSection = 'catering';
       continue;
     }
 
     // Skip header rows (detect by common header terms)
-    if (firstCell === 'name' || firstCell === 'názov' || firstCell === 'item' || firstCell === 'položka') {
+    if (firstCell === 'name' || firstCell === 'názov' || firstCell === 'item' || firstCell === 'položka' || firstCell.includes('m2') || firstCell === 'm²') {
       continue;
     }
 
     // Parse data based on current section
     if (currentSection === 'rooms' && row.length >= 3) {
+      const { name, link } = extractNameAndLink(row[0] || '');
       rooms.push({
-        name: row[0] || '',
-        halfDay: row[1] || '',
-        fullDay: row[2] || '',
-        notes: row[3] || ''
+        name,
+        link,
+        size: row[1] || '',
+        capacity: row[2] || '',
+        price: row[3] || ''
       });
     } else if (currentSection === 'catering' && row.length >= 2) {
       catering.push({
@@ -150,4 +165,42 @@ export function parsePricingData(data: string[][]): PricingData {
   }
 
   return { rooms, catering };
+}
+
+/**
+ * Parses catering data from a separate sheet.
+ * Format: Item | Price (with optional header row and notes)
+ */
+export function parseCateringData(data: string[][]): CateringItem[] {
+  const catering: CateringItem[] = [];
+
+  for (const row of data) {
+    // Skip empty rows
+    if (row.length === 0 || row.every(cell => !cell.trim())) {
+      continue;
+    }
+
+    const firstCell = row[0]?.toLowerCase().trim() || '';
+
+    // Skip header rows
+    if (firstCell.includes('cenník') || firstCell.includes('cena') || firstCell === 'položka' || firstCell === 'item') {
+      continue;
+    }
+
+    // Skip note rows (starting with *)
+    if (firstCell.startsWith('*')) {
+      continue;
+    }
+
+    // Parse data row
+    if (row[0] && row[1]) {
+      catering.push({
+        item: row[0].trim(),
+        price: row[1].trim(),
+        unit: row[2]?.trim() || ''
+      });
+    }
+  }
+
+  return catering;
 }

@@ -17,12 +17,22 @@ const t = useTranslations(lang);
     <h1>{t('page.roomOverview.title')}</h1>
     <p class="room-overview-intro">{t('roomOverview.intro')}</p>
 
+    <div class="room-dropdown">
+      <label for="room-select">{t('roomOverview.jumpToRoom')}:</label>
+      <select id="room-select">
+        <option value="">--</option>
+        {rooms.map((room) => (
+          <option value={room.id}>{room.name[lang]}</option>
+        ))}
+      </select>
+    </div>
+
     <RoomComparisonTable rooms={rooms} lang={lang} />
 
     <section class="room-details">
       <h2>{t('room.details')}</h2>
       {rooms.map((room) => (
-        <article class="room-card" style={`border-top-color: ${room.color};`}>
+        <article id={`room-${room.id}`} class="room-card" style={`border-top-color: ${room.color};`}>
           <div class="room-card__header" style={`background-color: ${room.color};`}>
             <h3 class="room-card__title">
               <a href={`/en/room/${room.id}/`}>{room.name[lang]}</a>
@@ -70,9 +80,41 @@ const t = useTranslations(lang);
   }
 
   .room-overview-intro {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     color: var(--color-text-light);
     font-size: 1.1rem;
+  }
+
+  .room-dropdown {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .room-dropdown label {
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  .room-dropdown select {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    cursor: pointer;
+  }
+
+  .room-dropdown select:hover {
+    border-color: var(--color-primary);
+  }
+
+  .room-dropdown select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb, 0, 123, 255), 0.25);
   }
 
   .room-overview-cta {
@@ -180,3 +222,15 @@ const t = useTranslations(lang);
     }
   }
 </style>
+
+<script>
+  const select = document.getElementById('room-select') as HTMLSelectElement;
+  select?.addEventListener('change', () => {
+    const roomId = select.value;
+    if (roomId) {
+      const element = document.getElementById(`room-${roomId}`);
+      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      select.value = '';
+    }
+  });
+</script>

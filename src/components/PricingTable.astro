@@ -2,18 +2,28 @@
 /**
  * PricingTable Component
  *
- * Renders a semantic HTML pricing table with support for highlighting.
+ * Renders a semantic HTML pricing table with support for highlighting and links.
  * Zero JavaScript - pure static HTML output.
  */
+
+interface CellData {
+  text: string;
+  link?: string;
+}
 
 interface Props {
   title: string;
   headers: string[];
-  rows: string[][];
+  rows: (string | CellData)[][];
   highlightRow?: number;
 }
 
 const { title, headers, rows, highlightRow } = Astro.props;
+
+// Helper to check if cell is a CellData object
+function isLinkedCell(cell: string | CellData): cell is CellData {
+  return typeof cell === 'object' && cell !== null && 'text' in cell;
+}
 ---
 
 <div class="pricing-section">
@@ -31,7 +41,17 @@ const { title, headers, rows, highlightRow } = Astro.props;
         {rows.map((row, index) => (
           <tr class={highlightRow === index ? 'pricing-table--highlight' : ''}>
             {row.map((cell, cellIndex) => (
-              <td class={cellIndex === 0 ? 'pricing-table__name' : ''}>{cell}</td>
+              <td class={cellIndex === 0 ? 'pricing-table__name' : ''}>
+                {isLinkedCell(cell) ? (
+                  cell.link ? (
+                    <a href={cell.link} class="pricing-table__link">{cell.text}</a>
+                  ) : (
+                    cell.text
+                  )
+                ) : (
+                  cell
+                )}
+              </td>
             ))}
           </tr>
         ))}
@@ -39,3 +59,16 @@ const { title, headers, rows, highlightRow } = Astro.props;
     </table>
   </div>
 </div>
+
+<style>
+  .pricing-table__link {
+    color: var(--color-primary);
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  .pricing-table__link:hover {
+    color: var(--color-primary-dark);
+    text-decoration: none;
+  }
+</style>
