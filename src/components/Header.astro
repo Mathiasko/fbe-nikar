@@ -1,6 +1,7 @@
 ---
-import { getNavItems, getAlternateLanguagePath, type Lang } from '../i18n/utils';
+import { getNavItems, getAlternateLanguagePath, getLocalizedPath, type Lang } from '../i18n/utils';
 import { languages } from '../i18n/ui';
+import { rooms } from '../data/rooms';
 
 interface Props {
   lang: Lang;
@@ -13,6 +14,10 @@ const navItems = getNavItems(lang);
 // Get paths for both languages
 const skPath = lang === 'sk' ? currentPath : getAlternateLanguagePath(currentPath, 'sk');
 const enPath = lang === 'en' ? currentPath : getAlternateLanguagePath(currentPath, 'en');
+
+// Room overview path for dropdown detection
+const roomOverviewPath = getLocalizedPath('room-overview', lang);
+const roomDetailBasePath = lang === 'sk' ? '/sk/miestnost' : '/en/room';
 ---
 
 <header class="header">
@@ -25,14 +30,39 @@ const enPath = lang === 'en' ? currentPath : getAlternateLanguagePath(currentPat
     <nav class="nav">
       <ul class="nav-list">
         {navItems.map((item) => (
-          <li class="nav-item">
-            <a
-              href={item.href}
-              class:list={['nav-link', { active: currentPath === item.href || currentPath === item.href.slice(0, -1) }]}
-            >
-              {item.label}
-            </a>
-          </li>
+          item.href === roomOverviewPath ? (
+            <li class="nav-item nav-item--dropdown">
+              <a
+                href={item.href}
+                class:list={['nav-link', { active: currentPath === item.href || currentPath === item.href.slice(0, -1) || currentPath.startsWith(roomDetailBasePath) }]}
+              >
+                {item.label}
+                <span class="dropdown-arrow">▾</span>
+              </a>
+              <ul class="dropdown-menu">
+                {rooms.map((room) => (
+                  <li>
+                    <a
+                      href={`${roomDetailBasePath}/${room.id}/`}
+                      class:list={['dropdown-link', { active: currentPath === `${roomDetailBasePath}/${room.id}/` }]}
+                      style={`border-left-color: ${room.color};`}
+                    >
+                      {room.name[lang]}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ) : (
+            <li class="nav-item">
+              <a
+                href={item.href}
+                class:list={['nav-link', { active: currentPath === item.href || currentPath === item.href.slice(0, -1) }]}
+              >
+                {item.label}
+              </a>
+            </li>
+          )
         ))}
       </ul>
     </nav>
@@ -125,6 +155,56 @@ const enPath = lang === 'en' ? currentPath : getAlternateLanguagePath(currentPat
   }
 
   .nav-link.active {
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  /* Dropdown styles */
+  .nav-item--dropdown {
+    position: relative;
+  }
+
+  .dropdown-arrow {
+    font-size: 0.75rem;
+    margin-left: 0.25rem;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 160px;
+    z-index: 100;
+    list-style: none;
+    padding: 0.5rem 0;
+  }
+
+  .nav-item--dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-left: 3px solid transparent;
+    transition: background-color 0.2s;
+  }
+
+  .dropdown-link:hover {
+    background-color: var(--color-primary-light);
+    color: white;
+    text-decoration: none;
+  }
+
+  .dropdown-link.active {
     background-color: var(--color-primary);
     color: white;
   }
