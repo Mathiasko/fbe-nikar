@@ -70,6 +70,7 @@ export const ui = {
     // Room Overview page
     'roomOverview.intro': 'Ponúkame rôzne veľkosti miestností pre školenia, semináre a firemné stretnutia. Vyberte si priestor, ktorý najlepšie vyhovuje vašim potrebám.',
     'roomOverview.equipmentTable': 'Porovnanie vybavenia miestností',
+    'roomOverview.comparison': 'Porovnanie miestností',
     'roomOverview.cta': 'Pre aktuálne ceny navštívte náš',
     'roomOverview.pricingLink': 'cenník',
 
@@ -202,6 +203,7 @@ export const ui = {
     // Room Overview page
     'roomOverview.intro': 'We offer various room sizes for training sessions, seminars, and corporate meetings. Choose the space that best suits your needs.',
     'roomOverview.equipmentTable': 'Room Equipment Comparison',
+    'roomOverview.comparison': 'Room Comparison',
     'roomOverview.cta': 'For current prices, visit our',
     'roomOverview.pricingLink': 'pricing page',
 

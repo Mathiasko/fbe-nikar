@@ -1,5 +1,5 @@
 ---
-import { getNavItems, getAlternateLanguagePath, getLocalizedPath, type Lang } from '../i18n/utils';
+import { getNavItems, getAlternateLanguagePath, getLocalizedPath, useTranslations, type Lang } from '../i18n/utils';
 import { languages } from '../i18n/ui';
 import { rooms } from '../data/rooms';
 
@@ -10,6 +10,7 @@ interface Props {
 
 const { lang, currentPath } = Astro.props;
 const navItems = getNavItems(lang);
+const t = useTranslations(lang);
 
 // Get paths for both languages
 const skPath = lang === 'sk' ? currentPath : getAlternateLanguagePath(currentPath, 'sk');
@@ -40,6 +41,15 @@ const roomDetailBasePath = lang === 'sk' ? '/sk/miestnost' : '/en/room';
                 <span class="dropdown-arrow">▾</span>
               </a>
               <ul class="dropdown-menu">
+                <li>
+                  <a
+                    href={roomOverviewPath}
+                    class:list={['dropdown-link', 'dropdown-link--primary', { active: currentPath === roomOverviewPath || currentPath === roomOverviewPath.slice(0, -1) }]}
+                  >
+                    {t('roomOverview.comparison')}
+                  </a>
+                </li>
+                <li class="dropdown-divider"></li>
                 {rooms.map((room) => (
                   <li>
                     <a
@@ -207,6 +217,17 @@ const roomDetailBasePath = lang === 'sk' ? '/sk/miestnost' : '/en/room';
   .dropdown-link.active {
     background-color: var(--color-primary);
     color: white;
+  }
+
+  .dropdown-link--primary {
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .dropdown-divider {
+    height: 1px;
+    background-color: var(--color-border);
+    margin: 0.5rem 0;
   }
 
   .language-toggle {
