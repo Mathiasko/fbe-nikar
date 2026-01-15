@@ -12,31 +12,20 @@ const t = useTranslations(lang);
 let roomPrices: Record<string, string> = {};
 let cateringData: { item: string; price: string; unit: string }[] = [];
 
-const sheetId = import.meta.env.PUBLIC_SHEETS_ID;
-const roomPricesGid = import.meta.env.PUBLIC_SHEETS_GID || '0';
-const cateringGid = import.meta.env.PUBLIC_SHEETS_GID_CATERING;
+const sheetId = '1qhqBGuJgbj43wEUVUSAYY0x0LHx1tC3GmtjDIDIw6nw';
+const roomPricesGid = '0';
 
-if (sheetId) {
-  // Fetch room prices
-  const pricesData = await fetchSheetAsCSV(sheetId, roomPricesGid);
-  if (pricesData.length > 0) {
-    roomPrices = parseRoomPrices(pricesData);
-  }
-
-  // Fetch catering prices
-  if (cateringGid) {
-    const cateringRaw = await fetchSheetAsCSV(sheetId, cateringGid);
-    if (cateringRaw.length > 0) {
-      cateringData = parseCateringData(cateringRaw);
-    }
-  }
+// Fetch room prices
+const pricesData = await fetchSheetAsCSV(sheetId, roomPricesGid);
+if (pricesData.length > 0) {
+  roomPrices = parseRoomPrices(pricesData);
 }
 
 // Get room rows with hardcoded info + fetched prices
 const roomRows = getRoomPricingRows(lang, roomPrices);
 
 // Prepare room data for table
-const roomHeaders = ['Training Room', 'm²', 'U-shape seating', 'Price per day (8:00-17:00)*'];
+const roomHeaders = ['Training Room', 'Room size', 'U-shape seating', 'Price per day (8:00-17:00)*'];
 const roomTableRows = roomRows.map(room => [
   { text: room.name, link: room.link },
   room.floorSize,

@@ -78,11 +78,19 @@ export const roomPricingData: RoomPricingInfo[] = [
 export function getRoomPricingRows(lang: Lang, prices: Record<string, string>) {
   const roomSlug = lang === 'sk' ? 'miestnost' : 'room';
 
-  return roomPricingData.map(room => ({
-    name: room.name[lang],
-    link: room.link ? `/${lang}/${roomSlug}/${room.link}/` : undefined,
-    floorSize: `${room.floor[lang]}, ${room.size}`,
-    capacity: room.capacity[lang],
-    price: prices[room.id] || ''
-  }));
+  return roomPricingData.map(room => {
+    const rawPrice = prices[room.id] || '';
+    // Add EUR if price exists and doesn't already contain it
+    const price = rawPrice && !rawPrice.toLowerCase().includes('eur')
+      ? `${rawPrice} EUR`
+      : rawPrice;
+
+    return {
+      name: room.name[lang],
+      link: room.link ? `/${lang}/${roomSlug}/${room.link}/` : undefined,
+      floorSize: `${room.floor[lang]}, ${room.size}`,
+      capacity: room.capacity[lang],
+      price
+    };
+  });
 }
