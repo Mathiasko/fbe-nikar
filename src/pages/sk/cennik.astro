@@ -2,47 +2,51 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PricingTable from '../../components/PricingTable.astro';
 import { useTranslations } from '../../i18n/utils';
-import { fetchSheetAsCSV, parsePricingData, parseCateringData } from '../../lib/sheets';
-import { samplePricingData } from '../../data/sample-pricing';
+import { fetchSheetAsCSV, parseRoomPrices, parseCateringData } from '../../lib/sheets';
+import { getRoomPricingRows } from '../../data/room-pricing';
 
 const lang = 'sk';
 const t = useTranslations(lang);
 
-// Try to fetch from Google Sheets, fall back to sample data
-let pricingData = samplePricingData;
+// Fetch prices from Google Sheets
+let roomPrices: Record<string, string> = {};
+let cateringData: { item: string; price: string; unit: string }[] = [];
 
 const sheetId = import.meta.env.PUBLIC_SHEETS_ID;
-const sheetGid = import.meta.env.PUBLIC_SHEETS_GID || '0';
+const roomPricesGid = import.meta.env.PUBLIC_SHEETS_GID || '0';
 const cateringGid = import.meta.env.PUBLIC_SHEETS_GID_CATERING;
 
 if (sheetId) {
-  // Fetch rooms from first sheet
-  const roomsData = await fetchSheetAsCSV(sheetId, sheetGid);
-  if (roomsData.length > 0) {
-    pricingData = parsePricingData(roomsData);
+  // Fetch room prices
+  const pricesData = await fetchSheetAsCSV(sheetId, roomPricesGid);
+  if (pricesData.length > 0) {
+    roomPrices = parseRoomPrices(pricesData);
   }
 
-  // Fetch catering from second sheet
+  // Fetch catering prices
   if (cateringGid) {
-    const cateringData = await fetchSheetAsCSV(sheetId, cateringGid);
-    if (cateringData.length > 0) {
-      pricingData.catering = parseCateringData(cateringData);
+    const cateringRaw = await fetchSheetAsCSV(sheetId, cateringGid);
+    if (cateringRaw.length > 0) {
+      cateringData = parseCateringData(cateringRaw);
     }
   }
 }
 
-// Prepare room data for table (with optional links)
+// Get room rows with hardcoded info + fetched prices
+const roomRows = getRoomPricingRows(lang, roomPrices);
+
+// Prepare room data for table
 const roomHeaders = ['Školiaca miestnosť', 'm²', 'Sedenie do "U"', 'Cena za jeden deň (8:00-17:00)*'];
-const roomRows = pricingData.rooms.map(room => [
+const roomTableRows = roomRows.map(room => [
   { text: room.name, link: room.link },
-  room.size,
+  room.floorSize,
   room.capacity,
   room.price
 ]);
 
 // Prepare catering data for table
-const cateringHeaders = ['Položka', 'Cena'];
-const cateringRows = pricingData.catering.map(item => [item.item, item.price]);
+const cateringHeaders = ['Obed a občerstvenie', 'Cena za deň'];
+const cateringRows = cateringData.map(item => [item.item, item.price]);
 ---
 
 <BaseLayout
@@ -57,20 +61,25 @@ const cateringRows = pricingData.catering.map(item => [item.item, item.price]);
     <PricingTable
       title={t('pricing.roomRentals')}
       headers={roomHeaders}
-      rows={roomRows}
+      rows={roomTableRows}
     />
 
-    <PricingTable
-      title={t('pricing.catering')}
-      headers={cateringHeaders}
-      rows={cateringRows}
-    />
+    {cateringRows.length > 0 && (
+      <div class="catering-section">
+        <PricingTable
+          title={t('pricing.catering')}
+          headers={cateringHeaders}
+          rows={cateringRows}
+        />
+        <p class="catering-note">*Možnosť individuálnej dohody o množstve občerstvenia</p>
+      </div>
+    )}
 
     <div class="pricing-disclaimer">
       <p>Všetky ceny sú uvedené bez DPH.</p>
       <p>* Cena za jeden deň platí v čase od 8:00 do 17:00 hod.<br />
       V prípade záujmu o využitie miestnosti v inom čase je možná individuálna dohoda.</p>
-      <p class="pricing-year">Cenník platí pre rok 2026.</p>
+      <p class="pricing-year">Cenník platí pre rok 2025.</p>
     </div>
   </div>
 </BaseLayout>
@@ -107,5 +116,12 @@ const cateringRows = pricingData.catering.map(item => [item.item, item.price]);
   .pricing-year {
     font-weight: 600;
     color: var(--color-text);
+  }
+
+  .catering-note {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+    font-style: italic;
   }
 </style>

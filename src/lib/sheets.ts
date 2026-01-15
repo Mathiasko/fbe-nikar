@@ -204,3 +204,36 @@ export function parseCateringData(data: string[][]): CateringItem[] {
 
   return catering;
 }
+
+/**
+ * Parses room prices from a simple sheet format.
+ * Expected format: room_id | price (room_id can be wrapped in {curly braces})
+ * Returns a map of room ID to price.
+ */
+export function parseRoomPrices(data: string[][]): Record<string, string> {
+  const prices: Record<string, string> = {};
+
+  for (const row of data) {
+    // Skip empty rows
+    if (row.length < 2 || !row[0]?.trim()) {
+      continue;
+    }
+
+    // Strip curly braces and normalize the room ID
+    let roomId = row[0].trim().toLowerCase();
+    roomId = roomId.replace(/^\{|\}$/g, ''); // Remove leading { and trailing }
+
+    const price = row[1]?.trim() || '';
+
+    // Skip header rows
+    if (roomId === 'id' || roomId === 'room' || roomId === 'room_id' || roomId === 'miestnost') {
+      continue;
+    }
+
+    if (roomId && price) {
+      prices[roomId] = price;
+    }
+  }
+
+  return prices;
+}

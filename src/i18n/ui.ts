@@ -73,6 +73,10 @@ export const ui = {
     'roomOverview.comparison': 'Porovnanie miestností',
     'roomOverview.cta': 'Pre aktuálne ceny navštívte náš',
     'roomOverview.pricingLink': 'cenník',
+    'roomOverview.floorplans': 'Pôdorysy',
+    'roomOverview.floorplan.floor1': '1. poschodie',
+    'roomOverview.floorplan.floor2': '2. poschodie',
+    'roomOverview.floorplan.cafeteria': 'Kaviareň',
 
     // Room names
     'room.brown101': 'Hneda 101',
@@ -118,28 +122,41 @@ export const ui = {
 
     // Support Services page
     'supportServices.intro': 'Okrem prenájmu priestorov ponúkame komplexné podporné služby pre vaše školenia a podujatia.',
-    'supportServices.catering': 'Catering',
-    'supportServices.cateringDesc': 'Zabezpečíme kompletné stravovanie pre účastníkov vašich školení vrátane raňajok, obedov a večerí.',
-    'supportServices.coffeeBreaks': 'Prestávky na kávu',
-    'supportServices.coffeeBreaksDesc': 'Káva, čaj, minerálka a drobné občerstvenie počas celého dňa pre udržanie energie účastníkov.',
-    'supportServices.lunchOptions': 'Obedové menu',
-    'supportServices.lunchOptionsDesc': 'Výber z viacerých jedál vrátane vegetariánskych možností, podávané priamo v priestoroch centra.',
-    'supportServices.technicalSupport': 'Technická podpora',
-    'supportServices.technicalSupportDesc': 'Naši technici sú k dispozícii pre pomoc s prezentačnou technikou a riešenie prípadných problémov.',
+    'supportServices.refreshments': 'Občerstvenie',
+    'supportServices.refreshments.water': 'Minerálna voda 2x0,7l',
+    'supportServices.refreshments.hotDrinks': 'Teplé nápoje 2x',
+    'supportServices.refreshments.coffee': 'Káva',
+    'supportServices.refreshments.cappuccino': 'Cappuccino',
+    'supportServices.refreshments.coffeeChocolate': 'Káva s čokoládou',
+    'supportServices.refreshments.chocolate': 'Čokoláda',
+    'supportServices.refreshments.chocomilk': 'Čokomlieko',
+    'supportServices.refreshments.tea': 'Čaj',
+    'supportServices.refreshments.biscuits': 'Sušienky',
+    'supportServices.refreshments.fruits': 'Ovocie',
+    'supportServices.dining': 'Jedáleň',
+    'supportServices.dining.soup': 'Polievka',
+    'supportServices.dining.mainMeals': 'Hlavné jedlá',
+    'supportServices.dining.meatVeggie': 'mäsová a vegetariánska možnosť',
+    'supportServices.dining.salad': 'Šalát ako príloha',
+    'supportServices.dining.dessert': 'Dezert',
+    'supportServices.dining.softDrinks': 'Nealkoholické nápoje',
+    'supportServices.dining.glutenFree': 'Bezlepkové obedy a občerstvenie zabezpečíme na požiadanie.',
+    'supportServices.copying': 'Kopírovanie, tlač a viazanie',
     'supportServices.pricingNote': 'Kompletný cenník služieb nájdete na stránke',
     'supportServices.pricingLink': 'Cenník',
 
     // Contact page
     'contact.intro': 'Máte záujem o prenájom našich priestorov? Kontaktujte nás pre nezáväznú ponuku alebo rezerváciu.',
     'contact.addressLabel': 'Adresa',
-    'contact.address': 'NIKAR Training Center, \nVajnorská 100/B, \n831 04 Bratislava',
+    'contact.address': 'NIKAR s.r.o. \nLiptovská 10, \n821 09 Bratislava',
     'contact.phoneLabel': 'Telefón',
-    'contact.phone': '+421 2 1234 5678',
+    'contact.phone': '+421 254 642 652',
     'contact.emailLabel': 'E-mail',
     'contact.email': 'info@nikar.sk',
     'contact.hoursLabel': 'Otváracie hodiny',
     'contact.hours': 'Pondelok - Piatok: 8:00 - 17:00',
-    'contact.locationNote': 'Nachádzame sa v blízkosti Vajnorskej ulice s výbornou dostupnosťou MHD a parkovacími možnosťami.'
+    'contact.locationNote': 'Nachádzame sa v blízkosti Vajnorskej ulice s výbornou dostupnosťou MHD a parkovacími možnosťami.',
+    'contact.mapTitle': 'Kde nás nájdete'
   },
   en: {
     // Navigation
@@ -206,6 +223,10 @@ export const ui = {
     'roomOverview.comparison': 'Room Comparison',
     'roomOverview.cta': 'For current prices, visit our',
     'roomOverview.pricingLink': 'pricing page',
+    'roomOverview.floorplans': 'Floor Plans',
+    'roomOverview.floorplan.floor1': '1st Floor',
+    'roomOverview.floorplan.floor2': '2nd Floor',
+    'roomOverview.floorplan.cafeteria': 'Cafeteria',
 
     // Room names
     'room.brown101': 'Brown 101',
@@ -251,28 +272,41 @@ export const ui = {
 
     // Support Services page
     'supportServices.intro': 'In addition to room rentals, we offer comprehensive support services for your training sessions and events.',
-    'supportServices.catering': 'Catering',
-    'supportServices.cateringDesc': 'We provide complete catering for training participants including breakfast, lunch, and dinner options.',
-    'supportServices.coffeeBreaks': 'Coffee Breaks',
-    'supportServices.coffeeBreaksDesc': 'Coffee, tea, water, and light refreshments throughout the day to keep participants energized.',
-    'supportServices.lunchOptions': 'Lunch Options',
-    'supportServices.lunchOptionsDesc': 'Selection of meals including vegetarian options, served directly at the center.',
-    'supportServices.technicalSupport': 'Technical Support',
-    'supportServices.technicalSupportDesc': 'Our technicians are available to assist with presentation equipment and troubleshoot any issues.',
+    'supportServices.refreshments': 'Refreshments',
+    'supportServices.refreshments.water': 'Mineral water 2x0.7l',
+    'supportServices.refreshments.hotDrinks': 'Hot drinks 2x',
+    'supportServices.refreshments.coffee': 'Coffee',
+    'supportServices.refreshments.cappuccino': 'Cappuccino',
+    'supportServices.refreshments.coffeeChocolate': 'Coffee with chocolate',
+    'supportServices.refreshments.chocolate': 'Chocolate',
+    'supportServices.refreshments.chocomilk': 'Chocomilk',
+    'supportServices.refreshments.tea': 'Tea',
+    'supportServices.refreshments.biscuits': 'Biscuits',
+    'supportServices.refreshments.fruits': 'Fruits',
+    'supportServices.dining': 'Dining',
+    'supportServices.dining.soup': 'Soup',
+    'supportServices.dining.mainMeals': 'Main meals',
+    'supportServices.dining.meatVeggie': 'meat and veggie option',
+    'supportServices.dining.salad': 'Side dish salad',
+    'supportServices.dining.dessert': 'Dessert',
+    'supportServices.dining.softDrinks': 'Soft drinks',
+    'supportServices.dining.glutenFree': 'Gluten-free diet lunch and refreshments we arrange upon request.',
+    'supportServices.copying': 'Copying, printing and binding',
     'supportServices.pricingNote': 'Complete service pricing available on our',
     'supportServices.pricingLink': 'Pricing page',
 
     // Contact page
     'contact.intro': 'Interested in renting our facilities? Contact us for a non-binding quote or reservation.',
     'contact.addressLabel': 'Address',
-    'contact.address': 'NIKAR Training Center, Vajnorska 100/B, 831 04 Bratislava',
+    'contact.address': 'NIKAR s.r.o. \nLiptovská 10, \n821 09 Bratislava',
     'contact.phoneLabel': 'Phone',
-    'contact.phone': '+421 2 1234 5678',
+    'contact.phone': '+421 254 642 652',
     'contact.emailLabel': 'Email',
     'contact.email': 'info@nikar.sk',
     'contact.hoursLabel': 'Opening Hours',
     'contact.hours': 'Monday - Friday: 8:00 AM - 5:00 PM',
-    'contact.locationNote': 'We are located near Vajnorska Street with excellent public transport access and parking facilities.'
+    'contact.locationNote': 'We are located near Vajnorska Street with excellent public transport access and parking facilities.',
+    'contact.mapTitle': 'Find us'
   }
 } as const;
 

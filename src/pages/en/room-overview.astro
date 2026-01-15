@@ -1,11 +1,22 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import RoomComparisonTable from '../../components/RoomComparisonTable.astro';
+import { Image } from 'astro:assets';
 import { useTranslations } from '../../i18n/utils';
 import { rooms } from '../../data/rooms';
 
+import floorplan1 from '../../assets/floorplans/floorplan1.jpg';
+import floorplan2 from '../../assets/floorplans/floorplan2.jpg';
+import floorplanCafe from '../../assets/floorplans/floorplan_cafe.jpg';
+
 const lang = 'en';
 const t = useTranslations(lang);
+
+const floorplans = [
+  { id: 'floor1', image: floorplan1, label: t('roomOverview.floorplan.floor1') },
+  { id: 'floor2', image: floorplan2, label: t('roomOverview.floorplan.floor2') },
+  { id: 'cafeteria', image: floorplanCafe, label: t('roomOverview.floorplan.cafeteria') },
+];
 ---
 
 <BaseLayout
@@ -17,49 +28,41 @@ const t = useTranslations(lang);
     <h1>{t('page.roomOverview.title')}</h1>
     <p class="room-overview-intro">{t('roomOverview.intro')}</p>
 
-    <RoomComparisonTable rooms={rooms} lang={lang} />
+    <div class="floorplan-section">
+      <h2>{t('roomOverview.floorplans')}</h2>
+      <div class="floorplan-buttons">
+        {floorplans.map((fp) => (
+          <button type="button" class="floorplan-btn" data-floorplan-id={fp.id}>
+            <Image src={fp.image} alt={fp.label} width={120} height={80} class="floorplan-thumb" />
+            <span class="floorplan-label">{fp.label}</span>
+          </button>
+        ))}
+      </div>
+    </div>
 
-    <section class="room-details">
-      <h2>{t('room.details')}</h2>
-      {rooms.map((room) => (
-        <article class="room-card" style={`border-top-color: ${room.color};`}>
-          <div class="room-card__header" style={`background-color: ${room.color};`}>
-            <h3 class="room-card__title">
-              <a href={`/en/room/${room.id}/`}>{room.name[lang]}</a>
-            </h3>
-          </div>
-          <div class="room-card__content">
-            <p class="room-card__specs">
-              <span class="room-card__spec">
-                <strong>{t('room.feature.size')}:</strong> {room.size} m²
-              </span>
-              <span class="room-card__spec">
-                <strong>{t('room.feature.capacity')}:</strong> {room.capacity}
-              </span>
-              <span class="room-card__spec">
-                <strong>{t('room.floor')}:</strong> {room.floor}
-              </span>
-            </p>
-            <ul class="room-card__features">
-              {room.features.dataProjector && <li>{t('room.feature.dataProjector')}</li>}
-              {room.features.projectionScreen && <li>{t('room.feature.projectionScreen')}</li>}
-              {room.features.smartBoard && <li>{t('room.feature.smartBoard')}</li>}
-              {room.features.flipchart && <li>{t('room.feature.flipchart')}</li>}
-              {room.features.internet && <li>{t('room.feature.internet')}</li>}
-              {room.features.extraTrainingSpace && <li>{t('room.feature.extraTrainingSpace')}</li>}
-              {room.features.terraceAccess && <li>{t('room.feature.terraceAccess')}</li>}
-              {room.features.barrierFree && <li>{t('room.feature.barrierFree')}</li>}
-              {room.features.airConditioning && <li>{t('room.feature.airConditioning')}</li>}
-              {room.features.audioSystem && <li>{t('room.feature.audioSystem')}</li>}
-            </ul>
-          </div>
-        </article>
-      ))}
-    </section>
+    <RoomComparisonTable rooms={rooms} lang={lang} />
 
     <p class="room-overview-cta">
       {t('roomOverview.cta')} <a href={`/${lang}/pricing/`}>{t('roomOverview.pricingLink')}</a>.
     </p>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="floorplan-lightbox" aria-hidden="true">
+    <div class="lightbox-overlay"></div>
+    <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+    <div class="lightbox-content">
+      {floorplans.map((fp) => (
+        <Image
+          src={fp.image}
+          alt={fp.label}
+          width={1200}
+          class="lightbox-image"
+          id={`lightbox-img-${fp.id}`}
+          data-lightbox-id={fp.id}
+        />
+      ))}
+    </div>
   </div>
 </BaseLayout>
 
@@ -90,93 +93,199 @@ const t = useTranslations(lang);
     text-decoration: underline;
   }
 
-  /* Room Details Section */
-  .room-details {
-    margin-top: 3rem;
+  /* Floorplan Section */
+  .floorplan-section {
+    margin-bottom: 2.5rem;
   }
 
-  .room-details h2 {
-    font-size: 1.5rem;
-    color: var(--color-primary-dark);
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--color-primary);
-  }
-
-  .room-card {
-    background: var(--color-background);
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1.5rem;
-    border-top: 4px solid;
-  }
-
-  .room-card__header {
-    padding: 1rem 1.25rem;
-  }
-
-  .room-card__title {
-    color: white;
-    margin: 0;
+  .floorplan-section h2 {
     font-size: 1.25rem;
+    color: var(--color-primary-dark);
+    margin-bottom: 1rem;
   }
 
-  .room-card__title a {
-    color: white;
-    text-decoration: none;
-  }
-
-  .room-card__title a:hover {
-    text-decoration: underline;
-  }
-
-  .room-card__content {
-    padding: 1.25rem;
-  }
-
-  .room-card__specs {
+  .floorplan-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--color-border);
   }
 
-  .room-card__spec {
-    color: var(--color-text);
+  .floorplan-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #fff;
+    border: 2px solid var(--color-border, #ddd);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
   }
 
-  .room-card__features {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 0.5rem;
+  .floorplan-btn:hover {
+    border-color: var(--color-primary, #6B4423);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
   }
 
-  .room-card__features li {
-    position: relative;
-    padding-left: 1.5rem;
-    color: var(--color-text);
+  .floorplan-thumb {
+    border-radius: 4px;
+    object-fit: cover;
   }
 
-  .room-card__features li::before {
-    content: "\2713";
-    position: absolute;
+  .floorplan-label {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text, #333);
+  }
+
+  /* Lightbox */
+  .lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
     left: 0;
-    color: var(--color-primary);
-    font-weight: bold;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lightbox[aria-hidden="false"] {
+    display: flex;
+  }
+
+  .lightbox-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 10000;
+    padding: 0.5rem;
+  }
+
+  .lightbox-close:hover {
+    color: #ccc;
+  }
+
+  .lightbox-content {
+    position: relative;
+    z-index: 10000;
+    max-width: 90vw;
+    max-height: 90vh;
+  }
+
+  .lightbox-image {
+    display: none;
+    max-width: 90vw;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .lightbox-image.is-visible {
+    display: block;
   }
 
   @media (max-width: 600px) {
-    .room-card__specs {
+    .floorplan-buttons {
       flex-direction: column;
-      gap: 0.5rem;
+      align-items: stretch;
     }
 
-    .room-card__features {
-      grid-template-columns: 1fr;
+    .floorplan-btn {
+      flex-direction: row;
+      gap: 1rem;
+      padding: 0.75rem;
+    }
+
+    .floorplan-thumb {
+      width: 80px;
+      height: 53px;
+    }
+
+    .floorplan-label {
+      margin-top: 0;
     }
   }
 </style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const lightbox = document.getElementById('floorplan-lightbox');
+    const buttons = document.querySelectorAll('[data-floorplan-id]');
+    const closeBtn = lightbox ? lightbox.querySelector('.lightbox-close') : null;
+    const overlay = lightbox ? lightbox.querySelector('.lightbox-overlay') : null;
+    const images = document.querySelectorAll('[data-lightbox-id]');
+
+    function openLightbox(id) {
+      if (!lightbox) return;
+
+      // Hide all images first
+      images.forEach(function(img) {
+        img.classList.remove('is-visible');
+      });
+
+      // Show selected image
+      const targetImg = document.getElementById('lightbox-img-' + id);
+      if (targetImg) {
+        targetImg.classList.add('is-visible');
+      }
+
+      // Show lightbox
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      if (!lightbox) return;
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    // Button click handlers
+    buttons.forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var id = btn.getAttribute('data-floorplan-id');
+        openLightbox(id);
+      });
+    });
+
+    // Close handlers
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        closeLightbox();
+      });
+    }
+
+    if (overlay) {
+      overlay.addEventListener('click', closeLightbox);
+    }
+
+    // Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && lightbox && lightbox.getAttribute('aria-hidden') === 'false') {
+        closeLightbox();
+      }
+    });
+  });
+</script>

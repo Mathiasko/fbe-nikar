@@ -49,6 +49,13 @@ export function getAlternateLanguagePath(currentPath: string, targetLang: Lang):
   const pathParts = currentPath.split('/').filter(Boolean);
   const currentSlug = pathParts[1] || '';
 
+  // Handle room detail pages: /en/room/[id] <-> /sk/miestnost/[id]
+  if (currentSlug === 'room' || currentSlug === 'miestnost') {
+    const roomId = pathParts[2] || '';
+    const targetSlug = targetLang === 'sk' ? 'miestnost' : 'room';
+    return `/${targetLang}/${targetSlug}/${roomId}/`;
+  }
+
   // Find the page key from the current slug
   let pageKey: keyof typeof slugs['sk'] = 'index';
 
