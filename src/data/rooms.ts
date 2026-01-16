@@ -51,9 +51,10 @@ export const rooms: Room[] = [
       audioSystem: true
     },
     images: [
-      '/images/rooms/brown-101-1.jpg',
-      '/images/rooms/brown-101-2.jpg',
-      '/images/rooms/brown-101-3.jpg'
+      '/images/nikar/album1/priestory_21.jpg',
+      '/images/nikar/album1/priestory_17.jpg',
+      '/images/nikar/album1/priestory_18.jpg',
+      '/images/floorplan1.jpg'
     ]
   },
   {
@@ -76,9 +77,10 @@ export const rooms: Room[] = [
       audioSystem: true
     },
     images: [
-      '/images/rooms/green-102-1.jpg',
-      '/images/rooms/green-102-2.jpg',
-      '/images/rooms/green-102-3.jpg'
+      '/images/nikar/album1/priestory_29.jpg',
+      '/images/nikar/album1/priestory_26.jpg',
+      '/images/nikar/album1/priestory_30.jpg',
+      '/images/floorplan1.jpg'
     ]
   },
   {
@@ -101,9 +103,10 @@ export const rooms: Room[] = [
       audioSystem: true
     },
     images: [
-      '/images/rooms/yellow-201-1.jpg',
-      '/images/rooms/yellow-201-2.jpg',
-      '/images/rooms/yellow-201-3.jpg'
+      '/images/nikar/album1/priestory_34.jpg',
+      '/images/nikar/album1/priestory_32.jpg',
+      '/images/nikar/album1/priestory_31.jpg',
+      '/images/floorplan2.jpg'
     ]
   },
   {

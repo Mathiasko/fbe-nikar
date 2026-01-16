@@ -37,7 +37,7 @@ const t = useTranslations(lang);
 			<div class="service-image">
 				<!-- Add your refreshments image here -->
 				<!-- <img src="/images/refreshments.jpg" alt="Refreshments" /> -->
-				<img src="/images/nikar_images/obcerstvenie.jpg" alt="Refreshments" />
+				<img src="/images/obcerstvenie.jpg" alt="Refreshments" />
 			</div>
 		</section>
 
@@ -60,7 +60,7 @@ const t = useTranslations(lang);
 			<div class="service-image">
 				<!-- Add your dining image here -->
 				<!-- <img src="/images/dining.jpg" alt="Dining" /> -->
-				<img src="/images/nikar_images/jedalen.jpg" alt="Dining" />
+				<img src="/images/jedalen.jpg" alt="Dining" />
 			</div>
 		</section>
 
@@ -189,6 +189,38 @@ const t = useTranslations(lang);
 
 		.service-image {
 			order: -1;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.service-section {
+			gap: 1.5rem;
+			margin-bottom: 2rem;
+			padding-bottom: 1.5rem;
+		}
+
+		.service-section h2 {
+			font-size: 1.25rem;
+		}
+
+		.service-list > li {
+			padding: 0.375rem 0;
+			padding-left: 1.25rem;
+			font-size: 0.95rem;
+		}
+
+		.service-sublist li {
+			font-size: 0.9rem;
+		}
+
+		.gluten-free-note {
+			padding: 0.75rem;
+			font-size: 0.9rem;
+		}
+
+		.support-services-cta {
+			font-size: 1rem;
+			padding: 0.75rem;
 		}
 	}
 </style>

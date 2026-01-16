@@ -1,13 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { Image } from 'astro:assets';
 import { useTranslations } from '../../i18n/utils';
-
-// Import gallery images for hero and preview
-import heroImage from '../../assets/gallery/sample-1.jpg';
-import preview1 from '../../assets/gallery/sample-2.jpg';
-import preview2 from '../../assets/gallery/sample-3.jpg';
-import preview3 from '../../assets/gallery/sample-4.jpg';
+import Home1 from '../../../public/images/home1.webp';
+import Home2 from '../../../public/images/home2.webp';
+import Home3 from '../../../public/images/home3.webp';
+import Home4 from '../../../public/images/home4.webp';
+import Image from 'astro/components/Image.astro';
 
 const lang = 'en';
 const t = useTranslations(lang);
@@ -18,139 +16,322 @@ const t = useTranslations(lang);
   description={t('page.home.description')}
   lang={lang}
 >
+  <!-- Hero Section -->
   <section class="hero">
-    <div class="hero__image-wrapper">
-      <Image
-        src={heroImage}
-        alt={t('ui.siteName')}
-        class="hero__image"
-        widths={[640, 960, 1200]}
-        sizes="100vw"
-      />
+    <div class="hero__image">
+      <!-- Placeholder for main hero image - terrace/garden view -->
+      <Image src={Home1} alt="Hero Image" width={1200} height={800} />
     </div>
     <div class="hero__content">
-      <p class="hero__slogan">{t('home.slogan')}</p>
+      <p class="hero__intro">{t('home.intro')}</p>
+      <p class="hero__detail">{t('home.introDetail')}</p>
+
+      <div class="hero__slogan">
+        <span class="slogan__for">{t('home.slogan.for')}</span>
+        <span class="slogan__training">{t('home.slogan.training')}</span>
+        <span class="slogan__excellence">{t('home.slogan.excellence')}</span>
+      </div>
+
+      <div class="hero__cta">
+        <a href="/en/room-overview/" class="btn btn--primary">{t('home.cta.rooms')}</a>
+        <a href="/en/pricing/" class="btn btn--secondary">{t('home.cta.pricing')}</a>
+      </div>
     </div>
   </section>
 
-  <section class="tagline">
-    <p>{t('home.tagline')}</p>
-  </section>
-
-  <section class="preview-gallery">
-    <h2>{t('home.featuredGallery')}</h2>
-    <div class="preview-gallery__grid">
-      <div class="preview-gallery__item">
-        <Image
-          src={preview1}
-          alt="Preview 1"
-          class="preview-gallery__image"
-          widths={[320, 480]}
-          sizes="(max-width: 640px) 100vw, 33vw"
-        />
+  <!-- Gallery Preview Section -->
+  <section class="gallery-preview">
+    <h2 class="gallery-preview__title">{t('home.featuredGallery')}</h2>
+    <div class="gallery-preview__grid">
+      <div class="gallery-preview__item">
+        <!-- Placeholder for training room image -->
+        <Image src={Home2} alt="Hero Image" width={1200} height={800} />
       </div>
-      <div class="preview-gallery__item">
-        <Image
-          src={preview2}
-          alt="Preview 2"
-          class="preview-gallery__image"
-          widths={[320, 480]}
-          sizes="(max-width: 640px) 100vw, 33vw"
-        />
+      <div class="gallery-preview__item">
+        <!-- Placeholder for training in progress -->
+        <Image src={Home3} alt="Hero Image" width={1200} height={800} />
       </div>
-      <div class="preview-gallery__item">
-        <Image
-          src={preview3}
-          alt="Preview 3"
-          class="preview-gallery__image"
-          widths={[320, 480]}
-          sizes="(max-width: 640px) 100vw, 33vw"
-        />
+      <div class="gallery-preview__item">
+        <!-- Placeholder for participants/discussion -->
+        <Image src={Home4} alt="Hero Image" width={1200} height={800} />
       </div>
+    </div>
+    <div class="gallery-preview__cta">
+      <a href="/en/photo-gallery/" class="btn btn--outline">{t('nav.photoGallery')} &rarr;</a>
     </div>
   </section>
 </BaseLayout>
 
 <style>
+  /* Hero Section */
   .hero {
-    margin: -1rem -1rem 2rem -1rem;
-    position: relative;
-  }
-
-  .hero__image-wrapper {
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+    min-height: 500px;
   }
 
   .hero__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    position: relative;
   }
 
   .hero__content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 2rem;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 0;
   }
 
-  .hero__slogan {
-    color: white;
+  .hero__intro {
     font-size: 1.5rem;
     font-weight: 600;
-    font-style: italic;
-    margin: 0;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  }
-
-  .tagline {
-    text-align: center;
-    padding: 2rem 0;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .tagline p {
-    font-size: 1.25rem;
     color: var(--color-text);
-    max-width: 600px;
-    margin: 0 auto;
+    line-height: 1.4;
+    margin-bottom: 1rem;
   }
 
-  .preview-gallery h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
+  .hero__detail {
+    font-size: 1.125rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
   }
 
-  .preview-gallery__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* Slogan Styling */
+  .hero__slogan {
+    margin-bottom: 2.5rem;
+    line-height: 1.1;
+  }
+
+  .slogan__for {
+    display: block;
+    font-size: 2.5rem;
+    font-style: italic;
+    color: var(--color-text-light);
+    font-weight: 300;
+  }
+
+  .slogan__training {
+    display: block;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--color-primary-dark);
+    margin-left: 1rem;
+  }
+
+  .slogan__excellence {
+    display: block;
+    font-size: 4rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--color-text-light);
+    letter-spacing: 0.02em;
+  }
+
+  /* CTA Buttons */
+  .hero__cta {
+    display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
   }
 
-  .preview-gallery__item {
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
+  .btn {
+    display: inline-block;
+    padding: 0.875rem 1.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
     border-radius: 4px;
+    transition: all 0.2s ease;
+    text-align: center;
   }
 
-  .preview-gallery__image {
+  .btn--primary {
+    background: var(--color-primary);
+    color: white;
+  }
+
+  .btn--primary:hover {
+    background: var(--color-primary-dark);
+    text-decoration: none;
+    color: white;
+  }
+
+  .btn--secondary {
+    background: transparent;
+    color: var(--color-primary-dark);
+    border: 2px solid var(--color-primary);
+  }
+
+  .btn--secondary:hover {
+    background: var(--color-primary);
+    color: white;
+    text-decoration: none;
+  }
+
+  .btn--outline {
+    background: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-border);
+    padding: 0.75rem 1.5rem;
+  }
+
+  .btn--outline:hover {
+    border-color: var(--color-primary);
+    background: rgba(107, 123, 0, 0.05);
+    text-decoration: none;
+  }
+
+  /* Images */
+  .hero__image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    border-radius: 8px;
   }
 
-  .preview-gallery__item:hover .preview-gallery__image {
-    transform: scale(1.05);
+  .gallery-preview__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
-  @media (min-width: 768px) {
-    .hero__slogan {
+  /* Gallery Preview Section */
+  .gallery-preview {
+    padding: 3rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .gallery-preview__title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.75rem;
+    color: var(--color-primary-dark);
+  }
+
+  .gallery-preview__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .gallery-preview__item {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  .gallery-preview__cta {
+    text-align: center;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      min-height: auto;
+    }
+
+    .hero__image {
+      order: -1;
+    }
+
+    .hero__content {
+      padding: 0;
+    }
+
+    .slogan__for {
       font-size: 2rem;
+    }
+
+    .slogan__training {
+      font-size: 2.75rem;
+    }
+
+    .slogan__excellence {
+      font-size: 3rem;
+    }
+
+    .gallery-preview__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero__intro {
+      font-size: 1.25rem;
+    }
+
+    .hero__detail {
+      font-size: 1rem;
+    }
+
+    .slogan__for {
+      font-size: 1.5rem;
+    }
+
+    .slogan__training {
+      font-size: 2rem;
+      margin-left: 0.5rem;
+    }
+
+    .slogan__excellence {
+      font-size: 2.25rem;
+    }
+
+    .hero__cta {
+      flex-direction: column;
+    }
+
+    .btn {
+      width: 100%;
+    }
+
+    .gallery-preview__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero__intro {
+      font-size: 1.125rem;
+    }
+
+    .hero__detail {
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero__slogan {
+      margin-bottom: 2rem;
+    }
+
+    .slogan__for {
+      font-size: 1.25rem;
+    }
+
+    .slogan__training {
+      font-size: 1.75rem;
+    }
+
+    .slogan__excellence {
+      font-size: 2rem;
+    }
+
+    .gallery-preview {
+      padding: 2rem 0;
+    }
+
+    .gallery-preview__title {
+      font-size: 1.5rem;
     }
   }
 </style>

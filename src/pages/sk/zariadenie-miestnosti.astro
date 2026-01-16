@@ -5,285 +5,329 @@
  * Shows equipment items in horizontal rows matching original NIKAR site design.
  * Each item has: image thumbnail, title, description, optional brand link/logo.
  */
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { useTranslations } from '../../i18n/utils';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { useTranslations } from "../../i18n/utils";
 
-const lang = 'sk';
+const lang = "sk";
 const t = useTranslations(lang);
 
 // Equipment items with images, descriptions, and optional brand links
 const equipmentItems = [
-  {
-    id: 'stolicky',
-    image: '/images/nikar_images/stolicky.jpg',
-    title: 'Stoličky',
-    description: 'Špeciálne stoličky firmy Hag s odpružením výrazne znižujúcim zaťaženie chrbta a tým únavu pri sedení.',
-    brandName: 'HAG',
-    brandUrl: 'http://www.neudoerfler.com',
-    brandLogo: '/images/nikar_images/hag-logo.jpg'
-  },
-  {
-    id: 'stoly',
-    image: '/images/nikar_images/stoly.jpg',
-    title: 'Stoly',
-    description: 'Pohyblivé stoly firmy Neudoerfler s možnosťou zabrzdenia koliesok umožňujú rýchlo a bez väčšej námahy zmeniť usporiadanie školiaceho priestoru.',
-    brandName: 'NEUDOERFLER',
-    brandUrl: 'https://www.neudoerfler.com/',
-    brandLogo: '/images/nikar_images/neudoerfler-logo.jpg'
-  },
-  {
-    id: 'stol-lektor',
-    image: '/images/nikar_images/stol-lektor.jpg',
-    title: 'Stôl pre lektora',
-    description: 'Výškovo nastaviteľný a pohyblivý stôl firmy Neudoerfler pre lektora.',
-    brandName: 'NEUDOERFLER',
-    brandUrl: 'https://www.neudoerfler.com/'
-  },
-  {
-    id: 'listy',
-    image: '/images/nikar_images/listy.jpg',
-    title: 'Zásuvné lišty',
-    description: 'Zásuvné lišty na zavesenie flipchartových papierov uľahčujú vizualizáciu postupu prác pri cvičeniach a workshopoch na stenách okolo celej učebne.'
-  },
-  {
-    id: 'smartboard',
-    image: '/images/nikar_images/smartboard.jpg',
-    title: 'Smartboard',
-    description: 'SB685ix je interaktívna tabuľa tretej generácie (87"/221 cm diagonal), UX60 projektor s formátom obrazu 16:10 WXGA (1280x800). Vzdialenosť projektora len 30,5cm od tabule umožňuje pohyb blízko tabule bez toho, aby zatieňoval premietaniu obrazu. Výsledky práce na interaktívnej tabuli je možné odoslať účastníkom workshopov v grafickej aj textovej forme. Smartboardom je vybavená ŽLTÁ školiaca miestnosť.'
-  },
-  {
-    id: 'skrine',
-    image: '/images/nikar_images/skrine.jpg',
-    title: 'Skrine',
-    description: 'Šatníková skriňa v školiacej miestnosti umožňuje bezpečné uloženie kabátov účastníkov.'
-  },
-  {
-    id: 'internet',
-    image: '/images/nikar_images/internet.jpg',
-    title: 'Internet',
-    description: 'Možnosť pripojenia sa k internetu pre lektora a účastníkov školení v samostatnej sieti pre každú učebňu.'
-  },
-  {
-    id: 'karticky',
-    image: '/images/nikar_images/karticky.jpg',
-    title: 'Vstupné karty',
-    description: 'Vstupné karty do školiacich miestností pre lektorov a účastníkov školení slúžia k ochrane ich osobných vecí a k posilneniu bezpečnosti priestorov.'
-  }
+	{
+		id: "stolicky",
+		image: "/images/stolicky.jpg",
+		title: "Stoličky",
+		description:
+			"Špeciálne stoličky firmy Hag s odpružením výrazne znižujúcim zaťaženie chrbta a tým únavu pri sedení.",
+		brandName: "HAG",
+		brandUrl: "http://www.neudoerfler.com",
+		brandLogo: "/images/hag-logo.jpg",
+	},
+	{
+		id: "stoly",
+		image: "/images/stoly.jpg",
+		title: "Stoly",
+		description:
+			"Pohyblivé stoly firmy Neudoerfler s možnosťou zabrzdenia koliesok umožňujú rýchlo a bez väčšej námahy zmeniť usporiadanie školiaceho priestoru.",
+		brandName: "NEUDOERFLER",
+		brandUrl: "https://www.neudoerfler.com/",
+		brandLogo: "/images/neudoerfler-logo.jpg",
+	},
+	{
+		id: "stol-lektor",
+		image: "/images/stol-lektor.jpg",
+		title: "Stôl pre lektora",
+		description: "Výškovo nastaviteľný a pohyblivý stôl firmy Neudoerfler pre lektora.",
+		brandName: "NEUDOERFLER",
+		brandUrl: "https://www.neudoerfler.com/",
+	},
+	{
+		id: "listy",
+		image: "/images/listy.jpg",
+		title: "Zásuvné lišty",
+		description:
+			"Zásuvné lišty na zavesenie flipchartových papierov uľahčujú vizualizáciu postupu prác pri cvičeniach a workshopoch na stenách okolo celej učebne.",
+	},
+	{
+		id: "smartboard",
+		image: "/images/smartboard.jpg",
+		title: "Smartboard",
+		description:
+			'SB685ix je interaktívna tabuľa tretej generácie (87"/221 cm diagonal), UX60 projektor s formátom obrazu 16:10 WXGA (1280x800). Vzdialenosť projektora len 30,5cm od tabule umožňuje pohyb blízko tabule bez toho, aby zatieňoval premietaniu obrazu. Výsledky práce na interaktívnej tabuli je možné odoslať účastníkom workshopov v grafickej aj textovej forme. Smartboardom je vybavená ŽLTÁ školiaca miestnosť.',
+	},
+	{
+		id: "skrine",
+		image: "/images/skrine.jpg",
+		title: "Skrine",
+		description:
+			"Šatníková skriňa v školiacej miestnosti umožňuje bezpečné uloženie kabátov účastníkov.",
+	},
+	{
+		id: "internet",
+		image: "/images/internet.jpg",
+		title: "Internet",
+		description:
+			"Možnosť pripojenia sa k internetu pre lektora a účastníkov školení v samostatnej sieti pre každú učebňu.",
+	},
+	{
+		id: "karticky",
+		image: "/images/karticky.jpg",
+		title: "Vstupné karty",
+		description:
+			"Vstupné karty do školiacich miestností pre lektorov a účastníkov školení slúžia k ochrane ich osobných vecí a k posilneniu bezpečnosti priestorov.",
+	},
 ];
 ---
 
 <BaseLayout
-  title={`${t('page.roomEquipment.title')} | ${t('ui.siteName')}`}
-  description={t('page.roomEquipment.description')}
-  lang={lang}
->
-  <div class="room-equipment-page">
-    <h1>{t('page.roomEquipment.title')}</h1>
-    <p class="room-equipment-intro">{t('roomEquipment.intro')}</p>
+	title={`${t("page.roomEquipment.title")} | ${t("ui.siteName")}`}
+	description={t("page.roomEquipment.description")}
+	lang={lang}>
+	<div class="room-equipment-page">
+		<h1>{t("page.roomEquipment.title")}</h1>
+		<p class="room-equipment-intro">{t("roomEquipment.intro")}</p>
 
-    <div class="equipment-list">
-      {equipmentItems.map((item) => (
-        <div class="equipment-item" id={item.id}>
-          <div class="equipment-item__image">
-            <img src={item.image} alt={item.title} loading="lazy" />
-          </div>
-          <div class="equipment-item__cube">
-            <span class="cube"></span>
-          </div>
-          <div class="equipment-item__content">
-            <h2 class="equipment-item__title">{item.title}</h2>
-            <p class="equipment-item__description">{item.description}</p>
-            {item.brandName && (
-              <a href={item.brandUrl} target="_blank" rel="noopener noreferrer" class="equipment-item__brand-link">
-                {item.brandName}
-              </a>
-            )}
-          </div>
-          {item.brandLogo && (
-            <div class="equipment-item__logo">
-              <a href={item.brandUrl} target="_blank" rel="noopener noreferrer">
-                <img src={item.brandLogo} alt={`Logo ${item.brandName}`} />
-              </a>
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
+		<div class="equipment-list">
+			{
+				equipmentItems.map((item) => (
+					<div class="equipment-item" id={item.id}>
+						<div class="equipment-item__image">
+							<img src={item.image} alt={item.title} loading="lazy" />
+						</div>
+						<div class="equipment-item__cube">
+							<span class="cube" />
+						</div>
+						<div class="equipment-item__content">
+							<h2 class="equipment-item__title">{item.title}</h2>
+							<p class="equipment-item__description">{item.description}</p>
+							{item.brandName && (
+								<a
+									href={item.brandUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="equipment-item__brand-link">
+									{item.brandName}
+								</a>
+							)}
+						</div>
+						{item.brandLogo && (
+							<div class="equipment-item__logo">
+								<a href={item.brandUrl} target="_blank" rel="noopener noreferrer">
+									<img src={item.brandLogo} alt={`Logo ${item.brandName}`} />
+								</a>
+							</div>
+						)}
+					</div>
+				))
+			}
+		</div>
 
-    <div class="equipment-additional">
-      <h2>{t('roomEquipment.additionalNote')}</h2>
-      <p>{t('roomEquipment.additionalText')}</p>
-    </div>
-  </div>
+		<div class="equipment-additional">
+			<h2>{t("roomEquipment.additionalNote")}</h2>
+			<p>{t("roomEquipment.additionalText")}</p>
+		</div>
+	</div>
 </BaseLayout>
 
 <style>
-  .room-equipment-page {
-    max-width: 900px;
-    margin: 0 auto;
-  }
+	.room-equipment-page {
+		max-width: 900px;
+		margin: 0 auto;
+	}
 
-  .room-equipment-intro {
-    margin-bottom: 2rem;
-    color: var(--color-text-light);
-    font-size: 1.1rem;
-  }
+	.room-equipment-intro {
+		margin-bottom: 2rem;
+		color: var(--color-text-light);
+		font-size: 1.1rem;
+	}
 
-  .equipment-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin-bottom: 2rem;
-  }
+	.equipment-list {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		margin-bottom: 2rem;
+	}
 
-  .equipment-item {
-    display: grid;
-    grid-template-columns: 120px 40px 1fr auto;
-    gap: 0.5rem;
-    align-items: start;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--color-border);
-  }
+	.equipment-item {
+		display: grid;
+		grid-template-columns: 120px 40px 1fr auto;
+		gap: 0.5rem;
+		align-items: start;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid var(--color-border);
+	}
 
-  .equipment-item:last-child {
-    border-bottom: none;
-  }
+	.equipment-item:last-child {
+		border-bottom: none;
+	}
 
-  .equipment-item__image {
-    width: 120px;
-    height: 120px;
-    overflow: hidden;
-    border-radius: 4px;
-    background: var(--color-background-alt);
-  }
+	.equipment-item__image {
+		width: 120px;
+		height: 120px;
+		overflow: hidden;
+		border-radius: 4px;
+		background: var(--color-background-alt);
+	}
 
-  .equipment-item__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+	.equipment-item__image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
 
-  .equipment-item__cube {
-    display: flex;
-    justify-content: center;
-    padding-top: 0.25rem;
-  }
+	.equipment-item__cube {
+		display: flex;
+		justify-content: center;
+		padding-top: 0.25rem;
+	}
 
-  .cube {
-    display: block;
-    width: 16px;
-    height: 16px;
-    background: var(--color-primary);
-    transform: rotate(45deg);
-  }
+	.cube {
+		display: block;
+		width: 16px;
+		height: 16px;
+		background: var(--color-primary);
+		transform: rotate(45deg);
+	}
 
-  .equipment-item__content {
-    padding: 0 1rem;
-  }
+	.equipment-item__content {
+		padding: 0 1rem;
+	}
 
-  .equipment-item__title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--color-primary-dark);
-    margin-bottom: 0.75rem;
-    text-transform: uppercase;
-  }
+	.equipment-item__title {
+		font-size: 1.25rem;
+		font-weight: 700;
+		color: var(--color-primary-dark);
+		margin-bottom: 0.75rem;
+		text-transform: uppercase;
+	}
 
-  .equipment-item__description {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--color-text);
-    margin-bottom: 0.75rem;
-  }
+	.equipment-item__description {
+		font-size: 0.95rem;
+		line-height: 1.6;
+		color: var(--color-text);
+		margin-bottom: 0.75rem;
+	}
 
-  .equipment-item__brand-link {
-    display: inline-block;
-    font-weight: 600;
-    color: var(--color-primary);
-    text-decoration: underline;
-  }
+	.equipment-item__brand-link {
+		display: inline-block;
+		font-weight: 600;
+		color: var(--color-primary);
+		text-decoration: underline;
+	}
 
-  .equipment-item__brand-link:hover {
-    color: var(--color-primary-dark);
-    text-decoration: none;
-  }
+	.equipment-item__brand-link:hover {
+		color: var(--color-primary-dark);
+		text-decoration: none;
+	}
 
-  .equipment-item__logo {
-    width: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+	.equipment-item__logo {
+		width: 100px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 
-  .equipment-item__logo img {
-    max-width: 100%;
-    max-height: 60px;
-    object-fit: contain;
-  }
+	.equipment-item__logo img {
+		max-width: 100%;
+		max-height: 60px;
+		object-fit: contain;
+	}
 
-  .equipment-additional {
-    background: rgba(107, 123, 0, 0.1);
-    padding: 1.5rem;
-    border-radius: 4px;
-    border-left: 4px solid var(--color-primary);
-  }
+	.equipment-additional {
+		background: rgba(107, 123, 0, 0.1);
+		padding: 1.5rem;
+		border-radius: 4px;
+		border-left: 4px solid var(--color-primary);
+	}
 
-  .equipment-additional h2 {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-  }
+	.equipment-additional h2 {
+		font-size: 1.25rem;
+		margin-bottom: 0.75rem;
+	}
 
-  .equipment-additional p {
-    margin-bottom: 0;
-    color: var(--color-text-light);
-  }
+	.equipment-additional p {
+		margin-bottom: 0;
+		color: var(--color-text-light);
+	}
 
-  /* Responsive */
-  @media (max-width: 700px) {
-    .equipment-item {
-      grid-template-columns: 100px 30px 1fr;
-      grid-template-rows: auto auto;
-    }
+	/* Responsive */
+	@media (max-width: 700px) {
+		.equipment-item {
+			grid-template-columns: 100px 30px 1fr;
+			grid-template-rows: auto auto;
+		}
 
-    .equipment-item__image {
-      width: 100px;
-      height: 100px;
-    }
+		.equipment-item__image {
+			width: 100px;
+			height: 100px;
+		}
 
-    .equipment-item__logo {
-      grid-column: 3;
-      grid-row: 2;
-      justify-content: flex-start;
-      padding-top: 0.5rem;
-    }
+		.equipment-item__logo {
+			grid-column: 3;
+			grid-row: 2;
+			justify-content: flex-start;
+			padding-top: 0.5rem;
+		}
 
-    .equipment-item__title {
-      font-size: 1.1rem;
-    }
-  }
+		.equipment-item__title {
+			font-size: 1.1rem;
+		}
+	}
 
-  @media (max-width: 500px) {
-    .equipment-item {
-      grid-template-columns: 80px 1fr;
-      gap: 0.75rem;
-    }
+	@media (max-width: 500px) {
+		.equipment-item {
+			grid-template-columns: 80px 1fr;
+			gap: 0.75rem;
+		}
 
-    .equipment-item__cube {
-      display: none;
-    }
+		.equipment-item__cube {
+			display: none;
+		}
 
-    .equipment-item__image {
-      width: 80px;
-      height: 80px;
-    }
+		.equipment-item__image {
+			width: 80px;
+			height: 80px;
+		}
 
-    .equipment-item__content {
-      padding: 0;
-    }
+		.equipment-item__content {
+			padding: 0;
+		}
 
-    .equipment-item__logo {
-      grid-column: 1 / -1;
-      grid-row: 2;
-    }
-  }
+		.equipment-item__logo {
+			grid-column: 1 / -1;
+			grid-row: 2;
+		}
+
+		.equipment-item__title {
+			font-size: 1rem;
+		}
+
+		.equipment-item__description {
+			font-size: 0.875rem;
+		}
+	}
+
+	@media (max-width: 360px) {
+		.equipment-item {
+			grid-template-columns: 60px 1fr;
+			gap: 0.5rem;
+		}
+
+		.equipment-item__image {
+			width: 60px;
+			height: 60px;
+		}
+
+		.equipment-item__title {
+			font-size: 0.95rem;
+		}
+
+		.equipment-item__description {
+			font-size: 0.8rem;
+		}
+
+		.equipment-item__logo img {
+			height: 20px;
+		}
+	}
 </style>

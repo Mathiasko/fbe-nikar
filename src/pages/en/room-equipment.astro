@@ -15,25 +15,25 @@ const t = useTranslations(lang);
 const equipmentItems = [
   {
     id: 'chairs',
-    image: '/images/nikar_images/stolicky.jpg',
+    image: '/images/stolicky.jpg',
     title: 'Chairs',
     description: 'Special HAG chairs with suspension that significantly reduces back strain and fatigue during prolonged sitting.',
     brandName: 'HAG',
     brandUrl: 'http://www.neudoerfler.com/',
-    brandLogo: '/images/nikar_images/hag-logo.jpg'
+    brandLogo: '/images/hag-logo.jpg'
   },
   {
     id: 'tables',
-    image: '/images/nikar_images/stoly.jpg',
+    image: '/images/stoly.jpg',
     title: 'Tables',
     description: 'Mobile Neudoerfler tables with lockable wheels allow quick and effortless rearrangement of the training room layout.',
     brandName: 'NEUDOERFLER',
     brandUrl: 'https://www.neudoerfler.com/',
-    brandLogo: '/images/nikar_images/neudoerfler-logo.jpg'
+    brandLogo: '/images/neudoerfler-logo.jpg'
   },
   {
     id: 'lecturer-desk',
-    image: '/images/nikar_images/stol-lektor.jpg',
+    image: '/images/stol-lektor.jpg',
     title: 'Lecturer Desk',
     description: 'Height-adjustable and mobile Neudoerfler desk for the lecturer.',
     brandName: 'NEUDOERFLER',
@@ -41,31 +41,31 @@ const equipmentItems = [
   },
   {
     id: 'rails',
-    image: '/images/nikar_images/listy.jpg',
+    image: '/images/listy.jpg',
     title: 'Flipchart Rails',
     description: 'Sliding rails for hanging flipchart papers facilitate visualization of work progress during exercises and workshops on walls around the entire classroom.'
   },
   {
     id: 'smartboard',
-    image: '/images/nikar_images/smartboard.jpg',
+    image: '/images/smartboard.jpg',
     title: 'Smartboard',
     description: 'SB685ix is a third-generation interactive whiteboard (87"/221 cm diagonal), UX60 projector with 16:10 WXGA aspect ratio (1280x800). The projector distance of only 30.5cm from the board allows movement close to the board without casting shadows on the projected image. Results from interactive whiteboard work can be sent to workshop participants in both graphic and text formats. The YELLOW training room is equipped with a Smartboard.'
   },
   {
     id: 'wardrobes',
-    image: '/images/nikar_images/skrine.jpg',
+    image: '/images/skrine.jpg',
     title: 'Wardrobes',
     description: 'Wardrobe cabinet in the training room enables secure storage of participants\' coats.'
   },
   {
     id: 'internet',
-    image: '/images/nikar_images/internet.jpg',
+    image: '/images/internet.jpg',
     title: 'Internet',
     description: 'Internet connection available for lecturers and training participants in a separate network for each classroom.'
   },
   {
     id: 'access-cards',
-    image: '/images/nikar_images/karticky.jpg',
+    image: '/images/karticky.jpg',
     title: 'Access Cards',
     description: 'Access cards to training rooms for lecturers and training participants serve to protect their personal belongings and enhance security of the premises.'
   }
@@ -284,6 +284,38 @@ const equipmentItems = [
     .equipment-item__logo {
       grid-column: 1 / -1;
       grid-row: 2;
+    }
+
+    .equipment-item__title {
+      font-size: 1rem;
+    }
+
+    .equipment-item__description {
+      font-size: 0.875rem;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .equipment-item {
+      grid-template-columns: 60px 1fr;
+      gap: 0.5rem;
+    }
+
+    .equipment-item__image {
+      width: 60px;
+      height: 60px;
+    }
+
+    .equipment-item__title {
+      font-size: 0.95rem;
+    }
+
+    .equipment-item__description {
+      font-size: 0.8rem;
+    }
+
+    .equipment-item__logo img {
+      height: 20px;
     }
   }
 </style>

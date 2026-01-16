@@ -51,9 +51,14 @@ export const ui = {
     'album.photosCount': 'fotografií',
 
     // Home page
-    'home.tagline': 'Nikar Training Center vám ponúka prenájom profesionálnych školiacich priestorov.',
-    'home.slogan': 'For Training Excellence',
+    'home.intro': 'Nikar Training Center vám ponúka prenájom profesionálnych školiacich priestorov.',
+    'home.introDetail': 'Našim partnerom umožňujeme sústrediť sa na obsah školení tým, že sa nemusia starať o priestory a zázemie.',
+    'home.slogan.for': 'For',
+    'home.slogan.training': 'Training',
+    'home.slogan.excellence': 'Excellence',
     'home.featuredGallery': 'Z našej galérie',
+    'home.cta.rooms': 'Prehľad miestností',
+    'home.cta.pricing': 'Cenník',
 
     // Pricing page
     'pricing.roomRentals': 'Prenájom miestností',
@@ -201,9 +206,14 @@ export const ui = {
     'album.photosCount': 'photos',
 
     // Home page
-    'home.tagline': 'Nikar Training Center offers professional training room rentals.',
-    'home.slogan': 'For Training Excellence',
+    'home.intro': 'Nikar Training Center offers professional training facilities for rent.',
+    'home.introDetail': 'Our business partners can enjoy high-end training facilities which thus enable them to fully concentrate on the course content.',
+    'home.slogan.for': 'For',
+    'home.slogan.training': 'Training',
+    'home.slogan.excellence': 'Excellence',
     'home.featuredGallery': 'From Our Gallery',
+    'home.cta.rooms': 'Room Overview',
+    'home.cta.pricing': 'Pricing',
 
     // Pricing page
     'pricing.roomRentals': 'Room Rentals',

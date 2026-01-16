@@ -163,4 +163,23 @@ const phoneLink = phone.replace(/\s/g, '');
   .contact-map__wrapper iframe {
     display: block;
   }
+
+  @media (max-width: 480px) {
+    .contact-item {
+      padding: 1rem;
+    }
+
+    .contact-item__value {
+      font-size: 1rem;
+    }
+
+    .contact-map__wrapper {
+      min-height: 200px;
+    }
+
+    .location-note {
+      padding: 0.75rem;
+      font-size: 0.875rem;
+    }
+  }
 </style>

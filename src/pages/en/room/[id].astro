@@ -452,5 +452,39 @@ const colorKey = room.id.split('-')[0];
       font-size: 2rem;
       padding: 0.75rem;
     }
+
+    .other-rooms {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .other-rooms__label {
+      margin-right: 0;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .room-feature-table__number {
+      font-size: 2rem;
+    }
+
+    .room-feature-table td {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+    }
+
+    .room-thumbnails {
+      gap: 0.5rem;
+    }
+
+    .lightbox__nav {
+      font-size: 1.5rem;
+      padding: 0.5rem;
+    }
+
+    .lightbox__close {
+      font-size: 2rem;
+    }
   }
 </style>
