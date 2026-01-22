@@ -13,10 +13,11 @@ export const ui = {
     'nav.home': 'Úvodná stránka',
     'nav.roomOverview': 'Prehľad miestností',
     'nav.roomEquipment': 'Zariadenie miestností',
-    'nav.supportServices': 'Podporné služby',
+    'nav.supportServices': 'Obed a občerstvenie',
     'nav.pricing': 'Cenník',
     'nav.photoGallery': 'Fotogaléria',
     'nav.contact': 'Kontakt',
+    'nav.parking': 'Parkovanie',
 
     // Common UI
     'ui.languageToggle': 'Zmeniť jazyk',
@@ -26,19 +27,21 @@ export const ui = {
     'page.home.title': 'Úvodná stránka',
     'page.roomOverview.title': 'Prehľad miestností',
     'page.roomEquipment.title': 'Zariadenie miestností',
-    'page.supportServices.title': 'Podporné služby',
+    'page.supportServices.title': 'Obed a občerstvenie',
     'page.pricing.title': 'Cenník',
     'page.photoGallery.title': 'Fotogaléria',
     'page.contact.title': 'Kontakt',
+    'page.parking.title': 'Parkovanie (autá, motorky a bicykle)',
 
     // Page descriptions
     'page.home.description': 'Vitajte v NIKAR Training Center - profesionálne školiace priestory v Bratislave.',
     'page.roomOverview.description': 'Prehľad dostupných školiacich miestností.',
     'page.roomEquipment.description': 'Zariadenie a vybavenie našich školiacich miestností.',
-    'page.supportServices.description': 'Podporné služby pre vaše školenia a konferencie.',
+    'page.supportServices.description': 'Obed a občerstvenie pre vaše školenia a konferencie.',
     'page.pricing.description': 'Cenník prenájmu školiacich miestností.',
     'page.photoGallery.description': 'Fotogaléria našich priestorov.',
     'page.contact.description': 'Kontaktujte nás pre rezerváciu alebo otázky.',
+    'page.parking.description': 'Informácie o parkovaní pri NIKAR Training Center.',
 
     // Gallery categories
     'gallery.category.premises': 'PRIESTORY',
@@ -101,11 +104,11 @@ export const ui = {
     'room.feature.label': 'Vlastnost',
     'room.feature.size': 'Velkost',
     'room.feature.capacity': 'Kapacita',
-    'room.feature.projectionScreen': 'Projekcne platno',
-    'room.feature.dataProjector': 'Dataprojektor',
-    'room.feature.smartBoard': 'Interaktivna tabula',
+    'room.feature.smartTV': 'Smart TV',
+    'room.feature.tvScreen': 'TV obrazovka',
+    'room.feature.secondaryScreen': 'Sekundárna obrazovka',
     'room.feature.flipchart': 'Flipchart',
-    'room.feature.internet': 'Pristup na internet',
+    'room.feature.wifi': 'WiFi',
     'room.feature.extraTrainingSpace': 'Moznost dalsieho skoliaceho priestoru',
     'room.feature.terraceAccess': 'Priamy vstup na terasu',
     'room.feature.barrierFree': 'Bezbarierovy pristup',
@@ -161,17 +164,27 @@ export const ui = {
     'contact.hoursLabel': 'Otváracie hodiny',
     'contact.hours': 'Pondelok - Piatok: 8:00 - 17:00',
     'contact.locationNote': 'Nachádzame sa v blízkosti Vajnorskej ulice s výbornou dostupnosťou MHD a parkovacími možnosťami.',
-    'contact.mapTitle': 'Kde nás nájdete'
+    'contact.mapTitle': 'Kde nás nájdete',
+
+    // Parking page
+    'parking.intro': 'Pre návštevníkov NIKAR Training Center je k dispozícii pohodlné parkovanie.',
+    'parking.options.title': 'Možnosti parkovania',
+    'parking.options.onsite': 'Parkovanie v areáli budovy',
+    'parking.options.street': 'Parkovanie na ulici v okolí',
+    'parking.instructions.title': 'Pokyny',
+    'parking.instructions.text': 'Pri príchode sa prosím ohláste na recepcii. Parkovacie miesta sú k dispozícii na základe dostupnosti.',
+    'parking.note': 'Pre viac informácií o parkovaní nás kontaktujte vopred.'
   },
   en: {
     // Navigation
     'nav.home': 'Home',
     'nav.roomOverview': 'Room Overview',
     'nav.roomEquipment': 'Room Equipment',
-    'nav.supportServices': 'Support Services',
+    'nav.supportServices': 'Lunch & Refreshments',
     'nav.pricing': 'Pricing',
     'nav.photoGallery': 'Photo Gallery',
     'nav.contact': 'Contact',
+    'nav.parking': 'Parking',
 
     // Common UI
     'ui.languageToggle': 'Change language',
@@ -181,19 +194,21 @@ export const ui = {
     'page.home.title': 'Home',
     'page.roomOverview.title': 'Room Overview',
     'page.roomEquipment.title': 'Room Equipment',
-    'page.supportServices.title': 'Support Services',
+    'page.supportServices.title': 'Lunch & Refreshments',
     'page.pricing.title': 'Pricing',
     'page.photoGallery.title': 'Photo Gallery',
     'page.contact.title': 'Contact',
+    'page.parking.title': 'Parking (cars, motorcycles and bicycles)',
 
     // Page descriptions
     'page.home.description': 'Welcome to NIKAR Training Center - professional training facilities in Bratislava.',
     'page.roomOverview.description': 'Overview of available training rooms.',
     'page.roomEquipment.description': 'Equipment and amenities of our training rooms.',
-    'page.supportServices.description': 'Support services for your training and conferences.',
+    'page.supportServices.description': 'Lunch and refreshments for your training and conferences.',
     'page.pricing.description': 'Pricing for training room rentals.',
     'page.photoGallery.description': 'Photo gallery of our facilities.',
     'page.contact.description': 'Contact us for reservations or inquiries.',
+    'page.parking.description': 'Parking information for NIKAR Training Center.',
 
     // Gallery categories
     'gallery.category.premises': 'PREMISES',
@@ -256,11 +271,11 @@ export const ui = {
     'room.feature.label': 'Feature',
     'room.feature.size': 'Size',
     'room.feature.capacity': 'Capacity',
-    'room.feature.projectionScreen': 'Projection Screen',
-    'room.feature.dataProjector': 'Data Projector',
-    'room.feature.smartBoard': 'Smart Board',
+    'room.feature.smartTV': 'Smart TV',
+    'room.feature.tvScreen': 'TV Screen',
+    'room.feature.secondaryScreen': 'Secondary Screen',
     'room.feature.flipchart': 'Flipchart',
-    'room.feature.internet': 'Internet Access',
+    'room.feature.wifi': 'WiFi',
     'room.feature.extraTrainingSpace': 'Option for extra training space',
     'room.feature.terraceAccess': 'Direct terrace access',
     'room.feature.barrierFree': 'Barrier-free access',
@@ -316,7 +331,16 @@ export const ui = {
     'contact.hoursLabel': 'Opening Hours',
     'contact.hours': 'Monday - Friday: 8:00 AM - 5:00 PM',
     'contact.locationNote': 'We are located near Vajnorska Street with excellent public transport access and parking facilities.',
-    'contact.mapTitle': 'Find us'
+    'contact.mapTitle': 'Find us',
+
+    // Parking page
+    'parking.intro': 'Convenient parking is available for visitors to NIKAR Training Center.',
+    'parking.options.title': 'Parking Options',
+    'parking.options.onsite': 'On-site parking in the building area',
+    'parking.options.street': 'Street parking in the surrounding area',
+    'parking.instructions.title': 'Instructions',
+    'parking.instructions.text': 'Please check in at reception upon arrival. Parking spaces are available on a first-come, first-served basis.',
+    'parking.note': 'For more information about parking, please contact us in advance.'
   }
 } as const;
 
@@ -326,19 +350,21 @@ export const slugs = {
     'index': '',
     'room-overview': 'prehlad-miestnosti',
     'room-equipment': 'zariadenie-miestnosti',
-    'support-services': 'podporne-sluzby',
+    'support-services': 'obed-a-obcerstvenie',
     'pricing': 'cennik',
     'photo-gallery': 'fotogaleria',
-    'contact': 'kontakt'
+    'contact': 'kontakt',
+    'parking': 'parkovanie'
   },
   en: {
     'index': '',
     'room-overview': 'room-overview',
     'room-equipment': 'room-equipment',
-    'support-services': 'support-services',
+    'support-services': 'lunch-and-refreshments',
     'pricing': 'pricing',
     'photo-gallery': 'photo-gallery',
-    'contact': 'contact'
+    'contact': 'contact',
+    'parking': 'parking'
   }
 } as const;
 
@@ -349,6 +375,7 @@ export const navigation = [
   { key: 'room-equipment', navKey: 'nav.roomEquipment' },
   { key: 'support-services', navKey: 'nav.supportServices' },
   { key: 'pricing', navKey: 'nav.pricing' },
+  { key: 'parking', navKey: 'nav.parking' },
   { key: 'photo-gallery', navKey: 'nav.photoGallery' },
   { key: 'contact', navKey: 'nav.contact' }
 ] as const;

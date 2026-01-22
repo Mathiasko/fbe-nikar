@@ -81,6 +81,7 @@ export function getNavItems(lang: Lang) {
     { href: getLocalizedPath('room-equipment', lang), label: t('nav.roomEquipment') },
     { href: getLocalizedPath('support-services', lang), label: t('nav.supportServices') },
     { href: getLocalizedPath('pricing', lang), label: t('nav.pricing') },
+    { href: getLocalizedPath('parking', lang), label: t('nav.parking') },
     { href: getLocalizedPath('photo-gallery', lang), label: t('nav.photoGallery') },
     { href: getLocalizedPath('contact', lang), label: t('nav.contact') }
   ];

@@ -28,11 +28,11 @@ const t = useTranslations(lang);
 
 // Feature translation key mapping
 const featureTranslationKeys: Record<string, string> = {
-  projectionScreen: 'room.feature.projectionScreen',
-  dataProjector: 'room.feature.dataProjector',
-  smartBoard: 'room.feature.smartBoard',
+  smartTV: 'room.feature.smartTV',
+  tvScreen: 'room.feature.tvScreen',
+  secondaryScreen: 'room.feature.secondaryScreen',
   flipchart: 'room.feature.flipchart',
-  internet: 'room.feature.internet',
+  wifi: 'room.feature.wifi',
   extraTrainingSpace: 'room.feature.extraTrainingSpace',
   terraceAccess: 'room.feature.terraceAccess',
   barrierFree: 'room.feature.barrierFree',
@@ -43,8 +43,8 @@ const featureTranslationKeys: Record<string, string> = {
 // Get room number from id (e.g., "brown-101" -> "101")
 const roomNumber = room.id.split('-')[1];
 
-// Get other rooms for navigation
-const otherRooms = rooms.filter((r) => r.id !== room.id);
+// Get all rooms for navigation (including current)
+const allRooms = rooms;
 
 // Get room color name for header
 const colorKey = room.id.split('-')[0];
@@ -92,19 +92,19 @@ const colorKey = room.id.split('-')[0];
           </tbody>
         </table>
 
-        {/* Other rooms navigation */}
+        {/* All rooms navigation */}
         <div class="other-rooms">
           <span class="other-rooms__label">{t('room.otherRooms')}:</span>
-          {otherRooms.map((otherRoom, index) => (
+          {allRooms.map((r, index) => (
             <>
               <a
-                href={`/en/room/${otherRoom.id}/`}
-                class="other-rooms__link"
-                style={`color: ${otherRoom.color};`}
+                href={`/en/room/${r.id}/`}
+                class={`other-rooms__link ${r.id === room.id ? 'other-rooms__link--current' : ''}`}
+                style={`color: ${r.color};`}
               >
-                {otherRoom.name[lang].split(' ')[0]}
+                {r.name[lang].split(' ')[0]}
               </a>
-              {index < otherRooms.length - 1 && <span class="other-rooms__separator"></span>}
+              {index < allRooms.length - 1 && <span class="other-rooms__separator"></span>}
             </>
           ))}
         </div>
@@ -256,6 +256,7 @@ const colorKey = room.id.split('-')[0];
   .other-rooms {
     margin-top: 2rem;
     padding-top: 1rem;
+    white-space: nowrap;
   }
 
   .other-rooms__label {
@@ -272,6 +273,11 @@ const colorKey = room.id.split('-')[0];
 
   .other-rooms__link:hover {
     text-decoration: none;
+  }
+
+  .other-rooms__link--current {
+    text-decoration: none;
+    font-weight: 700;
   }
 
   .other-rooms__separator {

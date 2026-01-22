@@ -18,7 +18,11 @@ const enPath = lang === 'en' ? currentPath : getAlternateLanguagePath(currentPat
 
 // Room overview path for dropdown detection
 const roomOverviewPath = getLocalizedPath('room-overview', lang);
+const roomEquipmentPath = getLocalizedPath('room-equipment', lang);
 const roomDetailBasePath = lang === 'sk' ? '/sk/miestnost' : '/en/room';
+
+// Filter out room-equipment from main nav (it will be in dropdown)
+const filteredNavItems = navItems.filter(item => item.href !== roomEquipmentPath);
 ---
 
 <header class="header">
@@ -30,12 +34,12 @@ const roomDetailBasePath = lang === 'sk' ? '/sk/miestnost' : '/en/room';
 
     <nav class="nav">
       <ul class="nav-list">
-        {navItems.map((item) => (
+        {filteredNavItems.map((item) => (
           item.href === roomOverviewPath ? (
             <li class="nav-item nav-item--dropdown">
               <a
                 href={item.href}
-                class:list={['nav-link', { active: currentPath === item.href || currentPath === item.href.slice(0, -1) || currentPath.startsWith(roomDetailBasePath) }]}
+                class:list={['nav-link', { active: currentPath === item.href || currentPath === item.href.slice(0, -1) || currentPath.startsWith(roomDetailBasePath) || currentPath === roomEquipmentPath || currentPath === roomEquipmentPath.slice(0, -1) }]}
               >
                 {item.label}
                 <span class="dropdown-arrow">▾</span>
@@ -47,6 +51,14 @@ const roomDetailBasePath = lang === 'sk' ? '/sk/miestnost' : '/en/room';
                     class:list={['dropdown-link', 'dropdown-link--primary', { active: currentPath === roomOverviewPath || currentPath === roomOverviewPath.slice(0, -1) }]}
                   >
                     {t('roomOverview.comparison')}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={roomEquipmentPath}
+                    class:list={['dropdown-link', 'dropdown-link--primary', { active: currentPath === roomEquipmentPath || currentPath === roomEquipmentPath.slice(0, -1) }]}
+                  >
+                    {t('nav.roomEquipment')}
                   </a>
                 </li>
                 <li class="dropdown-divider"></li>

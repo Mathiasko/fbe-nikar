@@ -12,7 +12,7 @@ import sample8 from '../assets/gallery/sample-8.jpg';
 
 // Dynamic imports for nikar albums
 const nikarPriestoryImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../assets/gallery/nikar-priestory/*.jpg',
+  ['../assets/gallery/nikar-priestory/*.jpg', '../assets/gallery/nikar-priestory/*.webp'],
   { eager: true }
 );
 const otvorenieImages = import.meta.glob<{ default: ImageMetadata }>(

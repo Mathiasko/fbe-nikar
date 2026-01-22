@@ -15,42 +15,42 @@ const t = useTranslations(lang);
 const equipmentItems = [
   {
     id: 'chairs',
-    image: '/images/stolicky.jpg',
+    image: '/images/stolicka.webp',
     title: 'Chairs',
-    description: 'Special HAG chairs with suspension that significantly reduces back strain and fatigue during prolonged sitting.',
-    brandName: 'HAG',
-    brandUrl: 'http://www.neudoerfler.com/',
-    brandLogo: '/images/hag-logo.jpg'
+    description: 'Special chairs with suspension that significantly reduces back strain and fatigue during prolonged sitting.',
+    brandName: '',
+    brandUrl: '',
+    brandLogo: ''
   },
   {
     id: 'tables',
     image: '/images/stoly.jpg',
     title: 'Tables',
-    description: 'Mobile Neudoerfler tables with lockable wheels allow quick and effortless rearrangement of the training room layout.',
-    brandName: 'NEUDOERFLER',
-    brandUrl: 'https://www.neudoerfler.com/',
-    brandLogo: '/images/neudoerfler-logo.jpg'
+    description: 'Mobile tables with lockable wheels allow quick and effortless rearrangement of the training room layout.',
+    brandName: '',
+    brandUrl: '',
+    brandLogo: ''
   },
   {
     id: 'lecturer-desk',
     image: '/images/stol-lektor.jpg',
     title: 'Lecturer Desk',
-    description: 'Height-adjustable and mobile Neudoerfler desk for the lecturer.',
-    brandName: 'NEUDOERFLER',
-    brandUrl: 'https://www.neudoerfler.com/'
+    description: 'Height-adjustable and mobile desk for the lecturer.',
+    brandName: '',
+    brandUrl: ''
   },
   {
     id: 'rails',
-    image: '/images/listy.jpg',
+    image: '/images/lista.webp',
     title: 'Flipchart Rails',
     description: 'Sliding rails for hanging flipchart papers facilitate visualization of work progress during exercises and workshops on walls around the entire classroom.'
   },
-  {
-    id: 'smartboard',
-    image: '/images/smartboard.jpg',
-    title: 'Smartboard',
-    description: 'SB685ix is a third-generation interactive whiteboard (87"/221 cm diagonal), UX60 projector with 16:10 WXGA aspect ratio (1280x800). The projector distance of only 30.5cm from the board allows movement close to the board without casting shadows on the projected image. Results from interactive whiteboard work can be sent to workshop participants in both graphic and text formats. The YELLOW training room is equipped with a Smartboard.'
-  },
+  // {
+  //   id: 'smartboard',
+  //   image: '/images/smartboard.jpg',
+  //   title: 'Smartboard',
+  //   description: 'SB685ix is a third-generation interactive whiteboard (87"/221 cm diagonal), UX60 projector with 16:10 WXGA aspect ratio (1280x800). The projector distance of only 30.5cm from the board allows movement close to the board without casting shadows on the projected image. Results from interactive whiteboard work can be sent to workshop participants in both graphic and text formats. The YELLOW training room is equipped with a Smartboard.'
+  // },
   {
     id: 'wardrobes',
     image: '/images/skrine.jpg',
@@ -59,13 +59,13 @@ const equipmentItems = [
   },
   {
     id: 'internet',
-    image: '/images/internet.jpg',
-    title: 'Internet',
+    image: '/images/wifi.webp',
+    title: 'WiFi',
     description: 'Internet connection available for lecturers and training participants in a separate network for each classroom.'
   },
   {
     id: 'access-cards',
-    image: '/images/karticky.jpg',
+    image: '/images/cip.webp',
     title: 'Access Cards',
     description: 'Access cards to training rooms for lecturers and training participants serve to protect their personal belongings and enhance security of the premises.'
   }
@@ -138,7 +138,7 @@ const equipmentItems = [
 
   .equipment-item {
     display: grid;
-    grid-template-columns: 120px 40px 1fr auto;
+    grid-template-columns: 160px 40px 1fr auto;
     gap: 0.5rem;
     align-items: start;
     padding-bottom: 2rem;
@@ -150,8 +150,8 @@ const equipmentItems = [
   }
 
   .equipment-item__image {
-    width: 120px;
-    height: 120px;
+    width: 160px;
+    height: 160px;
     overflow: hidden;
     border-radius: 4px;
     background: var(--color-background-alt);
@@ -241,13 +241,13 @@ const equipmentItems = [
   /* Responsive */
   @media (max-width: 700px) {
     .equipment-item {
-      grid-template-columns: 100px 30px 1fr;
+      grid-template-columns: 120px 30px 1fr;
       grid-template-rows: auto auto;
     }
 
     .equipment-item__image {
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
     }
 
     .equipment-item__logo {
@@ -264,7 +264,7 @@ const equipmentItems = [
 
   @media (max-width: 500px) {
     .equipment-item {
-      grid-template-columns: 80px 1fr;
+      grid-template-columns: 100px 1fr;
       gap: 0.75rem;
     }
 
@@ -273,8 +273,8 @@ const equipmentItems = [
     }
 
     .equipment-item__image {
-      width: 80px;
-      height: 80px;
+      width: 100px;
+      height: 100px;
     }
 
     .equipment-item__content {
@@ -297,13 +297,13 @@ const equipmentItems = [
 
   @media (max-width: 360px) {
     .equipment-item {
-      grid-template-columns: 60px 1fr;
+      grid-template-columns: 80px 1fr;
       gap: 0.5rem;
     }
 
     .equipment-item__image {
-      width: 60px;
-      height: 60px;
+      width: 80px;
+      height: 80px;
     }
 
     .equipment-item__title {

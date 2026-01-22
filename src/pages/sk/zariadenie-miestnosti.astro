@@ -15,46 +15,47 @@ const t = useTranslations(lang);
 const equipmentItems = [
 	{
 		id: "stolicky",
-		image: "/images/stolicky.jpg",
+		image: "/images/stolicka.webp",
 		title: "Stoličky",
 		description:
-			"Špeciálne stoličky firmy Hag s odpružením výrazne znižujúcim zaťaženie chrbta a tým únavu pri sedení.",
-		brandName: "HAG",
-		brandUrl: "http://www.neudoerfler.com",
-		brandLogo: "/images/hag-logo.jpg",
+			"Špeciálne stoličky firmy s odpružením výrazne znižujúcim zaťaženie chrbta a tým únavu pri sedení.",
+		brandName: "",
+		brandUrl: "",
+		brandLogo: "",
 	},
 	{
 		id: "stoly",
 		image: "/images/stoly.jpg",
 		title: "Stoly",
 		description:
-			"Pohyblivé stoly firmy Neudoerfler s možnosťou zabrzdenia koliesok umožňujú rýchlo a bez väčšej námahy zmeniť usporiadanie školiaceho priestoru.",
-		brandName: "NEUDOERFLER",
-		brandUrl: "https://www.neudoerfler.com/",
-		brandLogo: "/images/neudoerfler-logo.jpg",
+			"Pohyblivé stoly firmy s možnosťou zabrzdenia koliesok umožňujú rýchlo a bez väčšej námahy zmeniť usporiadanie školiaceho priestoru.",
+		brandName: "",
+		brandUrl: "",
+		brandLogo: "",
 	},
 	{
 		id: "stol-lektor",
 		image: "/images/stol-lektor.jpg",
 		title: "Stôl pre lektora",
-		description: "Výškovo nastaviteľný a pohyblivý stôl firmy Neudoerfler pre lektora.",
-		brandName: "NEUDOERFLER",
-		brandUrl: "https://www.neudoerfler.com/",
+		description: "Výškovo nastaviteľný a pohyblivý stôl pre lektora.",
+		brandName: "",
+		brandUrl: "",
+		brandLogo: "",
 	},
 	{
 		id: "listy",
-		image: "/images/listy.jpg",
+		image: "/images/lista.webp",
 		title: "Zásuvné lišty",
 		description:
 			"Zásuvné lišty na zavesenie flipchartových papierov uľahčujú vizualizáciu postupu prác pri cvičeniach a workshopoch na stenách okolo celej učebne.",
 	},
-	{
-		id: "smartboard",
-		image: "/images/smartboard.jpg",
-		title: "Smartboard",
-		description:
-			'SB685ix je interaktívna tabuľa tretej generácie (87"/221 cm diagonal), UX60 projektor s formátom obrazu 16:10 WXGA (1280x800). Vzdialenosť projektora len 30,5cm od tabule umožňuje pohyb blízko tabule bez toho, aby zatieňoval premietaniu obrazu. Výsledky práce na interaktívnej tabuli je možné odoslať účastníkom workshopov v grafickej aj textovej forme. Smartboardom je vybavená ŽLTÁ školiaca miestnosť.',
-	},
+	// {
+	// 	id: "smartboard",
+	// 	image: "/images/smartboard.jpg",
+	// 	title: "Smartboard",
+	// 	description:
+	// 		'SB685ix je interaktívna tabuľa tretej generácie (87"/221 cm diagonal), UX60 projektor s formátom obrazu 16:10 WXGA (1280x800). Vzdialenosť projektora len 30,5cm od tabule umožňuje pohyb blízko tabule bez toho, aby zatieňoval premietaniu obrazu. Výsledky práce na interaktívnej tabuli je možné odoslať účastníkom workshopov v grafickej aj textovej forme. Smartboardom je vybavená ŽLTÁ školiaca miestnosť.',
+	// },
 	{
 		id: "skrine",
 		image: "/images/skrine.jpg",
@@ -64,14 +65,14 @@ const equipmentItems = [
 	},
 	{
 		id: "internet",
-		image: "/images/internet.jpg",
-		title: "Internet",
+		image: "/images/wifi.webp",
+		title: "WiFi",
 		description:
 			"Možnosť pripojenia sa k internetu pre lektora a účastníkov školení v samostatnej sieti pre každú učebňu.",
 	},
 	{
 		id: "karticky",
-		image: "/images/karticky.jpg",
+		image: "/images/cip.webp",
 		title: "Vstupné karty",
 		description:
 			"Vstupné karty do školiacich miestností pre lektorov a účastníkov školení slúžia k ochrane ich osobných vecí a k posilneniu bezpečnosti priestorov.",
@@ -150,7 +151,7 @@ const equipmentItems = [
 
 	.equipment-item {
 		display: grid;
-		grid-template-columns: 120px 40px 1fr auto;
+		grid-template-columns: 160px 40px 1fr auto;
 		gap: 0.5rem;
 		align-items: start;
 		padding-bottom: 2rem;
@@ -162,8 +163,8 @@ const equipmentItems = [
 	}
 
 	.equipment-item__image {
-		width: 120px;
-		height: 120px;
+		width: 160px;
+		height: 160px;
 		overflow: hidden;
 		border-radius: 4px;
 		background: var(--color-background-alt);
@@ -253,13 +254,13 @@ const equipmentItems = [
 	/* Responsive */
 	@media (max-width: 700px) {
 		.equipment-item {
-			grid-template-columns: 100px 30px 1fr;
+			grid-template-columns: 120px 30px 1fr;
 			grid-template-rows: auto auto;
 		}
 
 		.equipment-item__image {
-			width: 100px;
-			height: 100px;
+			width: 120px;
+			height: 120px;
 		}
 
 		.equipment-item__logo {
@@ -276,7 +277,7 @@ const equipmentItems = [
 
 	@media (max-width: 500px) {
 		.equipment-item {
-			grid-template-columns: 80px 1fr;
+			grid-template-columns: 100px 1fr;
 			gap: 0.75rem;
 		}
 
@@ -285,8 +286,8 @@ const equipmentItems = [
 		}
 
 		.equipment-item__image {
-			width: 80px;
-			height: 80px;
+			width: 100px;
+			height: 100px;
 		}
 
 		.equipment-item__content {
@@ -309,13 +310,13 @@ const equipmentItems = [
 
 	@media (max-width: 360px) {
 		.equipment-item {
-			grid-template-columns: 60px 1fr;
+			grid-template-columns: 80px 1fr;
 			gap: 0.5rem;
 		}
 
 		.equipment-item__image {
-			width: 60px;
-			height: 60px;
+			width: 80px;
+			height: 80px;
 		}
 
 		.equipment-item__title {

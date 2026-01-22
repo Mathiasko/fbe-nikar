@@ -7,11 +7,10 @@
 import type { Lang } from '../i18n/ui';
 
 export interface RoomFeatures {
-  projectionScreen: boolean;
-  dataProjector: boolean;
-  smartBoard: boolean;
+  smartTV: boolean;
+  tvScreen: boolean;
   flipchart: boolean;
-  internet: boolean;
+  wifi: boolean;
   extraTrainingSpace: boolean;
   terraceAccess: boolean;
   barrierFree: boolean;
@@ -39,13 +38,12 @@ export const rooms: Room[] = [
     size: 56,
     capacity: '12-20',
     features: {
-      projectionScreen: false,
-      dataProjector: true,
-      smartBoard: true,
+      smartTV: false,
+      tvScreen: true,
       flipchart: true,
-      internet: true,
+      wifi: true,
       extraTrainingSpace: true,
-      terraceAccess: true,
+      terraceAccess: false,
       barrierFree: true,
       airConditioning: true,
       audioSystem: true
@@ -65,11 +63,10 @@ export const rooms: Room[] = [
     size: 42,
     capacity: '12',
     features: {
-      projectionScreen: false,
-      dataProjector: true,
-      smartBoard: true,
+      smartTV: false,
+      tvScreen: true,
       flipchart: true,
-      internet: true,
+      wifi: true,
       extraTrainingSpace: true,
       terraceAccess: false,
       barrierFree: true,
@@ -91,11 +88,10 @@ export const rooms: Room[] = [
     size: 56,
     capacity: '12-20',
     features: {
-      projectionScreen: false,
-      dataProjector: true,
-      smartBoard: true,
+      smartTV: false,
+      tvScreen: true,
       flipchart: true,
-      internet: true,
+      wifi: true,
       extraTrainingSpace: true,
       terraceAccess: true,
       barrierFree: false,
@@ -117,11 +113,10 @@ export const rooms: Room[] = [
     size: 42,
     capacity: '12',
     features: {
-      projectionScreen: true,
-      dataProjector: false,
-      smartBoard: false,
+      smartTV: true,
+      tvScreen: true,
       flipchart: true,
-      internet: true,
+      wifi: true,
       extraTrainingSpace: true,
       terraceAccess: false,
       barrierFree: false,
@@ -129,19 +124,20 @@ export const rooms: Room[] = [
       audioSystem: true
     },
     images: [
-      '/images/rooms/blue-202-1.jpg',
-      '/images/rooms/blue-202-2.jpg',
-      '/images/rooms/blue-202-3.jpg'
+      '/images/modra1.webp',
+      '/images/modra2.webp',
+      '/images/modra3.webp',
+      '/images/floorplan2.jpg'
+
     ]
   }
 ];
 
 export const featureKeys: (keyof RoomFeatures)[] = [
-  'projectionScreen',
-  'dataProjector',
-  'smartBoard',
+  'smartTV',
+  'tvScreen',
   'flipchart',
-  'internet',
+  'wifi',
   'extraTrainingSpace',
   'terraceAccess',
   'barrierFree',
