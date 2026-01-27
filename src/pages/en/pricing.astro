@@ -1,43 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PricingTable from '../../components/PricingTable.astro';
 import { useTranslations } from '../../i18n/utils';
-import { fetchSheetAsCSV, parseRoomPrices } from '../../lib/sheets';
 import { getRoomPricingRows } from '../../data/room-pricing';
 
 const lang = 'en';
 const t = useTranslations(lang);
 
-// Fetch prices from Google Sheets
-let roomPrices: Record<string, string> = {};
-
-const sheetId = '1qhqBGuJgbj43wEUVUSAYY0x0LHx1tC3GmtjDIDIw6nw';
-const roomPricesGid = '0';
-
-// Fetch room prices
-const pricesData = await fetchSheetAsCSV(sheetId, roomPricesGid);
-if (pricesData.length > 0) {
-  roomPrices = parseRoomPrices(pricesData);
-}
-
-// Get room rows with hardcoded info + fetched prices
-const roomRows = getRoomPricingRows(lang, roomPrices);
-
-// Prepare room data for table
-const roomHeaders = ['Training Room', 'Room size', 'U-shape seating', 'Price per day (8:00-17:00)*'];
-const roomTableRows = roomRows.map(room => [
-  { text: room.name, link: room.link },
-  room.floorSize,
-  room.capacity,
-  room.price
-]);
-
-// Catering pricing data (static)
-const cateringHeaders = ['Lunch and Refreshments', 'Price'];
-const cateringRows = [
-  ['Lunch', '9 EUR'],
-  ['Refreshments/day', '10 EUR*']
-];
+// Get room rows (prices loaded client-side)
+const roomRows = getRoomPricingRows(lang);
 ---
 
 <BaseLayout
@@ -49,18 +19,54 @@ const cateringRows = [
     <h1>{t('page.pricing.title')}</h1>
     <p class="pricing-intro">{t('pricing.intro')}</p>
 
-    <PricingTable
-      title={t('pricing.roomRentals')}
-      headers={roomHeaders}
-      rows={roomTableRows}
-    />
+    <div class="pricing-section">
+      <h2 class="pricing-section__title">{t('pricing.roomRentals')}</h2>
+      <div class="pricing-table-wrapper">
+        <table class="pricing-table" id="room-pricing-table">
+          <thead>
+            <tr>
+              <th>Training Room</th>
+              <th>Room size</th>
+              <th>U-shape seating</th>
+              <th>Price per day (8:00-17:00)*</th>
+            </tr>
+          </thead>
+          <tbody>
+            {roomRows.map(room => (
+              <tr>
+                <td class="pricing-table__name">
+                  {room.link ? (
+                    <a href={room.link} class="pricing-table__link">{room.name}</a>
+                  ) : (
+                    room.name
+                  )}
+                </td>
+                <td>{room.floorSize}</td>
+                <td>{room.capacity}</td>
+                <td data-room-price={room.id}></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
 
     <div class="catering-section">
-      <PricingTable
-        title={t('pricing.catering')}
-        headers={cateringHeaders}
-        rows={cateringRows}
-      />
+      <div class="pricing-section">
+        <h2 class="pricing-section__title">{t('pricing.catering')}</h2>
+        <div class="pricing-table-wrapper">
+          <table class="pricing-table" id="catering-pricing-table">
+            <thead>
+              <tr>
+                <th>Lunch and Refreshments</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody id="catering-body">
+            </tbody>
+          </table>
+        </div>
+      </div>
       <p class="catering-note">*Option to arrange individual refreshment packages</p>
     </div>
 
@@ -72,6 +78,38 @@ const cateringRows = [
     </div>
   </div>
 </BaseLayout>
+
+<script>
+  async function loadPrices() {
+    try {
+      const response = await fetch('/prices.json');
+      const data = await response.json();
+
+      // Update room prices
+      document.querySelectorAll('[data-room-price]').forEach(cell => {
+        const roomId = cell.getAttribute('data-room-price');
+        if (roomId && data.rooms[roomId]) {
+          const price = data.rooms[roomId];
+          cell.textContent = price.includes('EUR') ? price : `${price} EUR`;
+        }
+      });
+
+      // Update catering table
+      const cateringBody = document.getElementById('catering-body');
+      const cateringData = data.catering['en'];
+
+      if (cateringBody && cateringData) {
+        cateringBody.innerHTML = cateringData.map((item: { item: string; price: string }) =>
+          `<tr><td>${item.item}</td><td>${item.price}</td></tr>`
+        ).join('');
+      }
+    } catch (error) {
+      console.error('Failed to load prices:', error);
+    }
+  }
+
+  loadPrices();
+</script>
 
 <style>
   .pricing-page {
@@ -116,5 +154,16 @@ const cateringRows = [
     font-size: 0.85rem;
     color: var(--color-text-light);
     font-style: italic;
+  }
+
+  .pricing-table__link {
+    color: var(--color-primary);
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  .pricing-table__link:hover {
+    color: var(--color-primary-dark);
+    text-decoration: none;
   }
 </style>

@@ -1,5 +1,7 @@
 import { ui, defaultLang, slugs, type Lang } from './ui';
 
+export type { Lang };
+
 /**
  * Get the current language from a URL
  */

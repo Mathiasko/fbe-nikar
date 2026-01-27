@@ -147,6 +147,7 @@ const colorKey = room.id.split('-')[0];
     {/* Lightbox overlays */}
     {room.images.map((image, index) => (
       <div id={`lightbox-${room.id}-${index}`} class="lightbox">
+        <a href="#" class="lightbox__overlay" aria-label="Close"></a>
         <a href="#" class="lightbox__close" aria-label="Close">&times;</a>
         <div class="lightbox__content">
           <img src={image} alt={`${room.name[lang]} - photo ${index + 1}`} class="lightbox__image" />
@@ -349,6 +350,15 @@ const colorKey = room.id.split('-')[0];
 
   .lightbox:target {
     display: flex;
+  }
+
+  .lightbox__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
   }
 
   .lightbox__close {

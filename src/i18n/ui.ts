@@ -62,6 +62,7 @@ export const ui = {
     'home.featuredGallery': 'Z našej galérie',
     'home.cta.rooms': 'Prehľad miestností',
     'home.cta.pricing': 'Cenník',
+    'home.partners': 'Partneri',
 
     // Pricing page
     'pricing.roomRentals': 'Prenájom miestností',
@@ -229,6 +230,7 @@ export const ui = {
     'home.featuredGallery': 'From Our Gallery',
     'home.cta.rooms': 'Room Overview',
     'home.cta.pricing': 'Pricing',
+    'home.partners': 'Partners',
 
     // Pricing page
     'pricing.roomRentals': 'Room Rentals',

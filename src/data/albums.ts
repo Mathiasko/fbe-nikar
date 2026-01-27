@@ -1,42 +1,34 @@
 import type { ImageMetadata } from 'astro';
 
 // Import sample gallery images (legacy)
-import sample1 from '../assets/gallery/sample-1.jpg';
-import sample2 from '../assets/gallery/sample-2.jpg';
-import sample3 from '../assets/gallery/sample-3.jpg';
-import sample4 from '../assets/gallery/sample-4.jpg';
-import sample5 from '../assets/gallery/sample-5.jpg';
-import sample6 from '../assets/gallery/sample-6.jpg';
-import sample7 from '../assets/gallery/sample-7.jpg';
-import sample8 from '../assets/gallery/sample-8.jpg';
 
 // Dynamic imports for nikar albums
 const nikarPriestoryImages = import.meta.glob<{ default: ImageMetadata }>(
-  ['../assets/gallery/nikar-priestory/*.jpg', '../assets/gallery/nikar-priestory/*.webp'],
+  ['../assets/gallery/nikar-priestory/*.webp', '../assets/gallery/nikar-priestory/*.webp'],
   { eager: true }
 );
 const otvorenieImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../assets/gallery/otvorenie/*.jpg',
+  '../assets/gallery/otvorenie/*.webp',
   { eager: true }
 );
 const nagyInuImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../assets/gallery/nagy-inu/*.jpg',
+  '../assets/gallery/nagy-inu/*.webp',
   { eager: true }
 );
 const varcholaImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../assets/gallery/varchola/*.jpg',
+  '../assets/gallery/varchola/*.webp',
   { eager: true }
 );
 const cabanovaImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../assets/gallery/cabanova/*.jpg',
+  '../assets/gallery/cabanova/*.webp',
   { eager: true }
 );
 const sickovaCzingeImages = import.meta.glob<{ default: ImageMetadata }>(
-  '../assets/gallery/sickova-czinege/*.jpg',
+  '../assets/gallery/sickova-czinege/*.webp',
   { eager: true }
 );
 const nagyIdentikit2Images = import.meta.glob<{ default: ImageMetadata }>(
-  '../assets/gallery/nagy-identikit2/*.jpg',
+  '../assets/gallery/nagy-identikit2/*.webp',
   { eager: true }
 );
 
@@ -48,8 +40,8 @@ function getImagesFromGlob(
     .map((module) => module.default)
     .sort((a, b) => {
       // Sort by filename numerically
-      const aNum = parseInt(a.src.match(/(\d+)\.jpg/)?.[1] || '0');
-      const bNum = parseInt(b.src.match(/(\d+)\.jpg/)?.[1] || '0');
+      const aNum = parseInt(a.src.match(/(\d+)\.webp/)?.[1] || '0');
+      const bNum = parseInt(b.src.match(/(\d+)\.webp/)?.[1] || '0');
       return aNum - bNum;
     });
 }
@@ -99,8 +91,8 @@ export const albums: Album[] = [
     },
     category: 'premises',
     categoryColor: CATEGORY_COLORS.premises,
-    coverImage: nikarPriestory[0] || sample1,
-    images: nikarPriestory.length > 0 ? nikarPriestory : [sample1, sample4, sample7],
+    coverImage: nikarPriestory[0],
+    images: nikarPriestory,
   },
   {
     slug: 'otvorenie-nikar',
@@ -118,8 +110,8 @@ export const albums: Album[] = [
     },
     category: 'opening',
     categoryColor: CATEGORY_COLORS.opening,
-    coverImage: otvorenie[0] || sample5,
-    images: otvorenie.length > 0 ? otvorenie : [sample5, sample8],
+    coverImage: otvorenie[0],
+    images: otvorenie,
   },
   {
     slug: 'julo-nagy-inu',
@@ -137,8 +129,8 @@ export const albums: Album[] = [
     },
     category: 'exhibition',
     categoryColor: CATEGORY_COLORS.exhibition,
-    coverImage: nagyInu[0] || sample2,
-    images: nagyInu.length > 0 ? nagyInu : [sample2, sample3, sample6],
+    coverImage: nagyInu[0],
+    images: nagyInu,
   },
   {
     slug: 'peter-varchola',
@@ -156,8 +148,8 @@ export const albums: Album[] = [
     },
     category: 'exhibition',
     categoryColor: CATEGORY_COLORS.exhibition,
-    coverImage: varchola[0] || sample2,
-    images: varchola.length > 0 ? varchola : [sample2, sample3],
+    coverImage: varchola[0],
+    images: varchola,
   },
   {
     slug: 'alena-cabanova',
@@ -175,8 +167,8 @@ export const albums: Album[] = [
     },
     category: 'exhibition',
     categoryColor: CATEGORY_COLORS.exhibition,
-    coverImage: cabanova[0] || sample2,
-    images: cabanova.length > 0 ? cabanova : [sample2, sample3],
+    coverImage: cabanova[0],
+    images: cabanova,
   },
   {
     slug: 'sickova-czinege',
@@ -194,8 +186,8 @@ export const albums: Album[] = [
     },
     category: 'exhibition',
     categoryColor: CATEGORY_COLORS.exhibition,
-    coverImage: sickovaCzinge[0] || sample2,
-    images: sickovaCzinge.length > 0 ? sickovaCzinge : [sample2, sample3],
+    coverImage: sickovaCzinge[0],
+    images: sickovaCzinge,
   },
   {
     slug: 'julo-nagy-identikit2',
@@ -213,8 +205,8 @@ export const albums: Album[] = [
     },
     category: 'saleExhibition',
     categoryColor: CATEGORY_COLORS.saleExhibition,
-    coverImage: nagyIdentikit2[0] || sample2,
-    images: nagyIdentikit2.length > 0 ? nagyIdentikit2 : [sample2, sample3, sample6],
+    coverImage: nagyIdentikit2[0],
+    images: nagyIdentikit2,
   },
 ];
 

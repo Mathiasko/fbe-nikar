@@ -153,6 +153,7 @@ const colorNameSk = colorNames[colorKey] || colorKey;
     {/* Lightbox overlays */}
     {room.images.map((image, index) => (
       <div id={`lightbox-${room.id}-${index}`} class="lightbox">
+        <a href="#" class="lightbox__overlay" aria-label="Zavriet"></a>
         <a href="#" class="lightbox__close" aria-label="Zavriet">&times;</a>
         <div class="lightbox__content">
           <img src={image} alt={`${room.name[lang]} - foto ${index + 1}`} class="lightbox__image" />
@@ -355,6 +356,15 @@ const colorNameSk = colorNames[colorKey] || colorKey;
 
   .lightbox:target {
     display: flex;
+  }
+
+  .lightbox__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
   }
 
   .lightbox__close {

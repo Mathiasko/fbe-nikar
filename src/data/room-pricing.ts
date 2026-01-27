@@ -1,7 +1,7 @@
 /**
  * Hardcoded room pricing data for NIKAR Training Center
  *
- * Room info is static, prices are fetched from Google Sheets
+ * Room info is static, prices are loaded client-side from /prices.json
  */
 
 import type { Lang } from '../i18n/ui';
@@ -74,23 +74,16 @@ export const roomPricingData: RoomPricingInfo[] = [
 
 /**
  * Get room info formatted for the pricing table
+ * Prices are loaded client-side from /prices.json
  */
-export function getRoomPricingRows(lang: Lang, prices: Record<string, string>) {
+export function getRoomPricingRows(lang: Lang) {
   const roomSlug = lang === 'sk' ? 'miestnost' : 'room';
 
-  return roomPricingData.map(room => {
-    const rawPrice = prices[room.id] || '';
-    // Add EUR if price exists and doesn't already contain it
-    const price = rawPrice && !rawPrice.toLowerCase().includes('eur')
-      ? `${rawPrice} EUR`
-      : rawPrice;
-
-    return {
-      name: room.name[lang],
-      link: room.link ? `/${lang}/${roomSlug}/${room.link}/` : undefined,
-      floorSize: `${room.floor[lang]}, ${room.size}`,
-      capacity: room.capacity[lang],
-      price
-    };
-  });
+  return roomPricingData.map(room => ({
+    id: room.id,
+    name: room.name[lang],
+    link: room.link ? `/${lang}/${roomSlug}/${room.link}/` : undefined,
+    floorSize: `${room.floor[lang]}, ${room.size}`,
+    capacity: room.capacity[lang]
+  }));
 }

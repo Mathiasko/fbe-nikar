@@ -1,0 +1,21 @@
+{
+  "rooms": {
+    "brown": "290",
+    "green": "270",
+    "yellow": "290",
+    "blue-in-person": "270",
+    "blue-hybrid": "320",
+    "coaching": "90",
+    "conference": "120"
+  },
+  "catering": {
+    "sk": [
+      { "item": "Obed", "price": "9 EUR" },
+      { "item": "Občerstvenie/deň", "price": "10 EUR*" }
+    ],
+    "en": [
+      { "item": "Lunch", "price": "9 EUR" },
+      { "item": "Refreshments/day", "price": "10 EUR*" }
+    ]
+  }
+}

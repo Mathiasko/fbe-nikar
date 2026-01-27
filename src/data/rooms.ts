@@ -49,10 +49,10 @@ export const rooms: Room[] = [
       audioSystem: true
     },
     images: [
-      '/images/nikar/album1/priestory_21.jpg',
-      '/images/nikar/album1/priestory_17.jpg',
-      '/images/nikar/album1/priestory_18.jpg',
-      '/images/floorplan1.jpg'
+      '/images/nikar/album1/priestory_21.webp',
+      '/images/nikar/album1/priestory_17.webp',
+      '/images/nikar/album1/priestory_18.webp',
+      '/images/floorplan1.webp'
     ]
   },
   {
@@ -74,10 +74,10 @@ export const rooms: Room[] = [
       audioSystem: true
     },
     images: [
-      '/images/nikar/album1/priestory_29.jpg',
-      '/images/nikar/album1/priestory_26.jpg',
-      '/images/nikar/album1/priestory_30.jpg',
-      '/images/floorplan1.jpg'
+      '/images/nikar/album1/priestory_29.webp',
+      '/images/nikar/album1/priestory_26.webp',
+      '/images/nikar/album1/priestory_30.webp',
+      '/images/floorplan1.webp'
     ]
   },
   {
@@ -99,10 +99,10 @@ export const rooms: Room[] = [
       audioSystem: true
     },
     images: [
-      '/images/nikar/album1/priestory_34.jpg',
-      '/images/nikar/album1/priestory_32.jpg',
-      '/images/nikar/album1/priestory_31.jpg',
-      '/images/floorplan2.jpg'
+      '/images/nikar/album1/priestory_34.webp',
+      '/images/nikar/album1/priestory_32.webp',
+      '/images/nikar/album1/priestory_31.webp',
+      '/images/floorplan2.webp'
     ]
   },
   {
@@ -127,7 +127,7 @@ export const rooms: Room[] = [
       '/images/modra1.webp',
       '/images/modra2.webp',
       '/images/modra3.webp',
-      '/images/floorplan2.jpg'
+      '/images/floorplan2.webp'
 
     ]
   }
